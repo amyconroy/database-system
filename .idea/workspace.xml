@@ -2,13 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DBServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BNF.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BNF.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/DBClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,6 +36,34 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
+  <component name="RunManager" selected="Application.DBClient">
+    <configuration name="DBClient" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="DBClient" />
+      <module name="java_database" />
+      <option name="PROGRAM_PARAMETERS" value="CREATE DATABASE Coursework;" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DBServer" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="DBServer" />
+      <module name="java_database" />
+      <option name="PROGRAM_PARAMETERS" value="CREATE DATABASE Coursework;" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="DBClient" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.DBClient" />
+      <item itemvalue="Application.DBServer" />
+    </list>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -38,6 +75,21 @@
       <option name="presentableId" value="Default" />
       <updated>1586782646775</updated>
     </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1586783179892</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586783179892</updated>
+    </task>
+    <task id="LOCAL-00002" summary="test">
+      <created>1586783188177</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586783188177</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -45,24 +97,43 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="344" y="64" key="CommitChangelistDialog2" timestamp="1586783179764">
+    <state x="256" y="26" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586804796061">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="256" y="26" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1586804796061" />
+    <state x="193" y="139" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1586804123534" />
+    <state x="457" y="252" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586803742398">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="344" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1586783179764" />
+    <state x="457" y="252" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1440.877@0.23.1440.877" timestamp="1586803742398" />
+    <state x="344" y="64" key="CommitChangelistDialog2" timestamp="1586783188041">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="344" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1586783188041" />
     <state x="221" y="100" key="SettingsEditor" timestamp="1586783132132">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="221" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1586783132132" />
-    <state x="320" y="201" key="Vcs.Push.Dialog.v2" timestamp="1586783160152">
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2" timestamp="1586783194391">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="320" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1586783160152" />
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1586783194391" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1587079896665">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587079896665" />
   </component>
 </project>

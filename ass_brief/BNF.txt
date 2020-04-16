@@ -1,4 +1,3 @@
-
 <Command>        ::=  <CommandType>;
 
 <CommandType>    ::=  <Use> | <Create> | <Drop> | <Alter> | <Insert> |
