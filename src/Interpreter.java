@@ -1,4 +1,4 @@
-import Command.*;
+import Commands.*;
 import java.util.*;
 
 public class Interpreter {
@@ -8,8 +8,9 @@ public class Interpreter {
     private String output;
 
     public Interpreter(){
-        commandTypes = new HashMap<String, Command>();
+        commandTypes = new HashMap<>();
         List<String> queryTokens = new ArrayList<>();
+        // todo account for different cases
         commandTypes.put("USE", new UseCommand());
         commandTypes.put("CREATE", new CreateCommand());
         commandTypes.put("DROP", new DropCommand());

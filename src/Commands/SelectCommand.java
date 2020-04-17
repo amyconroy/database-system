@@ -1,6 +1,5 @@
-package Command;
+package Commands;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SelectCommand implements Command {

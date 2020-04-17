@@ -1,3 +1,5 @@
+import Exceptions.IncorrectSQLException;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -26,13 +28,13 @@ public class DBServer {
                 socket.close();
                 ss.close();
             }
-            catch (IOException ioe) {
+            catch (IOException | IncorrectSQLException ioe) {
                 System.err.println(ioe);
             }
         }
     }
 
-    private void processQuery(String line, BufferedWriter out, BufferedReader in, DBController dbController) throws IOException {
+    private void processQuery(String line, BufferedWriter out, BufferedReader in, DBController dbController) throws IOException, IncorrectSQLException {
         String output;
         System.out.println("SQL : " + line);
         output = dbController.preformQuery(line);
