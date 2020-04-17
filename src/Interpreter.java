@@ -5,7 +5,6 @@ public class Interpreter {
     private Map<String, Command> commandTypes;
     private List<String> queryTokens;
     private String stringCommand;
-    private String output;
 
     public Interpreter(){
         commandTypes = new HashMap<>();
@@ -22,11 +21,11 @@ public class Interpreter {
         commandTypes.put("DELETE", new DeleteCommand());
     }
 
-    public String interpretQuery(List<String> queryTokens){
-        this.queryTokens = queryTokens;
+    public String interpretQuery(DBQuery query){
+        queryTokens = query.getTokens();
         stringCommand = queryTokens.get(0);
         Command command = commandTypes.get(stringCommand); // todo add in exception for if the command is not found
-        command.preformCommand(queryTokens);
-        return output;
+        command.preformCommand(query);
+        return query.getOutput();
     }
 }

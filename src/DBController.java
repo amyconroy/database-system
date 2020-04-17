@@ -1,3 +1,4 @@
+import Commands.DBQuery;
 import Exceptions.IncorrectSQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +9,19 @@ public class DBController {
     private String output;
     private Interpreter interpreter;
     private String input;
+    private DBQuery DBQuery;
 
     public DBController(){
         queryTokens = new ArrayList<>();
         interpreter = new Interpreter();
+        DBQuery = new DBQuery();
     }
 
     public String preformQuery(String input) throws IncorrectSQLException {
         this.input = input;
         parseInput();
-        output = interpreter.interpretQuery(queryTokens);
+        DBQuery.setTokens((ArrayList<String>) queryTokens);
+        output = interpreter.interpretQuery(DBQuery);
         return output;
     }
 
