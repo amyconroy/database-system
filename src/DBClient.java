@@ -1,8 +1,7 @@
 import java.io.*;
 import java.net.*;
 
-public class DBClient
-{
+public class DBClient {
     final static char EOT = 4;
 
     public static void main(String[] args)
@@ -26,6 +25,7 @@ public class DBClient
             out.write(command + "\n");
             out.flush();
             String incoming = in.readLine();
+            System.out.println("incoming" + incoming);
             while( ! incoming.contains("" + EOT + "")) {
                 System.out.println(incoming);
                 incoming = in.readLine();
