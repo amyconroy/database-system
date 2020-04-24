@@ -4,10 +4,11 @@ import java.util.regex.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.lang.*;
 
 public class DBController {
     private List<String> queryTokens;
-    private String[] input2;
+    private String[] tokens;
     private String output;
     private Interpreter interpreter;
     private String input;
@@ -22,19 +23,27 @@ public class DBController {
     public String preformQuery(String input) throws IncorrectSQLException {
         this.input = input;
         parseInput();
-        //DBQuery.setTokens((ArrayList<String>) queryTokens);
+        // DBQuery.setTokens((ArrayList<String>) queryTokens);
         //output = interpreter.interpretQuery(DBQuery);
         return output;
     }
 
     public void parseInput() throws IncorrectSQLException {
         tokenize();
-        // checkSQL();
+        trimSpaces();
+        checkSQL();
     }
 
     private void tokenize(){
-       input2 = input.split("(?=[ ,;()])|(?<=[ ,;()])");
-       System.out.println("testbitch : " + Arrays.toString(input2));
+       tokens = input.split("(?=[ ,;()])|(?<=[ ,;()])");
+       trimSpaces();
+       System.out.println("testbitch : " + queryTokens);
+    }
+
+    private void trimSpaces(){
+        for(String token : tokens){
+            queryTokens.add(token.trim());
+        }
     }
 
     private void checkSQL() throws IncorrectSQLException {

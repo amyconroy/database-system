@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="test">
-      <change afterPath="$PROJECT_DIR$/brief/testing.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Token.java" afterDir="false" />
+    <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/IncorrectSQLException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/IncorrectSQLException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Token.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586783188177</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="working regex">
+      <created>1587738822440</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587738822441</updated>
+    </task>
+    <task id="LOCAL-00004" summary="working regex">
+      <created>1587738830186</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1587738830186</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,7 +132,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="working regex" />
+    <option name="LAST_COMMIT_MESSAGE" value="working regex" />
   </component>
   <component name="WindowStateProjectService">
     <state x="256" y="26" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587133748725">
@@ -150,33 +165,33 @@
     <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1587123163993" />
     <state x="344" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1586783188041" />
     <state x="344" y="42" key="CommitChangelistDialog2/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738830072" />
-    <state width="882" height="196" key="GridCell.Tab.0.bottom" timestamp="1587738787576">
+    <state width="1398" height="196" key="GridCell.Tab.0.bottom" timestamp="1587749227961">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="196" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587162768673" />
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1587081075480" />
-    <state width="882" height="196" key="GridCell.Tab.0.bottom/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738787576" />
+    <state width="1398" height="196" key="GridCell.Tab.0.bottom/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587749227961" />
     <state width="1398" height="196" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343991" />
-    <state width="882" height="196" key="GridCell.Tab.0.center" timestamp="1587738787575">
+    <state width="1398" height="196" key="GridCell.Tab.0.center" timestamp="1587749227960">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="196" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587162768672" />
     <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1587081075479" />
-    <state width="882" height="196" key="GridCell.Tab.0.center/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738787575" />
+    <state width="1398" height="196" key="GridCell.Tab.0.center/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587749227960" />
     <state width="1398" height="196" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343990" />
-    <state width="882" height="196" key="GridCell.Tab.0.left" timestamp="1587738787573">
+    <state width="1398" height="196" key="GridCell.Tab.0.left" timestamp="1587749227959">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="196" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587162768671" />
     <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1587081075478" />
-    <state width="882" height="196" key="GridCell.Tab.0.left/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738787573" />
+    <state width="1398" height="196" key="GridCell.Tab.0.left/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587749227959" />
     <state width="1398" height="196" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343989" />
-    <state width="882" height="196" key="GridCell.Tab.0.right" timestamp="1587738787575">
+    <state width="1398" height="196" key="GridCell.Tab.0.right" timestamp="1587749227961">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="196" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587162768672" />
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1587081075479" />
-    <state width="882" height="196" key="GridCell.Tab.0.right/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738787575" />
+    <state width="1398" height="196" key="GridCell.Tab.0.right/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587749227961" />
     <state width="1398" height="196" key="GridCell.Tab.0.right/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343990" />
     <state width="1398" height="303" key="GridCell.Tab.1.bottom" timestamp="1587136343955">
       <screen x="0" y="23" width="1440" height="877" />
