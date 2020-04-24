@@ -1,11 +1,13 @@
 import Commands.DBQuery;
 import Exceptions.IncorrectSQLException;
+import java.util.regex.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class DBController {
     private List<String> queryTokens;
+    private String[] input2;
     private String output;
     private Interpreter interpreter;
     private String input;
@@ -20,21 +22,19 @@ public class DBController {
     public String preformQuery(String input) throws IncorrectSQLException {
         this.input = input;
         parseInput();
-        DBQuery.setTokens((ArrayList<String>) queryTokens);
-        output = interpreter.interpretQuery(DBQuery);
+        //DBQuery.setTokens((ArrayList<String>) queryTokens);
+        //output = interpreter.interpretQuery(DBQuery);
         return output;
     }
 
     public void parseInput() throws IncorrectSQLException {
         tokenize();
-        checkSQL();
+        // checkSQL();
     }
 
     private void tokenize(){
-        StringTokenizer tokenizer = new StringTokenizer(input, " ");
-        while(tokenizer.hasMoreElements()){
-            queryTokens.add(tokenizer.nextToken());
-        }
+       input2 = input.split("(?=[ ,;()])|(?<=[ ,;()])");
+       System.out.println("testbitch : " + Arrays.toString(input2));
     }
 
     private void checkSQL() throws IncorrectSQLException {
