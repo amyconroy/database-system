@@ -1,4 +1,6 @@
 import Commands.*;
+import Exceptions.InvalidQueryException;
+
 import java.util.*;
 
 public class Interpreter {
@@ -8,7 +10,6 @@ public class Interpreter {
 
     public Interpreter(){
         commandTypes = new HashMap<>();
-        List<String> queryTokens = new ArrayList<>();
         // todo account for different cases
         commandTypes.put("USE", new UseCommand());
         commandTypes.put("CREATE", new CreateCommand());
@@ -21,11 +22,11 @@ public class Interpreter {
         commandTypes.put("DELETE", new DeleteCommand());
     }
 
-    public String interpretQuery(DBQuery query){
+    public void interpretQuery(DBQuery query) throws InvalidQueryException {
         queryTokens = query.getTokens();
         stringCommand = queryTokens.get(0);
         Command command = commandTypes.get(stringCommand); // todo add in exception for if the command is not found
+        query.setCommand(command);
         command.preformCommand(query);
-        return query.getOutput();
     }
 }

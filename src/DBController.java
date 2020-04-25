@@ -1,55 +1,42 @@
 import Commands.DBQuery;
 import Exceptions.IncorrectSQLException;
-import java.util.regex.*;
+import Exceptions.InvalidQueryException;
+
+import java.util.Collections;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.lang.*;
 
 public class DBController {
     private List<String> queryTokens;
     private String[] tokens;
-    private String output;
     private Interpreter interpreter;
     private String input;
-    private DBQuery DBQuery;
 
     public DBController(){
         queryTokens = new ArrayList<>();
         interpreter = new Interpreter();
-        DBQuery = new DBQuery();
     }
 
-    public String preformQuery(String input) throws IncorrectSQLException {
+    public String preformQuery(String input) throws IncorrectSQLException, InvalidQueryException {
         this.input = input;
-        parseInput();
-        // DBQuery.setTokens((ArrayList<String>) queryTokens);
-        //output = interpreter.interpretQuery(DBQuery);
-        return output;
-    }
-
-    public void parseInput() throws IncorrectSQLException {
+        Commands.DBQuery DBQuery = new DBQuery();
         tokenize();
-        trimSpaces();
-        checkSQL();
+        DBQuery.setTokens((ArrayList<String>) queryTokens);
+        interpreter.interpretQuery(DBQuery);
+        String output = DBQuery.getOutput();
+        return output;
     }
 
     private void tokenize(){
        tokens = input.split("(?=[ ,;()])|(?<=[ ,;()])");
        trimSpaces();
-       System.out.println("testbitch : " + queryTokens);
+       queryTokens.removeAll(Collections.singleton(""));
     }
 
     private void trimSpaces(){
-        for(String token : tokens){
+        for (String token : tokens) {
             queryTokens.add(token.trim());
-        }
-    }
-
-    private void checkSQL() throws IncorrectSQLException {
-        String finalWord = queryTokens.get(queryTokens.size()-1);
-        if(!finalWord.substring(finalWord.length() - 1).equals(";")){
-            throw new IncorrectSQLException("ERROR Missing ; \n");
         }
     }
 }
