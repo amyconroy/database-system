@@ -15,18 +15,17 @@ public class DBController {
     private String input;
 
     public DBController(){
-        queryTokens = new ArrayList<>();
         interpreter = new Interpreter();
     }
 
     public String preformQuery(String input) throws IncorrectSQLException, InvalidQueryException {
         this.input = input;
-        Commands.DBQuery DBQuery = new DBQuery();
+        queryTokens = new ArrayList<>();
+        DBQuery DBQuery = new DBQuery();
         tokenize();
         DBQuery.setTokens(queryTokens);
         interpreter.interpretQuery(DBQuery);
-        String output = DBQuery.getOutput();
-        return output;
+        return DBQuery.getOutput();
     }
 
     private void tokenize(){

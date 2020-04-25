@@ -25,8 +25,7 @@ public class DBClient {
             out.write(command + "\n");
             out.flush();
             String incoming = in.readLine();
-            System.out.println("incoming" + incoming);
-            while( ! incoming.contains("" + EOT + "")) {
+            while(!incoming.contains("" + EOT + "")) {
                 System.out.println(incoming);
                 incoming = in.readLine();
             }

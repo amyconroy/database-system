@@ -8,8 +8,6 @@ import java.util.*;
 
 public class Interpreter {
     private Map<String, Command> commandTypes;
-    private List<String> queryTokens;
-    private String stringCommand;
 
     public Interpreter(){
         commandTypes = new HashMap<>();
@@ -26,10 +24,10 @@ public class Interpreter {
     }
 
     public void interpretQuery(DBQuery query) throws InvalidQueryException, IncorrectSQLException {
-        queryTokens = query.getTokens();
+        List<String> queryTokens = query.getTokens();
         System.out.println("TEST + "  + queryTokens);
-        stringCommand = queryTokens.get(0);
-        Command command = commandTypes.get(stringCommand); // todo add in exception for if the command is not found
+        String stringCommand = queryTokens.get(0);
+        Command command = commandTypes.get(stringCommand);
         if(command == null){
             throw new IncorrectSQLException("ERROR: Invalid query");
         }
