@@ -1,6 +1,4 @@
 package Commands;
-
-import Commands.*;
 import Exceptions.IncorrectSQLException;
 import Exceptions.InvalidQueryException;
 

@@ -10,4 +10,8 @@ public class AlterCommand implements Command {
     public void parseInput() throws InvalidQueryException {
 
     }
+
+    public void checkSyntax() throws InvalidQueryException {
+
+    }
 }

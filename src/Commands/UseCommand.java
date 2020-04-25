@@ -14,11 +14,9 @@ public class UseCommand implements Command {
         this.Query = Query;
         tokens = Query.getTokens();
         parseInput();
-        System.out.println("test : " + tokens);
     }
 
     public void parseInput() throws InvalidQueryException {
-        System.out.println("test : " + tokens.size());
         validLength();
         checkSyntax();
         dbName = tokens.get(1);
