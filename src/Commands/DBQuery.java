@@ -3,18 +3,20 @@ import java.util.*;
 
 public class DBQuery {
     Command command;
-    ArrayList<String> queryTokens;
+    List<String> queryTokens;
     String output;
 
     public DBQuery(){
-        ArrayList<String> queryTokens = new ArrayList<>();
+        List<String> queryTokens = new ArrayList<>();
     }
 
-    public void setTokens(ArrayList<String> queryTokens){
+    public void setTokens(List<String> queryTokens){
         this.queryTokens = queryTokens;
+        System.out.println("test set : " + this.queryTokens);
     }
 
-    public ArrayList<String> getTokens(){
+    public List<String> getTokens(){
+        System.out.println("test get : " + queryTokens);
         return queryTokens;
     }
 

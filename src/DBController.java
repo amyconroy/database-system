@@ -1,4 +1,5 @@
 import Commands.DBQuery;
+import Commands.Interpreter;
 import Exceptions.IncorrectSQLException;
 import Exceptions.InvalidQueryException;
 
@@ -22,7 +23,7 @@ public class DBController {
         this.input = input;
         Commands.DBQuery DBQuery = new DBQuery();
         tokenize();
-        DBQuery.setTokens((ArrayList<String>) queryTokens);
+        DBQuery.setTokens(queryTokens);
         interpreter.interpretQuery(DBQuery);
         String output = DBQuery.getOutput();
         return output;

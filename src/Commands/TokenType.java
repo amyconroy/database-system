@@ -34,7 +34,7 @@ public enum TokenType {
     }
 
     public String getToken(){
-        return token;
+        return this.token;
     }
 }
 

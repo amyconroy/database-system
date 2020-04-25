@@ -1,4 +1,7 @@
+package Commands;
+
 import Commands.*;
+import Exceptions.IncorrectSQLException;
 import Exceptions.InvalidQueryException;
 
 import java.util.*;
@@ -22,10 +25,14 @@ public class Interpreter {
         commandTypes.put("DELETE", new DeleteCommand());
     }
 
-    public void interpretQuery(DBQuery query) throws InvalidQueryException {
+    public void interpretQuery(DBQuery query) throws InvalidQueryException, IncorrectSQLException {
         queryTokens = query.getTokens();
+        System.out.println("TEST + "  + queryTokens);
         stringCommand = queryTokens.get(0);
         Command command = commandTypes.get(stringCommand); // todo add in exception for if the command is not found
+        if(command == null){
+            throw new IncorrectSQLException("ERROR: Invalid query");
+        }
         query.setCommand(command);
         command.preformCommand(query);
     }
