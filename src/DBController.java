@@ -29,7 +29,7 @@ public class DBController {
     }
 
     private void tokenize(){
-       tokens = input.split("(?=[ ,;()])|(?<=[ ,;()])");
+       tokens = input.split("(?=[ ,;()'])|(?<=[ ,;()'])");
        trimSpaces();
        queryTokens.removeAll(Collections.singleton(""));
     }

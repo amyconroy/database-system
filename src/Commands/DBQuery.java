@@ -11,6 +11,7 @@ public class DBQuery {
     }
 
     public void setTokens(List<String> queryTokens){
+        this.queryTokens = new ArrayList<>();
         this.queryTokens = queryTokens;
         System.out.println("test set : " + this.queryTokens);
     }

@@ -3,32 +3,31 @@ package Commands;
 import Exceptions.InvalidQueryException;
 import java.util.List;
 
+//<Create>  ::=  <CreateDatabase> | <CreateTable>
+
 public class CreateCommand implements Command {
     public List<String> tokens;
     DBQuery Query;
-    String name;
+    DBParser parser;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
         this.Query = Query;
+        parser = new DBParser();
         tokens = Query.getTokens();
         parseInput();
     }
 
     public void parseInput() throws InvalidQueryException {
-        checkSyntax();
-        name = tokens.get(2);
+        parser.checkEndQuery(tokens.get(tokens.size()-1));
         String createType = tokens.get(1);
-        StructureType structure = new StructureType();
-        String type = structure.getStructureType(createType);
-        if(!name.matches("^[a-zA-Z]*$")){
-            throw new InvalidQueryException("ERROR: Invalid query.");
+        parser.checkStructureName(createType);
+        String name = tokens.get(2);
+        parser.checkName(name);
+        if(createType.equals("DATABASE")){
+            CreateDBCommand DBCommand = new CreateDBCommand(Query, name);
         }
-    }
-
-    public void checkSyntax() throws InvalidQueryException {
-        String finalToken = tokens.get(tokens.size()-1);
-        if(!finalToken.equals(";")){
-            throw new InvalidQueryException("ERROR: Missing semicolon.");
+        else if(createType.equals("TABLE")){
+            CreateTBLCommand TBLCommand = new CreateTBLCommand(Query, name);
         }
     }
 }

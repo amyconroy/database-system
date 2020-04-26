@@ -1,5 +1,6 @@
 package Commands;
 
+// <CreateTable>  ::=  CREATE TABLE <TableName> | CREATE TABLE <TableName> ( <AttributeList> )
 public class CreateTBLCommand {
     DBQuery query;
     String TBLName;

@@ -1,5 +1,6 @@
 package Commands;
 
+// <CreateDatabase> ::=  CREATE DATABASE <DatabaseName>
 public class CreateDBCommand {
     DBQuery query;
     String DBName;

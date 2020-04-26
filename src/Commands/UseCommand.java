@@ -1,10 +1,10 @@
 package Commands;
 
 import Exceptions.InvalidQueryException;
-
 import java.util.ArrayList;
 import java.util.List;
 
+//<Use> ::=  USE <DatabaseName>
 public class UseCommand implements Command {
     public List<String> tokens;
     DBQuery Query;
@@ -22,10 +22,7 @@ public class UseCommand implements Command {
         validLength();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         dbName = tokens.get(1);
-        if(!dbName.matches("^[a-zA-Z]*$")){
-            throw new InvalidQueryException("ERROR: Incorrect usage of database name.");
-        }
-        // preform the command
+        parser.checkName(dbName);
     }
 
     public void validLength() throws InvalidQueryException {
