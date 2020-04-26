@@ -2,6 +2,7 @@ package Commands;
 
 import Exceptions.InvalidQueryException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SelectCommand implements Command {
@@ -17,10 +18,11 @@ public class SelectCommand implements Command {
     }
 
     public void parseInput() throws InvalidQueryException {
+        List<String> attributeList = new ArrayList<>();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
-    }
-
-    public void checkSyntax() throws InvalidQueryException {
+        int startIndex = 1;
+        int fromIndex = tokens.indexOf("FROM");
+        attributeList = parser.createAttributeList(tokens, startIndex, fromIndex);
 
     }
 }
