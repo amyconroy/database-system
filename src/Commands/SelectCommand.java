@@ -19,10 +19,14 @@ public class SelectCommand implements Command {
 
     public void parseInput() throws InvalidQueryException {
         List<String> attributeList = new ArrayList<>();
-        parser.checkEndQuery(tokens.get(tokens.size()-1));
+        int listSize = tokens.size()-1;
+        parser.checkEndQuery(tokens.get(listSize));
         int startIndex = 1;
-        int fromIndex = tokens.indexOf("FROM");
-        attributeList = parser.createAttributeList(tokens, startIndex, fromIndex);
-
+        int currIndex = tokens.indexOf("FROM");
+        attributeList = parser.createAttributeList(tokens, startIndex, currIndex);
+        parser.checkName(tokens.get(currIndex++));
+        if(!(tokens.get(currIndex++).equals(";"))){
+            parser.checkInput(tokens.get(currIndex), "WHERE");
+        }
     }
 }
