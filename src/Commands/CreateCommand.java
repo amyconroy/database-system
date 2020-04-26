@@ -6,6 +6,7 @@ import java.util.List;
 public class CreateCommand implements Command {
     public List<String> tokens;
     DBQuery Query;
+    String name;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
         this.Query = Query;
@@ -15,15 +16,12 @@ public class CreateCommand implements Command {
 
     public void parseInput() throws InvalidQueryException {
         checkSyntax();
+        name = tokens.get(2);
         String createType = tokens.get(1);
-        if(createType.equals("TABLE")){
-            CreateTBLCommand CreateTBLCommand = new CreateTBLCommand();
-        }
-        else if(createType.equals("DATABASE")){
-            CreateDBCommand CreateDBCommand = new CreateDBCommand();
-        }
-        else{
-            throw new InvalidQueryException("ERROR: Invalid Query");
+        StructureType structure = new StructureType();
+        String type = structure.getStructureType(createType);
+        if(!name.matches("^[a-zA-Z]*$")){
+            throw new InvalidQueryException("ERROR: Invalid query.");
         }
     }
 
