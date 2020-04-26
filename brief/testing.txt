@@ -242,7 +242,7 @@ ERROR: Attribute cannot be converted to number
 
 // Missing comma between attribute names !
 SELECT name age FROM actors;
-ERROR: Invalid query
+ERROR: Invalid query*
 
 // Missing WHERE keyword
 SELECT * FROM actors awards > 10;

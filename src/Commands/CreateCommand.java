@@ -10,9 +10,9 @@ public class CreateCommand implements Command {
     DBQuery Query;
     DBParser parser;
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException {
+    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
         this.Query = Query;
-        parser = new DBParser();
+        this.parser = parser;
         tokens = Query.getTokens();
         parseInput();
     }

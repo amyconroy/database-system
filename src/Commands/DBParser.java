@@ -7,6 +7,19 @@ import java.util.List;
 
 public class DBParser {
     String attributeName = ("^[a-zA-Z_]*$");
+    List<String> operators;
+    int valueIterator;
+
+    public DBParser(){
+        operators = new ArrayList<>();
+        operators.add("==");
+        operators.add(">");
+        operators.add("<");
+        operators.add(">=");
+        operators.add("<=");
+        operators.add("!=");
+        operators.add("LIKE");
+    }
 
     public void checkInput(String input, String input2) throws InvalidQueryException {
         if(!input.equals(input2)){
@@ -38,40 +51,81 @@ public class DBParser {
         }
     }
 
+    private Boolean checkOperator(String input) throws InvalidQueryException{
+        for(String operator : operators){
+            if(input.equals(operator)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void checkCondition(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
+       String firstToken = tokens.get(startIndex);
+       int currIndex = startIndex;
+
+        if(!firstToken.equals("(")){
+            checkName(firstToken);
+            currIndex++;
+            String token = tokens.get(currIndex);
+            checkOperator(token);
+        }
+    }
+
     //todo refactor to create one list function
     public List<String> createValuesList(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
         List<String> values = new ArrayList<>();
         String value = "";
-        boolean bracketFlag = false;
+        boolean addFlag = false;
 
-        for(int iterator = startIndex; iterator <= endIndex; iterator++){
-            String token = tokens.get(iterator);
-            if(value == null && !token.equals(",")){
-                value = token;
-            }
-            if(token.equals(",")){
+        for(valueIterator = startIndex; valueIterator < endIndex; valueIterator++){
+            String token = tokens.get(valueIterator);
+            System.out.println("test : " + token);
+            if(!token.equals(",")){
+                value = checkValues(tokens);
                 values.add(value);
-                value = null;
-            }
-            else if(token.equals("'")){
-                if(bracketFlag){
-                    bracketFlag = false;
-                    values.add(value);
-                }
-                else{
-                    bracketFlag = true;
-                }
-            }
-            else if(!token.equals(";") && bracketFlag){
-                value = value.concat(" ");
-                value = value.concat(token);
             }
         }
-        // string literal has been opened and not closed
-        if(bracketFlag){
-            throw new InvalidQueryException("ERROR: Invalid Query");
-        }
+        System.out.println("test the values : " + values);
         return values;
+    }
+
+    // check for appropriate stringliteral, boolean literal, float, int
+    public String checkValues(List<String> tokens) throws InvalidQueryException {
+        String token = tokens.get(valueIterator);
+        boolean bracketFlag = false;
+        boolean endFlag = false;
+        boolean validValue = false;
+
+        if(token.equals("'")){
+            valueIterator++;
+            token = "";
+            while(!bracketFlag || !endFlag){
+                if(tokens.get(valueIterator).equals("'")){
+                    bracketFlag = true;
+                    validValue = true;
+                    break;
+                }
+                else if(tokens.get(valueIterator).equals(";")){
+                    endFlag = true;
+                    break;
+                }
+                token = token.concat(" ");
+                token = token.concat(tokens.get(valueIterator));
+                valueIterator++;
+            }
+            if(!bracketFlag){
+                throw new InvalidQueryException("ERROR: Missing end quote");
+            }
+        }
+        /* else{
+            validValue = true;
+        } */
+        //else if(int sqlInt.parseInt(token))
+        /* if(!validValue){
+            throw new InvalidQueryException("ERROR: Incorrect Value");
+        } */
+        return token;
     }
 
     public List<String> createAttributeList(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {

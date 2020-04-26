@@ -21,8 +21,10 @@ public class Interpreter {
         commandTypes.put("DELETE", new DeleteCommand());
     }
 
+    // todo pass in parser and tokens, saves the preform command function? then only one in interface
     public void interpretQuery(DBQuery query) throws InvalidQueryException, IncorrectSQLException {
         List<String> queryTokens = query.getTokens();
+        DBParser DBParser = new DBParser();
         System.out.println("TEST + "  + queryTokens);
         String stringCommand = queryTokens.get(0);
         Command command = commandTypes.get(stringCommand);
@@ -30,6 +32,6 @@ public class Interpreter {
             throw new IncorrectSQLException("ERROR: Invalid query");
         }
         query.setCommand(command);
-        command.preformCommand(query);
+        command.preformCommand(query, DBParser);
     }
 }

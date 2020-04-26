@@ -8,12 +8,12 @@ import java.util.List;
 public class UseCommand implements Command {
     public List<String> tokens;
     DBQuery Query;
-    String dbName;
     DBParser parser;
+    String dbName;
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException {
+    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
         this.Query = Query;
-        parser = new DBParser();
+        this.parser = parser;
         tokens = Query.getTokens();
         parseInput();
     }
