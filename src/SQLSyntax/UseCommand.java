@@ -1,12 +1,15 @@
-package Commands;
+package SQLSyntax;
 
 import Exceptions.InvalidQueryException;
+
 import java.util.List;
 
-public class DeleteCommand implements Command {
-    DBQuery Query;
+//<Use> ::=  USE <DatabaseName>
+public class UseCommand implements Command {
     public List<String> tokens;
+    DBQuery Query;
     DBParser parser;
+    String dbName;
 
     public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
         this.Query = Query;
@@ -16,12 +19,15 @@ public class DeleteCommand implements Command {
     }
 
     public void parseInput() throws InvalidQueryException {
+        validLength();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
-        parser.checkInput(tokens.get(1), "FROM");
-        String tableName = tokens.get(2);
-        parser.checkName(tableName);
-        parser.checkInput(tokens.get(3), "WHERE");
-        //todo add in support for parsing conditions
+        dbName = tokens.get(1);
+        parser.checkName(dbName);
+    }
 
+    public void validLength() throws InvalidQueryException {
+        if(tokens.size() != 3){
+            throw new InvalidQueryException("ERROR: Invalid query");
+        }
     }
 }

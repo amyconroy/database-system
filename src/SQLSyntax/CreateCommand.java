@@ -1,4 +1,4 @@
-package Commands;
+package SQLSyntax;
 
 import Exceptions.InvalidQueryException;
 import java.util.List;

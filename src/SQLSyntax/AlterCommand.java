@@ -1,12 +1,11 @@
-package Commands;
+package SQLSyntax;
 import Exceptions.InvalidQueryException;
 import java.util.List;
 
-//<Insert>  ::=  INSERT INTO <TableName> VALUES ( <ValueList> )
-public class InsertCommand implements Command {
-    public List<String> tokens;
-    public List<String> values;
+//<Alter>  ::=  ALTER TABLE <TableName> <AlterationType> <AttributeName>
+public class AlterCommand implements Command {
     DBQuery Query;
+    public List<String> tokens;
     DBParser parser;
 
     public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
@@ -18,13 +17,12 @@ public class InsertCommand implements Command {
 
     public void parseInput() throws InvalidQueryException {
         parser.checkEndQuery(tokens.get(tokens.size()-1));
-        parser.checkInput(tokens.get(1), "INTO");
+        parser.checkInput(tokens.get(1), "TABLE");
         String tableName = tokens.get(2);
         parser.checkName(tableName);
-        parser.checkInput(tokens.get(3), "VALUES");
-        parser.checkBrackets(tokens);
-        int endIndex = tokens.indexOf(")");
-        int startIndex = tokens.indexOf("(") + 1;
-        values = parser.createValuesList(tokens, startIndex, endIndex);
+        String alterationType = tokens.get(3);
+        parser.checkAlterationType(alterationType);
+        String alterationName = tokens.get(4);
+        parser.checkName(alterationName);
     }
 }

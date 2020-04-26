@@ -1,4 +1,4 @@
-<Commands>        ::=  <CommandType>;
+<SQLSyntax>        ::=  <CommandType>;
 
 <CommandType>    ::=  <Use> | <Create> | <Drop> | <Alter> | <Insert> |
                       <Select> | <Update> | <Delete> | <Join>

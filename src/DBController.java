@@ -1,5 +1,5 @@
-import Commands.DBQuery;
-import Commands.Interpreter;
+import SQLSyntax.DBQuery;
+import SQLSyntax.Interpreter;
 import Exceptions.IncorrectSQLException;
 import Exceptions.InvalidQueryException;
 

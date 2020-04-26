@@ -1,4 +1,4 @@
-package Commands;
+package SQLSyntax;
 
 // <CreateTable>  ::=  CREATE TABLE <TableName> | CREATE TABLE <TableName> ( <AttributeList> )
 public class CreateTBLCommand {

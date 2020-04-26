@@ -1,4 +1,4 @@
-package Commands;
+package SQLSyntax;
 
 import Exceptions.InvalidQueryException;
 
@@ -60,23 +60,37 @@ public class DBParser {
         return false;
     }
 
-    public void checkCondition(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
+    public void checkConditionBNF(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
        String firstToken = tokens.get(startIndex);
-       int currIndex = startIndex;
+       valueIterator = startIndex;
 
         if(!firstToken.equals("(")){
-            checkName(firstToken);
-            currIndex++;
-            String token = tokens.get(currIndex);
-            checkOperator(token);
+            checkIndividualCondition(tokens, firstToken);
         }
+        else {
+            checkIndividualCondition(tokens, firstToken);
+            valueIterator++;
+            if(!tokens.get(valueIterator).equals("AND") || !tokens.get(valueIterator).equals("OR")){
+                throw new InvalidQueryException("ERROR: Missing action type");
+            }
+            valueIterator++;
+            checkIndividualCondition(tokens, tokens.get(valueIterator));
+        }
+    }
+
+    public void checkIndividualCondition(List<String> tokens, String firstToken) throws InvalidQueryException {
+        checkName(firstToken);
+        valueIterator++;
+        String token = tokens.get(valueIterator);
+        checkOperator(token);
+        valueIterator++;
+        String value = checkValues(tokens);
     }
 
     //todo refactor to create one list function
     public List<String> createValuesList(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
         List<String> values = new ArrayList<>();
         String value = "";
-        boolean addFlag = false;
 
         for(valueIterator = startIndex; valueIterator < endIndex; valueIterator++){
             String token = tokens.get(valueIterator);
@@ -93,17 +107,21 @@ public class DBParser {
     // check for appropriate stringliteral, boolean literal, float, int
     public String checkValues(List<String> tokens) throws InvalidQueryException {
         String token = tokens.get(valueIterator);
-        boolean bracketFlag = false;
-        boolean endFlag = false;
         boolean validValue = false;
 
+        System.out.println("Initial token test: " + token);
+        // string literal
         if(token.equals("'")){
+            boolean bracketFlag = false;
+            boolean endFlag = false;
             valueIterator++;
             token = "";
             while(!bracketFlag || !endFlag){
+                System.out.println("token : " + token);
                 if(tokens.get(valueIterator).equals("'")){
                     bracketFlag = true;
                     validValue = true;
+                    System.out.println("we here : " + token);
                     break;
                 }
                 else if(tokens.get(valueIterator).equals(";")){
@@ -118,13 +136,17 @@ public class DBParser {
                 throw new InvalidQueryException("ERROR: Missing end quote");
             }
         }
-        /* else{
+        // number
+        else if(token.matches("\\d+")){
             validValue = true;
-        } */
-        //else if(int sqlInt.parseInt(token))
-        /* if(!validValue){
+        }
+        // boolean
+        else if(token.equalsIgnoreCase("true") || token.equalsIgnoreCase("false")){
+            validValue = true;
+        }
+        if(!validValue){
             throw new InvalidQueryException("ERROR: Incorrect Value");
-        } */
+        }
         return token;
     }
 

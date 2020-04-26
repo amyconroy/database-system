@@ -1,4 +1,4 @@
-package Commands;
+package SQLSyntax;
 
 public enum TokenType {
     USE("USE"),

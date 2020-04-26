@@ -1,4 +1,4 @@
-package Commands;
+package SQLSyntax;
 import Exceptions.IncorrectSQLException;
 import Exceptions.InvalidQueryException;
 

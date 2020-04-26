@@ -1,4 +1,4 @@
-package Commands;
+package SQLSyntax;
 
 // <CreateDatabase> ::=  CREATE DATABASE <DatabaseName>
 public class CreateDBCommand {

@@ -1,5 +1,4 @@
-package Commands;
-
+package SQLSyntax;
 import Exceptions.InvalidQueryException;
 
 import java.util.ArrayList;
@@ -25,8 +24,14 @@ public class SelectCommand implements Command {
         int currIndex = tokens.indexOf("FROM");
         if(currIndex == -1) throw new InvalidQueryException("ERROR: Missing FROM");
         if(!tokens.get(2).equals("*")) attributeList = parser.createAttributeList(tokens, startIndex, currIndex);
-        parser.checkName(tokens.get(currIndex++));
-        if(!(tokens.get(currIndex++).equals(";"))) parser.checkInput(tokens.get(currIndex), "WHERE");
-        //todo deal with the conditions
+        currIndex++;
+        String tableName = tokens.get(currIndex);
+        parser.checkName(tableName);
+        currIndex++;
+        if(!(tokens.get(currIndex).equals(";"))){
+            parser.checkInput(tokens.get(currIndex), "WHERE");
+            currIndex++;
+            parser.checkConditionBNF(tokens, currIndex, listSize);
+        }
     }
 }

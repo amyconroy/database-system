@@ -1,8 +1,7 @@
-package Commands;
+package SQLSyntax;
 
 import Exceptions.InvalidQueryException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //<Update> ::=  UPDATE <TableName> SET <NameValueList> WHERE <Condition>
