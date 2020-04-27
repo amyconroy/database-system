@@ -1,6 +1,8 @@
-package SQLSyntax;
+package DatabaseInterpreter.SQLSyntax;
 
-import Exceptions.InvalidQueryException;
+import DatabaseInterpreter.DBParser;
+import DatabaseInterpreter.DBQuery;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 
 import java.util.List;
 
@@ -10,14 +12,11 @@ public class JoinCommand implements Command {
     public List<String> tokens;
     DBParser parser;
 
-    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        this.Query = Query;
-        this.parser = parser;
+    public void preformCommand(DBQuery Query) throws InvalidQueryException {
         tokens = Query.getTokens();
-        parseInput();
     }
 
-    public void parseInput() throws InvalidQueryException {
+    public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         String table1 = tokens.get(1);
         parser.checkName(table1);

@@ -1,4 +1,6 @@
-package SQLSyntax;
+package DatabaseInterpreter;
+import DatabaseInterpreter.SQLSyntax.Command;
+
 import java.util.*;
 
 public class DBQuery {

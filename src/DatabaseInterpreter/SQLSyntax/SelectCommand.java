@@ -1,22 +1,20 @@
-package SQLSyntax;
-import Exceptions.InvalidQueryException;
+package DatabaseInterpreter.SQLSyntax;
+import DatabaseInterpreter.DBParser;
+import DatabaseInterpreter.DBQuery;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SelectCommand implements Command {
     public List<String> tokens;
-    DBQuery Query;
-    DBParser parser;
 
-    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        this.Query = Query;
-        this.parser = parser;
-        tokens = Query.getTokens();
-        parseInput();
+    public void preformCommand(DBQuery Query) throws InvalidQueryException {
+
     }
 
-    public void parseInput() throws InvalidQueryException {
+    public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
+        tokens = Query.getTokens();
         int listSize = tokens.size()-1;
         parser.checkEndQuery(tokens.get(listSize));
         List<String> attributeList = new ArrayList<>();

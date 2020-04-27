@@ -1,23 +1,21 @@
-package SQLSyntax;
+package DatabaseInterpreter.SQLSyntax;
 
-import Exceptions.InvalidQueryException;
+import DatabaseInterpreter.DBParser;
+import DatabaseInterpreter.DBQuery;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 import java.util.List;
 
 //<Create>  ::=  <CreateDatabase> | <CreateTable>
 
 public class CreateCommand implements Command {
     public List<String> tokens;
-    DBQuery Query;
-    DBParser parser;
 
-    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        this.Query = Query;
-        this.parser = parser;
-        tokens = Query.getTokens();
-        parseInput();
+    public void preformCommand(DBQuery Query) throws InvalidQueryException {
+
     }
 
-    public void parseInput() throws InvalidQueryException {
+    public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
+        tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         String createType = tokens.get(1);
         parser.checkStructureName(createType);

@@ -1,6 +1,6 @@
-package SQLSyntax;
+package DatabaseInterpreter;
 
-import Exceptions.InvalidQueryException;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 
 import java.util.ArrayList;
 import java.util.List;

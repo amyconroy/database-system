@@ -1,10 +1,9 @@
-import Exceptions.IncorrectSQLException;
-import Exceptions.InvalidQueryException;
+import DatabaseInterpreter.Exceptions.IncorrectSQLException;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.*;
 
 public class DBServer {
     final static char EOT = 4;

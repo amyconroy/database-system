@@ -1,22 +1,19 @@
-package SQLSyntax;
-import Exceptions.InvalidQueryException;
+package DatabaseInterpreter.SQLSyntax;
+import DatabaseInterpreter.DBParser;
+import DatabaseInterpreter.DBQuery;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 import java.util.List;
 
 //<Insert>  ::=  INSERT INTO <TableName> VALUES ( <ValueList> )
 public class InsertCommand implements Command {
     public List<String> tokens;
     public List<String> values;
-    DBQuery Query;
-    DBParser parser;
 
-    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        this.Query = Query;
-        this.parser = parser;
-        tokens = Query.getTokens();
-        parseInput();
+    public void preformCommand(DBQuery Query) throws InvalidQueryException {
     }
 
-    public void parseInput() throws InvalidQueryException {
+    public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
+        tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         parser.checkInput(tokens.get(1), "INTO");
         String tableName = tokens.get(2);

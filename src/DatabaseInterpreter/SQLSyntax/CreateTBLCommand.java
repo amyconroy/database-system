@@ -1,4 +1,6 @@
-package SQLSyntax;
+package DatabaseInterpreter.SQLSyntax;
+
+import DatabaseInterpreter.DBQuery;
 
 // <CreateTable>  ::=  CREATE TABLE <TableName> | CREATE TABLE <TableName> ( <AttributeList> )
 public class CreateTBLCommand {

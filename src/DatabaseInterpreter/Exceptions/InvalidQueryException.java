@@ -1,5 +1,4 @@
-package Exceptions;
-import static java.lang.System.exit;
+package DatabaseInterpreter.Exceptions;
 
 public class InvalidQueryException extends Exception {
     public InvalidQueryException(String errorMessage) {

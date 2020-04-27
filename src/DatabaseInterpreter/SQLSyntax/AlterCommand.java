@@ -1,21 +1,19 @@
-package SQLSyntax;
-import Exceptions.InvalidQueryException;
+package DatabaseInterpreter.SQLSyntax;
+import DatabaseInterpreter.DBParser;
+import DatabaseInterpreter.DBQuery;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 import java.util.List;
 
 //<Alter>  ::=  ALTER TABLE <TableName> <AlterationType> <AttributeName>
 public class AlterCommand implements Command {
-    DBQuery Query;
     public List<String> tokens;
-    DBParser parser;
 
-    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        this.Query = Query;
-        this.parser = parser;
-        tokens = Query.getTokens();
-        parseInput();
+    public void preformCommand(DBQuery Query) throws InvalidQueryException {
+
     }
 
-    public void parseInput() throws InvalidQueryException {
+    public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
+        tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         parser.checkInput(tokens.get(1), "TABLE");
         String tableName = tokens.get(2);

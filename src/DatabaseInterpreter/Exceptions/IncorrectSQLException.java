@@ -1,6 +1,4 @@
-package Exceptions;
-
-import static java.lang.System.exit;
+package DatabaseInterpreter.Exceptions;
 
 public class IncorrectSQLException extends Exception {
     public IncorrectSQLException(String errorMessage){

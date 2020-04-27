@@ -1,4 +1,6 @@
-package SQLSyntax;
+package DatabaseInterpreter.SQLSyntax;
+
+import DatabaseInterpreter.DBQuery;
 
 // <CreateDatabase> ::=  CREATE DATABASE <DatabaseName>
 public class CreateDBCommand {

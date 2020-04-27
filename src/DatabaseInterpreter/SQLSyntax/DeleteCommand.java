@@ -1,21 +1,20 @@
-package SQLSyntax;
+package DatabaseInterpreter.SQLSyntax;
 
-import Exceptions.InvalidQueryException;
+import DatabaseInterpreter.DBParser;
+import DatabaseInterpreter.DBQuery;
+import DatabaseInterpreter.Exceptions.InvalidQueryException;
 import java.util.List;
 
 public class DeleteCommand implements Command {
     DBQuery Query;
     public List<String> tokens;
-    DBParser parser;
 
-    public void preformCommand(DBQuery Query, DBParser parser) throws InvalidQueryException {
+    public void preformCommand(DBQuery Query) throws InvalidQueryException {
         this.Query = Query;
-        this.parser = parser;
-        tokens = Query.getTokens();
-        parseInput();
     }
 
-    public void parseInput() throws InvalidQueryException {
+    public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
+        tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         parser.checkInput(tokens.get(1), "FROM");
         String tableName = tokens.get(2);
