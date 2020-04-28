@@ -1,13 +1,13 @@
-package DatabaseInterpreter.SQLSyntax;
+package SQLDatabase.SQLCommands;
 
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
 //<Create>  ::=  <CreateDatabase> | <CreateTable>
 
-public class CreateCommand implements Command {
+public class CreateCommand implements CommandExpression {
     public List<String> tokens;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {

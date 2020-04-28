@@ -1,14 +1,14 @@
-package DatabaseInterpreter.SQLSyntax;
+package SQLDatabase.SQLCommands;
 
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 
 import java.util.List;
 
 //<Update> ::=  UPDATE <TableName> SET <NameValueList> WHERE <Condition>
 //todo allow for nameValue lists
-public class UpdateCommand implements Command {
+public class UpdateCommand implements CommandExpression {
     public List<String> tokens;
 
     //todo pass in tokens to each command as well

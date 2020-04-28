@@ -1,10 +1,10 @@
-package DatabaseInterpreter;
-import DatabaseInterpreter.SQLSyntax.Command;
+package SQLDatabase;
+import SQLDatabase.SQLCommands.CommandExpression;
 
 import java.util.*;
 
 public class DBQuery {
-    Command command;
+    CommandExpression command;
     List<String> queryTokens;
     String output;
 
@@ -31,11 +31,11 @@ public class DBQuery {
         this.output = output;
     }
 
-    public void setCommand(Command command){
+    public void setCommand(CommandExpression command){
         this.command = command;
     }
 
-    public Command getCommand(){
+    public CommandExpression getCommand(){
         return command;
     }
 }

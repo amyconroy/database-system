@@ -1,13 +1,13 @@
-package DatabaseInterpreter.SQLSyntax;
+package SQLDatabase.SQLCommands;
 
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 
 import java.util.List;
 
 //<Join> ::=  JOIN <TableName> AND <TableName> ON <AttributeName> AND <AttributeName>
-public class JoinCommand implements Command {
+public class JoinCommand implements CommandExpression {
     DBQuery Query;
     public List<String> tokens;
     DBParser parser;

@@ -1,11 +1,11 @@
-package DatabaseInterpreter.SQLSyntax;
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
+package SQLDatabase.SQLCommands;
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
 //<Insert>  ::=  INSERT INTO <TableName> VALUES ( <ValueList> )
-public class InsertCommand implements Command {
+public class InsertCommand implements CommandExpression {
     public List<String> tokens;
     public List<String> values;
 

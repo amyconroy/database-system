@@ -1,12 +1,12 @@
-package DatabaseInterpreter.SQLSyntax;
+package SQLDatabase.SQLCommands;
 
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
 // <Drop> ::=  DROP <Structure> <StructureName>
-public class DropCommand implements Command {
+public class DropCommand implements CommandExpression {
     public List<String> tokens;
     DBQuery Query;
 

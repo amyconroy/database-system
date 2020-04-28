@@ -1,12 +1,12 @@
-package DatabaseInterpreter.SQLSyntax;
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
+package SQLDatabase.SQLCommands;
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectCommand implements Command {
+public class SelectCommand implements CommandExpression {
     public List<String> tokens;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {

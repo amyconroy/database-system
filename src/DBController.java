@@ -1,9 +1,8 @@
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.SQLSyntax.*;
-import DatabaseInterpreter.Exceptions.IncorrectSQLException;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
-
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLCommands.*;
+import SQLDatabase.SQLExceptions.IncorrectSQLException;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 import java.util.*;
 import java.lang.*;
 
@@ -11,7 +10,7 @@ public class DBController {
     private List<String> queryTokens;
     private String[] tokens;
     private String input;
-    private Map<String, Command> commandTypes;
+    private Map<String, CommandExpression> commandTypes;
 
     public String preformQuery(String input) throws IncorrectSQLException, InvalidQueryException {
         this.input = input;
@@ -55,11 +54,12 @@ public class DBController {
         DBParser DBParser = new DBParser();
         System.out.println("TEST + "  + queryTokens);
         String stringCommand = queryTokens.get(0);
-        Command command = commandTypes.get(stringCommand);
+        CommandExpression command = commandTypes.get(stringCommand);
         if(command == null){
             throw new IncorrectSQLException("ERROR: Invalid query");
         }
         query.setCommand(command);
-        command.preformCommand(query, DBParser);
+        command.parseInput(query, DBParser);
+        command.preformCommand(query);
     }
 }

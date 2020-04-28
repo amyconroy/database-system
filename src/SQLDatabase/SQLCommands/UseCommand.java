@@ -1,13 +1,13 @@
-package DatabaseInterpreter.SQLSyntax;
+package SQLDatabase.SQLCommands;
 
-import DatabaseInterpreter.DBParser;
-import DatabaseInterpreter.DBQuery;
-import DatabaseInterpreter.Exceptions.InvalidQueryException;
+import SQLDatabase.DBParser;
+import SQLDatabase.DBQuery;
+import SQLDatabase.SQLExceptions.InvalidQueryException;
 
 import java.util.List;
 
 //<Use> ::=  USE <DatabaseName>
-public class UseCommand implements Command {
+public class UseCommand implements CommandExpression {
     public List<String> tokens;
     String dbName;
 
