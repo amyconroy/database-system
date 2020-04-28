@@ -36,11 +36,11 @@ public class DBServer {
         }
     }
 
-    private void processQuery(String line, BufferedWriter out, BufferedReader in, DBController dbController) throws IOException {
+    private void processQuery(String input, BufferedWriter out, BufferedReader in, DBController dbController) throws IOException {
        try{
-           System.out.println("SQL : " + line);
-           String output = dbController.preformQuery(line);
-           out.write(line + "\n" + EOT + "\n");
+           System.out.println("SQL : " + input);
+           String output = dbController.preformQuery(input);
+           out.write(output + "\n" + EOT + "\n");
            out.flush();
        }
         catch (IncorrectSQLException | InvalidQueryException e){

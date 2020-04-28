@@ -2,27 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/brief/BNF.txt" beforeDir="false" afterPath="$PROJECT_DIR$/brief/BNF.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brief/example-queries.txt" beforeDir="false" afterPath="$PROJECT_DIR$/brief/example-queries.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/DBParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/DBParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/DBQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/DBQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/AlterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/AlterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/CommandExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CommandExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/CreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/CreateDBCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateDBCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/CreateTBLCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateTBLCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DeleteCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/DropCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DropCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/InsertCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/InsertCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/JoinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/JoinCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/SelectCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/SelectCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UpdateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLCommands/UseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UseCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLExceptions/IncorrectSQLException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLExceptions/IncorrectSQLException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/SQLExceptions/InvalidQueryException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLExceptions/InvalidQueryException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLDatabase/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/DBQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/DBQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/AlterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/AlterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CommandExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CommandExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateDBCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DeleteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DropCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DropCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/InsertCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/InsertCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/JoinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/JoinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/SelectCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/SelectCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UpdateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UseCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588029099233</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="name">
+      <created>1588033316659</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1588033316659</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -197,7 +199,8 @@
     <MESSAGE value="added parser object" />
     <MESSAGE value="further parsing" />
     <MESSAGE value="refactor before interpreting" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor before interpreting" />
+    <MESSAGE value="name" />
+    <option name="LAST_COMMIT_MESSAGE" value="name" />
   </component>
   <component name="WindowStateProjectService">
     <state x="256" y="26" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587133748725">
@@ -230,18 +233,23 @@
     </state>
     <state x="426" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.877@0.23.1440.877" timestamp="1588029684378" />
     <state x="426" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587148412051" />
-    <state x="458" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588028090884">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="458" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588035784135">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="458" y="197" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1588035784135" />
     <state x="458" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.877@0.23.1440.877" timestamp="1588028090884" />
     <state x="562" y="390" key="#com.intellij.refactoring.turnRefsToSuper.TurnRefsToSuperDialog" timestamp="1588027984606">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="562" y="390" key="#com.intellij.refactoring.turnRefsToSuper.TurnRefsToSuperDialog/0.23.1440.877@0.23.1440.877" timestamp="1588027984606" />
-    <state x="102" y="64" key="CommitChangelistDialog2" timestamp="1588029099026">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="675" y="320" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1588035835406">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1587862191554" />
+    <state x="675" y="320" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900@0.0.1440.900" timestamp="1588035835406" />
+    <state x="344" y="42" key="CommitChangelistDialog2" timestamp="1588033316480">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1588033316480" />
     <state x="102" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588029099026" />
     <state x="344" y="42" key="CommitChangelistDialog2/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738830072" />
     <state x="344" y="42" key="CommitChangelistDialog2/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587913252566" />
@@ -337,9 +345,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="426" y="73" key="refactoring.ChangeSignatureDialog/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587148345492" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1587838892347">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1588036033366">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1588036033366" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587838892347" />
   </component>
 </project>

@@ -1,6 +1,7 @@
 import SQLCompiler.DBParser;
 import SQLCompiler.DBQuery;
 import SQLCompiler.SQLCommands.*;
+import SQLCompiler.SQLEngine.DBEngine;
 import SQLCompiler.SQLExceptions.IncorrectSQLException;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.*;
@@ -11,16 +12,30 @@ public class DBController {
     private String[] tokens;
     private String input;
     private Map<String, CommandExpression> commandTypes;
+    private DBQuery DBQuery;
+
+    public DBController(){ DBQuery = new DBQuery(); }
 
     public String preformQuery(String input) throws IncorrectSQLException, InvalidQueryException {
         this.input = input;
         makeCommandMap();
         queryTokens = new ArrayList<>();
-        DBQuery DBQuery = new DBQuery();
         tokenize();
         DBQuery.setTokens(queryTokens);
-        identifyQuery(DBQuery);
+        executeQuery();
         return DBQuery.getOutput();
+    }
+
+    private void tokenize(){
+        tokens = input.split("(?=[ ,;()'])|(?<=[ ,;()'])");
+        trimSpaces();
+        queryTokens.removeAll(Collections.singleton(""));
+    }
+
+    private void trimSpaces(){
+        for (String token : tokens) {
+            queryTokens.add(token.trim());
+        }
     }
 
     private void makeCommandMap(){
@@ -37,29 +52,16 @@ public class DBController {
         commandTypes.put("DELETE", new DeleteCommand());
     }
 
-    private void tokenize(){
-       tokens = input.split("(?=[ ,;()'])|(?<=[ ,;()'])");
-       trimSpaces();
-       queryTokens.removeAll(Collections.singleton(""));
-    }
-
-    private void trimSpaces(){
-        for (String token : tokens) {
-            queryTokens.add(token.trim());
-        }
-    }
 
     // todo pass in parser and tokens, saves the preform command function? then only one in interface
-    private void identifyQuery(DBQuery query) throws InvalidQueryException, IncorrectSQLException {
+    private void executeQuery() throws InvalidQueryException, IncorrectSQLException {
         DBParser DBParser = new DBParser();
         System.out.println("TEST + "  + queryTokens);
         String stringCommand = queryTokens.get(0);
         CommandExpression command = commandTypes.get(stringCommand);
-        if(command == null){
-            throw new IncorrectSQLException("ERROR: Invalid query");
-        }
-        query.setCommand(command);
-        command.parseInput(query, DBParser);
-        command.preformCommand(query);
+        if(command == null) throw new IncorrectSQLException("ERROR: Invalid query");
+        DBQuery.setCommand(command);
+        command.parseInput(DBQuery, DBParser);
+        command.preformCommand(DBQuery);
     }
 }

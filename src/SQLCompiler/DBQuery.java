@@ -7,6 +7,7 @@ public class DBQuery {
     CommandExpression command;
     List<String> queryTokens;
     String output;
+    String currentDB;
 
     public DBQuery(){
         List<String> queryTokens = new ArrayList<>();
@@ -38,4 +39,8 @@ public class DBQuery {
     public CommandExpression getCommand(){
         return command;
     }
+
+    public void setDatabase(String currentDB){ this.currentDB = currentDB; }
+
+    public String getDatabase(){ return currentDB; }
 }

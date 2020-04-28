@@ -2,30 +2,32 @@ package SQLCompiler.SQLCommands;
 
 import SQLCompiler.DBParser;
 import SQLCompiler.DBQuery;
+import SQLCompiler.SQLEngine.DBEngine;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
 //<Create>  ::=  <CreateDatabase> | <CreateTable>
 
 public class CreateCommand implements CommandExpression {
-    public List<String> tokens;
-
-    public void preformCommand(DBQuery Query) throws InvalidQueryException {
-
-    }
+    private String createType;
+    private String createName;
 
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        tokens = Query.getTokens();
+        List<String> tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
-        String createType = tokens.get(1);
+        createType = tokens.get(1);
         parser.checkStructureName(createType);
-        String name = tokens.get(2);
-        parser.checkName(name);
+        createName = tokens.get(2);
+        parser.checkName(createName);
+    }
+
+    public void preformCommand(DBQuery Query) throws InvalidQueryException {
+        DBEngine engine = new DBEngine();
         if(createType.equals("DATABASE")){
-            CreateDBCommand DBCommand = new CreateDBCommand(Query, name);
+            engine.createDatabase(createName, Query);
         }
         else if(createType.equals("TABLE")){
-            CreateTBLCommand TBLCommand = new CreateTBLCommand(Query, name);
+            CreateTBLCommand TBLCommand = new CreateTBLCommand(Query, createName);
         }
     }
 }
