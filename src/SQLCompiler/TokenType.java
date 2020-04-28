@@ -1,4 +1,4 @@
-package SQLDatabase;
+package SQLCompiler;
 
 public enum TokenType {
     USE("USE"),

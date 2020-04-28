@@ -1,8 +1,8 @@
-import SQLDatabase.DBParser;
-import SQLDatabase.DBQuery;
-import SQLDatabase.SQLCommands.*;
-import SQLDatabase.SQLExceptions.IncorrectSQLException;
-import SQLDatabase.SQLExceptions.InvalidQueryException;
+import SQLCompiler.DBParser;
+import SQLCompiler.DBQuery;
+import SQLCompiler.SQLCommands.*;
+import SQLCompiler.SQLExceptions.IncorrectSQLException;
+import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.*;
 import java.lang.*;
 

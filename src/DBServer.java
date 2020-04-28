@@ -1,5 +1,5 @@
-import SQLDatabase.SQLExceptions.IncorrectSQLException;
-import SQLDatabase.SQLExceptions.InvalidQueryException;
+import SQLCompiler.SQLExceptions.IncorrectSQLException;
+import SQLCompiler.SQLExceptions.InvalidQueryException;
 
 import java.io.*;
 import java.net.ServerSocket;

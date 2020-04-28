@@ -1,6 +1,6 @@
-package SQLDatabase;
+package SQLCompiler;
 
-import SQLDatabase.SQLExceptions.InvalidQueryException;
+import SQLCompiler.SQLExceptions.InvalidQueryException;
 
 import java.util.ArrayList;
 import java.util.List;

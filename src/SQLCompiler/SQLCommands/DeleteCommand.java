@@ -1,8 +1,8 @@
-package SQLDatabase.SQLCommands;
+package SQLCompiler.SQLCommands;
 
-import SQLDatabase.DBParser;
-import SQLDatabase.DBQuery;
-import SQLDatabase.SQLExceptions.InvalidQueryException;
+import SQLCompiler.DBParser;
+import SQLCompiler.DBQuery;
+import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
 public class DeleteCommand implements CommandExpression {

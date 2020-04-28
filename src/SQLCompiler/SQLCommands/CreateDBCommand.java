@@ -1,6 +1,6 @@
-package SQLDatabase.SQLCommands;
+package SQLCompiler.SQLCommands;
 
-import SQLDatabase.DBQuery;
+import SQLCompiler.DBQuery;
 
 // <CreateDatabase> ::=  CREATE DATABASE <DatabaseName>
 public class CreateDBCommand {

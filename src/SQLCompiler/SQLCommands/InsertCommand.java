@@ -1,7 +1,7 @@
-package SQLDatabase.SQLCommands;
-import SQLDatabase.DBParser;
-import SQLDatabase.DBQuery;
-import SQLDatabase.SQLExceptions.InvalidQueryException;
+package SQLCompiler.SQLCommands;
+import SQLCompiler.DBParser;
+import SQLCompiler.DBQuery;
+import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
 //<Insert>  ::=  INSERT INTO <TableName> VALUES ( <ValueList> )

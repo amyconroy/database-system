@@ -1,5 +1,5 @@
-package SQLDatabase;
-import SQLDatabase.SQLCommands.CommandExpression;
+package SQLCompiler;
+import SQLCompiler.SQLCommands.CommandExpression;
 
 import java.util.*;
 

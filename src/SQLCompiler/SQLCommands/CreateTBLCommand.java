@@ -1,6 +1,6 @@
-package SQLDatabase.SQLCommands;
+package SQLCompiler.SQLCommands;
 
-import SQLDatabase.DBQuery;
+import SQLCompiler.DBQuery;
 
 // <CreateTable>  ::=  CREATE TABLE <TableName> | CREATE TABLE <TableName> ( <AttributeList> )
 public class CreateTBLCommand {
