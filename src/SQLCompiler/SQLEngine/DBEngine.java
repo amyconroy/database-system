@@ -100,7 +100,10 @@ public class DBEngine {
         }
     }
 
-    public void selectAllFromTable(String tableName){
-
+    public void selectAllFromTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
+        Table table = deserializeTableFromFile(tableName);
+        StringBuilder rows = table.getAllRows();
+        String result = rows.toString();
+        query.setOutput(result);
     }
 }
