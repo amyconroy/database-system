@@ -1,11 +1,11 @@
 package SQLCompiler.SQLCommands;
-
 import SQLCompiler.DBParser;
 import SQLCompiler.DBQuery;
 import SQLCompiler.SQLEngine.DBEngine;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
+// <Delete>   ::=  DELETE FROM <TableName> WHERE <Condition>
 public class DeleteCommand implements CommandExpression {
     private DBQuery Query;
     private List<String> tokens;

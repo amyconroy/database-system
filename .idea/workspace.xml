@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/DeleteCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
