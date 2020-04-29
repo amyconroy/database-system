@@ -42,13 +42,13 @@ public class Table implements Serializable {
         return specificRows;
     }
 
-    public StringBuilder getAllRows(){
+    public String getAllRows(){
         StringBuilder allRows = new StringBuilder();
 
         for(Row row : tableRows){
             allRows.append(row.getRow());
             allRows.append("\n");
         }
-        return allRows;
+        return allRows.toString();
     }
 }

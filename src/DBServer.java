@@ -32,22 +32,27 @@ public class DBServer {
             }
             catch (IOException ioe) {
                 System.err.println(ioe);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
 
-    private void processQuery(String input, BufferedWriter out, BufferedReader in, DBController dbController) throws IOException {
+    private void processQuery(String input, BufferedWriter out, BufferedReader in, DBController dbController) throws Exception {
        try{
            System.out.println("SQL : " + input);
            String output = dbController.preformQuery(input);
            out.write(output + "\n" + EOT + "\n");
            out.flush();
        }
-        catch (IncorrectSQLException | InvalidQueryException e){
+        catch (InvalidQueryException | IncorrectSQLException e){
            out.write("ERROR:" + e + "\n" + EOT + "\n");
            out.flush();
            System.err.println(e);
         }
+       catch(Exception e){
+           System.err.println(e);
+       }
     }
 }
 

@@ -15,7 +15,7 @@ public class DBController {
 
     public DBController(){ DBQuery = new DBQuery(); }
 
-    public String preformQuery(String input) throws IncorrectSQLException, InvalidQueryException {
+    public String preformQuery(String input) throws Exception {
         this.input = input;
         makeCommandMap();
         queryTokens = new ArrayList<>();
@@ -54,7 +54,7 @@ public class DBController {
 
 
     // todo pass in parser and tokens, saves the preform command function? then only one in interface
-    private void executeQuery() throws InvalidQueryException, IncorrectSQLException {
+    private void executeQuery() throws Exception {
         DBParser DBParser = new DBParser();
         System.out.println("TEST + "  + queryTokens);
         String stringCommand = queryTokens.get(0);
@@ -62,6 +62,7 @@ public class DBController {
         if(command == null) throw new IncorrectSQLException("ERROR: Invalid query");
         DBQuery.setCommand(command);
         command.parseInput(DBQuery, DBParser);
+        System.out.println("testies");
         command.preformCommand(DBQuery);
     }
 }

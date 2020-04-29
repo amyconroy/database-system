@@ -22,9 +22,12 @@ public class CreateCommand implements CommandExpression {
         parser.checkStructureName(createType);
         createName = tokens.get(2);
         parser.checkName(createName);
-        int startIndex = 3;
-        if(tokens.get(startIndex).equals("(")){
-            tableValues = (ArrayList<String>) parser.createAttributeList(tokens, startIndex, endIndex);
+        int currIndex = 3;
+        if(tokens.get(currIndex).equals("(")){
+            currIndex++;
+            // subtract one to account for final end bracket 
+            tableValues = (ArrayList<String>) parser.createAttributeList(tokens, currIndex, endIndex-1);
+            System.out.println("testsdfds " + tableValues);
         }
     }
 

@@ -84,6 +84,7 @@ public class DBEngine {
             table = (Table) objIn.readObject();
             objIn.close();
         } catch (FileNotFoundException | ClassNotFoundException e) {
+            // todo why is it hitting this error
             throw new InvalidQueryException("ERROR : Table not found.");
         }
         return table;
@@ -101,9 +102,11 @@ public class DBEngine {
     }
 
     public void selectAllFromTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
-        Table table = deserializeTableFromFile(tableName);
-        StringBuilder rows = table.getAllRows();
-        String result = rows.toString();
+        String dbName = query.getDatabase();
+        String tableFileName = dbName + File.separator + tableName;
+        Table table = deserializeTableFromFile(tableFileName);
+        String result = table.getAllRows();
+        System.out.println("test : " + result);
         query.setOutput(result);
     }
 }

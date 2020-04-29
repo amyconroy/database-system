@@ -159,6 +159,7 @@ public class DBParser {
             checkInput(tokens.get(checkIndex), ",");
             for(int iterator = startIndex; iterator < endIndex; iterator++){
                 String currToken = tokens.get(iterator);
+                System.out.println("tokens : " + currToken);
                 if(currToken.equals(",")){
                     wordFlag = false;
                 }
