@@ -8,18 +8,18 @@ import java.util.List;
 
 //<Use> ::=  USE <DatabaseName>
 public class UseCommand implements CommandExpression {
-    public List<String> tokens;
-    String dbName;
+    private List<String> tokens;
+    private String dbName;
 
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
         tokens = Query.getTokens();
-        validLength();
+        checkValidLength();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         dbName = tokens.get(1);
         parser.checkName(dbName);
     }
 
-    private void validLength() throws InvalidQueryException {
+    private void checkValidLength() throws InvalidQueryException {
         if(tokens.size() != 3){
             throw new InvalidQueryException("ERROR: Invalid query");
         }

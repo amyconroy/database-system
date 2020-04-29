@@ -8,8 +8,8 @@ import java.util.List;
 
 // <Drop> ::=  DROP <Structure> <StructureName>
 public class DropCommand implements CommandExpression {
-    public List<String> tokens;
-    DBQuery Query;
+    private List<String> tokens;
+    private DBQuery Query;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
     }

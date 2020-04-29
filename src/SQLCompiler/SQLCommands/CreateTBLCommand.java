@@ -4,8 +4,8 @@ import SQLCompiler.DBQuery;
 
 // <CreateTable>  ::=  CREATE TABLE <TableName> | CREATE TABLE <TableName> ( <AttributeList> )
 public class CreateTBLCommand {
-    DBQuery query;
-    String TBLName;
+    private DBQuery query;
+    private String TBLName;
 
     public CreateTBLCommand(DBQuery query, String name) {
         this.query = query;

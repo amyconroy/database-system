@@ -10,7 +10,7 @@ import java.util.List;
 //<Update> ::=  UPDATE <TableName> SET <NameValueList> WHERE <Condition>
 //todo allow for nameValue lists
 public class UpdateCommand implements CommandExpression {
-    public List<String> tokens;
+    private List<String> tokens;
 
     //todo pass in tokens to each command as well
     public void preformCommand(DBQuery Query) throws InvalidQueryException {

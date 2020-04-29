@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SelectCommand implements CommandExpression {
-    public List<String> tokens;
+    private List<String> tokens;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
 
