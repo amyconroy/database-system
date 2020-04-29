@@ -8,18 +8,19 @@ import java.util.List;
 
 // <Drop> ::=  DROP <Structure> <StructureName>
 public class DropCommand implements CommandExpression {
-    private List<String> tokens;
-    private DBQuery Query;
+    private String dropName;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
+        DBEngine engine = new DBEngine();
+        engine.dropStructure(dropName, Query);
     }
 
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        tokens = Query.getTokens();
+        List<String> tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         String dropType = tokens.get(1);
         parser.checkStructureName(dropType);
-        String dropName = tokens.get(2);
+        dropName = tokens.get(2);
         parser.checkName(dropName);
     }
 }

@@ -17,13 +17,13 @@ public class DBEngine {
 
     public void useDatabase(String DBName, DBQuery query) throws InvalidQueryException {
         File database = new File(DBName);
-        checkDatabaseExists(database);
+        checkStructureExists(database);
         query.setDatabase(DBName);
         query.setOutput("OK");
     }
 
-    private void checkDatabaseExists(File checkDB) throws InvalidQueryException {
-        if(checkDB.exists()) throw new InvalidQueryException("ERROR: Database does not exist.");
+    private void checkStructureExists(File checkStructure) throws InvalidQueryException {
+        if(checkStructure.exists()) throw new InvalidQueryException("ERROR: Structure does not exist.");
     }
 
     public void createTable(String TBLName, DBQuery query, ArrayList<String> columnValues) throws IOException, InvalidQueryException {
@@ -87,5 +87,16 @@ public class DBEngine {
             throw new InvalidQueryException("ERROR : Table not found.");
         }
         return table;
+    }
+
+    public void dropStructure(String structureName, DBQuery query) throws InvalidQueryException {
+        File structure = new File(structureName);
+        checkStructureExists(structure);
+        if(structure.delete()){
+            query.setOutput("OK");
+        }
+        else{
+            throw new InvalidQueryException("ERROR: Unable to DROP structure.");
+        }
     }
 }
