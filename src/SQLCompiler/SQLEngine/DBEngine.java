@@ -99,4 +99,8 @@ public class DBEngine {
             throw new InvalidQueryException("ERROR: Unable to DROP structure.");
         }
     }
+
+    public void selectAllFromTable(String tableName){
+
+    }
 }
