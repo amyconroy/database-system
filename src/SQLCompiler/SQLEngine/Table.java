@@ -1,8 +1,8 @@
 package SQLCompiler.SQLEngine;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.lang.StringBuilder;
 
 public class Table {
     private LinkedList<Row> tableRows;
@@ -12,6 +12,8 @@ public class Table {
         tableRows = new LinkedList<>();
         columns = new LinkedList<>();
     }
+
+    public Boolean checkColumnExists(String columnName) { return columns.contains(columnName); }
 
     public void addColumns(ArrayList<String> columnNames){
         columns.addAll(columnNames);
@@ -28,17 +30,25 @@ public class Table {
         tableRows.add(newRow);
     }
 
-    public void checkRows(String rowValue, String columnName){
+    public StringBuilder getSpecificRows(String rowValue, String columnName){
+        StringBuilder specificRows = new StringBuilder();
+
         for(Row row : tableRows){
             if(row.checkValueExists(rowValue, columnName)){
-                row.selectValue(columnName);
+                specificRows.append(row.selectValue(columnName));
+                specificRows.append("\n");
             }
         }
+        return specificRows;
     }
 
-    public void getAllRows(){
+    public StringBuilder getAllRows(){
+        StringBuilder allRows = new StringBuilder();
+
         for(Row row : tableRows){
-            row.getRow();
+            allRows.append(row.getRow());
+            allRows.append("\n");
         }
+        return allRows;
     }
 }

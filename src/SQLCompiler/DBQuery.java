@@ -6,7 +6,7 @@ import java.util.*;
 public class DBQuery {
     private CommandExpression command;
     private List<String> queryTokens;
-    private String output;
+    private String[] output;
     private String currentDB;
 
     public DBQuery(){
@@ -24,11 +24,12 @@ public class DBQuery {
         return queryTokens;
     }
 
-    public String getOutput(){
+    public String[] getOutput(){
         return output;
     }
 
-    public void setOutput(String output){
+    // string builder here
+    public void setOutput(String[] output){
         this.output = output;
     }
 
