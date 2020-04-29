@@ -20,4 +20,9 @@ public class DBEngine {
         query.setDatabase(DBName);
         query.setOutput("OK");
     }
+
+    
+    // todo make a db class
+    // when use, load everything to db class - then set the Query to be what is in
+    // the current db
 }
