@@ -7,7 +7,7 @@ import java.util.List;
 
 //<Alter>  ::=  ALTER TABLE <TableName> <AlterationType> <AttributeName>
 public class AlterCommand implements CommandExpression {
-    public List<String> tokens;
+    private List<String> tokens;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
 

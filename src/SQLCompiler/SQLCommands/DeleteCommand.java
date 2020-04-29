@@ -7,8 +7,8 @@ import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.List;
 
 public class DeleteCommand implements CommandExpression {
-    DBQuery Query;
-    public List<String> tokens;
+    private DBQuery Query;
+    private List<String> tokens;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
         this.Query = Query;

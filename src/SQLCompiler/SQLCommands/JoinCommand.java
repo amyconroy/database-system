@@ -9,9 +9,9 @@ import java.util.List;
 
 //<Join> ::=  JOIN <TableName> AND <TableName> ON <AttributeName> AND <AttributeName>
 public class JoinCommand implements CommandExpression {
-    DBQuery Query;
-    public List<String> tokens;
-    DBParser parser;
+    private DBQuery Query;
+    private List<String> tokens;
+    private DBParser parser;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
         tokens = Query.getTokens();

@@ -4,10 +4,10 @@ import SQLCompiler.SQLCommands.CommandExpression;
 import java.util.*;
 
 public class DBQuery {
-    CommandExpression command;
-    List<String> queryTokens;
-    String output;
-    String currentDB;
+    private CommandExpression command;
+    private List<String> queryTokens;
+    private String output;
+    private String currentDB;
 
     public DBQuery(){
         List<String> queryTokens = new ArrayList<>();

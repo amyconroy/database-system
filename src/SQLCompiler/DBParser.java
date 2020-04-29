@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBParser {
-    String attributeName = ("^[a-zA-Z_]*$");
-    List<String> operators;
-    int valueIterator;
+    private List<String> operators;
+    private int valueIterator;
 
     public DBParser(){
         operators = new ArrayList<>();
@@ -34,6 +33,7 @@ public class DBParser {
     }
 
     public void checkName(String input) throws InvalidQueryException {
+        String attributeName = ("^[a-zA-Z_]*$");
         if(!input.matches(attributeName)){
             throw new InvalidQueryException("ERROR: Invalid Attribute Name.");
         }

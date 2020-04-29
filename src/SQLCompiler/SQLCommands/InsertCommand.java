@@ -7,8 +7,8 @@ import java.util.List;
 
 //<Insert>  ::=  INSERT INTO <TableName> VALUES ( <ValueList> )
 public class InsertCommand implements CommandExpression {
-    public List<String> tokens;
-    public List<String> values;
+    private List<String> tokens;
+    private List<String> values;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException {
     }
