@@ -1,16 +1,18 @@
 package SQLCompiler.SQLEngine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.lang.StringBuilder;
 
-public class Row {
+public class Row implements Serializable {
     // key is column name
     private HashMap<String, String> rowData;
-    private String row;
+    private StringBuilder row;
 
     public Row(){
         rowData = new HashMap<>();
-        row = "";
+        row = new StringBuilder();
     }
 
     public Boolean checkValueExists(String value, String column){
@@ -23,12 +25,12 @@ public class Row {
     }
 
     public String getRow(){
-        return row;
+        return row.toString();
     }
 
     public void setRow(String columnName, String newRowData){
         rowData.put(columnName, newRowData);
-        row = row.concat(newRowData);
-        row = row.concat("  ");
+        row.append(newRowData);
+        row.append("  ");
     }
 }

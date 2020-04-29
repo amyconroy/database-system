@@ -1,10 +1,10 @@
 package SQLCompiler.SQLEngine;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.lang.StringBuilder;
 
-public class Table {
+public class Table implements Serializable {
     private LinkedList<Row> tableRows;
     private LinkedList<String> columns;
 

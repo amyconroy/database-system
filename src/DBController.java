@@ -1,7 +1,6 @@
 import SQLCompiler.DBParser;
 import SQLCompiler.DBQuery;
 import SQLCompiler.SQLCommands.*;
-import SQLCompiler.SQLEngine.DBEngine;
 import SQLCompiler.SQLExceptions.IncorrectSQLException;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.util.*;
@@ -22,6 +21,7 @@ public class DBController {
         queryTokens = new ArrayList<>();
         tokenize();
         DBQuery.setTokens(queryTokens);
+        DBQuery.setNewOutput();
         executeQuery();
         return DBQuery.getOutput();
     }

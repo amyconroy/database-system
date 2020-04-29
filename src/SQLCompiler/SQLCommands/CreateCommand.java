@@ -1,9 +1,10 @@
 package SQLCompiler.SQLCommands;
-
 import SQLCompiler.DBParser;
 import SQLCompiler.DBQuery;
 import SQLCompiler.SQLEngine.DBEngine;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 //<Create>  ::=  <CreateDatabase> | <CreateTable>
@@ -11,23 +12,29 @@ import java.util.List;
 public class CreateCommand implements CommandExpression {
     private String createType;
     private String createName;
+    private ArrayList<String> tableValues;
 
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
         List<String> tokens = Query.getTokens();
-        parser.checkEndQuery(tokens.get(tokens.size()-1));
+        int endIndex = tokens.size()-1;
+        parser.checkEndQuery(tokens.get(endIndex));
         createType = tokens.get(1);
         parser.checkStructureName(createType);
         createName = tokens.get(2);
         parser.checkName(createName);
+        int startIndex = 3;
+        if(tokens.get(startIndex).equals("(")){
+            tableValues = (ArrayList<String>) parser.createAttributeList(tokens, startIndex, endIndex);
+        }
     }
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException {
+    public void preformCommand(DBQuery Query) throws Exception {
         DBEngine engine = new DBEngine();
         if(createType.equals("DATABASE")){
             engine.createDatabase(createName, Query);
         }
         else if(createType.equals("TABLE")){
-            CreateTBLCommand TBLCommand = new CreateTBLCommand(Query, createName);
+            engine.createTable(createName, Query, tableValues);
         }
     }
 }

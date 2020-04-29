@@ -1,17 +1,15 @@
 package SQLCompiler;
 import SQLCompiler.SQLCommands.CommandExpression;
-
 import java.util.*;
+import java.lang.StringBuilder;
 
 public class DBQuery {
     private CommandExpression command;
     private List<String> queryTokens;
-    private String[] output;
+    private StringBuilder output;
     private String currentDB;
 
-    public DBQuery(){
-        List<String> queryTokens = new ArrayList<>();
-    }
+    public DBQuery(){ queryTokens = new ArrayList<>(); }
 
     public void setTokens(List<String> queryTokens){
         this.queryTokens = new ArrayList<>();
@@ -24,14 +22,13 @@ public class DBQuery {
         return queryTokens;
     }
 
-    public String[] getOutput(){
-        return output;
+    public String getOutput(){
+        return output.toString();
     }
 
-    // string builder here
-    public void setOutput(String[] output){
-        this.output = output;
-    }
+    public void setNewOutput(){ output = new StringBuilder(); }
+
+    public void setOutput(String newOutput){ output.append(newOutput); }
 
     public void setCommand(CommandExpression command){
         this.command = command;
