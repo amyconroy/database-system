@@ -1,5 +1,4 @@
 package SQLCompiler.SQLCommands;
-
 import SQLCompiler.DBParser;
 import SQLCompiler.DBQuery;
 import SQLCompiler.SQLEngine.DBEngine;
