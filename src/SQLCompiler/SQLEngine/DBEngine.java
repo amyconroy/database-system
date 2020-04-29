@@ -69,7 +69,7 @@ public class DBEngine {
         String TBLFileName = DBName + File.separator + TBLName;
         Table table;
         table = deserializeTableFromFile(TBLFileName);
-        table.addColumns(tableValues);
+        table.addRow(tableValues);
         query.setOutput("OK");
     }
 
