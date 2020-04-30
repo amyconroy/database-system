@@ -107,12 +107,20 @@ public class DBEngine {
     }
 
     public void selectAllFromTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
-        String dbName = query.getDatabase();
-        String tableFileName = dbName + File.separator + tableName;
-        Table table = deserializeTableFromFile(tableFileName);
+        Table table = getTable(tableName, query);
         String columns = table.getAllColumns();
         String rows = table.getAllRows();
         String result = columns + rows;
         query.setOutput(result);
+    }
+
+    private Table getTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
+        String dbName = query.getDatabase();
+        String tableFileName = dbName + File.separator + tableName;
+        return deserializeTableFromFile(tableFileName);
+    }
+
+    public void getRowsCondition(String tableName, DBQuery query /*, String columnName, String condition */) throws IOException, InvalidQueryException {
+        Table table = getTable(tableName, query);
     }
 }

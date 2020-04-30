@@ -27,9 +27,13 @@ public class Table implements Serializable {
     }
 
     public String getAllColumns(){
-        String columnsReturn = columns.toString();
-        String newReturn = columnsReturn.concat("\n");
-        return newReturn;
+        StringBuilder columnReturn = new StringBuilder();
+        for(String column : columns){
+            columnReturn.append(column);
+            columnReturn.append("  ");
+        }
+        columnReturn.append("\n");
+        return columnReturn.toString();
     }
 
     public void addRow(ArrayList<String> rowValues){

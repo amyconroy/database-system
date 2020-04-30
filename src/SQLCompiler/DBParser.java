@@ -71,7 +71,7 @@ public class DBParser {
             valueIterator++;
             checkIndividualCondition(tokens, firstToken);
             valueIterator++;
-            if(!tokens.get(valueIterator).equals("AND") || !tokens.get(valueIterator).equals("OR")){
+            if(!tokens.get(valueIterator).equals("AND") && !tokens.get(valueIterator).equals("OR")){
                 throw new InvalidQueryException("ERROR: Missing action type");
             }
             valueIterator++;

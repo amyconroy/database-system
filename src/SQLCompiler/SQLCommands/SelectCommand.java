@@ -14,6 +14,7 @@ public class SelectCommand implements CommandExpression {
     private List<String> attributeList;
     private String tableName;
     private Boolean selectAll;
+    private Boolean singleConditionFlag;
     private List<String> whereConditions;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
@@ -22,9 +23,8 @@ public class SelectCommand implements CommandExpression {
         if(selectAll){
             engine.selectAllFromTable(tableName, Query);
         }
-        else{
-            // select specific attribute from table
-            // add the condition list = only select where
+        else if(singleConditionFlag){
+            engine.getRowsCondition(tableName, Query);
         }
     }
 
@@ -48,12 +48,15 @@ public class SelectCommand implements CommandExpression {
         parser.checkName(tableName);
         currIndex++;
         if(!(tokens.get(currIndex).equals(";"))){
-            // need to create a list of attributes here
             parser.checkInput(tokens.get(currIndex), "WHERE");
-            if(tokens.get(currIndex).equals("(")){
-                currIndex++;
+            for(String token : tokens) {
+
             }
             parser.checkConditionBNF(tokens, currIndex, listSize);
         }
+    }
+
+    private void getConditions(){
+
     }
 }
