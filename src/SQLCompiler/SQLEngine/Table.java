@@ -19,11 +19,19 @@ public class Table implements Serializable {
         columns.addAll(columnNames);
     }
 
+    public void addSingleColumn(String columnName){ columns.add(columnName); }
+
+    public void removeSingleColumn(String columnName){
+        removeColumnValue(columnName);
+        columns.remove(columnName);
+    }
+
     public void addRow(ArrayList<String> rowValues){
         Row newRow = new Row();
         int iterator = 0;
 
         for(String columnName : columns){
+            System.out.println("inserting row value" + rowValues.get(iterator) + "for attribute" + columnName);
             newRow.setRow(columnName, rowValues.get(iterator));
             iterator++;
         }
@@ -40,6 +48,17 @@ public class Table implements Serializable {
             }
         }
         return specificRows;
+    }
+
+    // remove the entire row if it contains the value - WHERE column name == this
+    public void removeEntireRow(String rowValue, String columnName){
+        tableRows.removeIf(row -> row.checkValueExists(rowValue, columnName));
+    }
+
+    public void removeColumnValue(String columnName){
+        for(Row row : tableRows){
+            row.removeColumnValue(columnName);
+        }
     }
 
     public String getAllRows(){

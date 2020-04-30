@@ -11,7 +11,6 @@ public class DBEngine {
         File newDB = new File(DBName);
         if(newDB.exists()) throw new InvalidQueryException("ERROR: Database already exists.");
         if(!newDB.mkdir()) throw new InvalidQueryException("ERROR: Unable to create database.");
-        query.setDatabase(DBName);
         query.setOutput("OK");
     }
 
@@ -23,7 +22,7 @@ public class DBEngine {
     }
 
     private void checkStructureExists(File checkStructure) throws InvalidQueryException {
-        if(checkStructure.exists()) throw new InvalidQueryException("ERROR: Structure does not exist.");
+        if(!checkStructure.exists()) throw new InvalidQueryException("ERROR: Structure does not exist.");
     }
 
     public void createTable(String TBLName, DBQuery query, ArrayList<String> columnValues) throws IOException, InvalidQueryException {
@@ -70,6 +69,7 @@ public class DBEngine {
         Table table;
         table = deserializeTableFromFile(TBLFileName);
         table.addRow(tableValues);
+        serializeTableToFile(TBLFileName, table);
         query.setOutput("OK");
     }
 
@@ -90,15 +90,20 @@ public class DBEngine {
         return table;
     }
 
-    public void dropStructure(String structureName, DBQuery query) throws InvalidQueryException {
-        File structure = new File(structureName);
-        checkStructureExists(structure);
-        if(structure.delete()){
-            query.setOutput("OK");
-        }
-        else{
-            throw new InvalidQueryException("ERROR: Unable to DROP structure.");
-        }
+    public void dropStructure(String dropType, String dropName, DBQuery query) throws InvalidQueryException {
+        File structureFile;
+        if(dropType.equals("TABLE")) structureFile = getTableFile(dropName, query);
+        else structureFile = new File(dropName);
+        if(structureFile.delete()) query.setOutput("OK");
+        else throw new InvalidQueryException("ERROR: Unable to DROP database.");
+    }
+
+    private File getTableFile(String tableName, DBQuery query) throws InvalidQueryException {
+        String database = query.getDatabase();
+        String tableFileName = database + File.separator + tableName;
+        File table = new File(tableFileName);
+        checkStructureExists(table);
+        return table;
     }
 
     public void selectAllFromTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {

@@ -33,4 +33,8 @@ public class Row implements Serializable {
         row.append(newRowData);
         row.append("  ");
     }
+
+    public void removeColumnValue(String columnName){
+        rowData.remove(columnName);
+    }
 }
