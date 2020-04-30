@@ -61,13 +61,14 @@ public class DBParser {
     }
 
     public void checkConditionBNF(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
-       String firstToken = tokens.get(startIndex);
-       valueIterator = startIndex;
+        String firstToken = tokens.get(startIndex);
+        valueIterator = startIndex;
 
         if(!firstToken.equals("(")){
             checkIndividualCondition(tokens, firstToken);
         }
         else {
+            valueIterator++;
             checkIndividualCondition(tokens, firstToken);
             valueIterator++;
             if(!tokens.get(valueIterator).equals("AND") || !tokens.get(valueIterator).equals("OR")){
@@ -85,6 +86,21 @@ public class DBParser {
         checkOperator(token);
         valueIterator++;
         String value = checkValues(tokens);
+    }
+
+    private void iterateConditions(List<String> tokens){
+        boolean endFlag = false;
+
+        while(!endFlag){
+            String token = tokens.get(valueIterator);
+            if(token.equals(";")){
+                endFlag = true;
+            }
+            if(token.equals("(")){
+                valueIterator++;
+
+            }
+        }
     }
 
     //todo refactor to create one list function

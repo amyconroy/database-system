@@ -8,21 +8,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// <Select>  ::=  SELECT <WildAttribList> FROM <TableName> |
+//                SELECT <WildAttribList> FROM <TableName> WHERE <Condition>
 public class SelectCommand implements CommandExpression {
     private List<String> attributeList;
     private String tableName;
     private Boolean selectAll;
+    private List<String> whereConditions;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
-        System.out.println("test ");
-       // if(selectAll){
+        System.out.println("Test : " + selectAll);
+        if(selectAll){
             engine.selectAllFromTable(tableName, Query);
-       // }
-       // else{
+        }
+        else{
             // select specific attribute from table
             // add the condition list = only select where
-       // }
+        }
     }
 
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
@@ -30,11 +33,11 @@ public class SelectCommand implements CommandExpression {
         int listSize = tokens.size()-1;
         parser.checkEndQuery(tokens.get(listSize));
         attributeList = new ArrayList<>();
-        int startIndex = 1;
         int currIndex = tokens.indexOf("FROM");
         if(currIndex == -1) throw new InvalidQueryException("ERROR: Missing FROM");
-        if(!tokens.get(2).equals("*")){
-            attributeList = parser.createAttributeList(tokens, startIndex, currIndex);
+        int selectIndex = 1; // start index is where WILDATTRIBLIST is specified
+        if(!tokens.get(selectIndex).equals("*")){
+            attributeList = parser.createAttributeList(tokens, currIndex, listSize); //creating list of what to select
             selectAll = false;
         }
         else{
@@ -47,7 +50,9 @@ public class SelectCommand implements CommandExpression {
         if(!(tokens.get(currIndex).equals(";"))){
             // need to create a list of attributes here
             parser.checkInput(tokens.get(currIndex), "WHERE");
-            currIndex++;
+            if(tokens.get(currIndex).equals("(")){
+                currIndex++;
+            }
             parser.checkConditionBNF(tokens, currIndex, listSize);
         }
     }

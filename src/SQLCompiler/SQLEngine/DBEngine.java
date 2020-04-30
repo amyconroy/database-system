@@ -110,8 +110,9 @@ public class DBEngine {
         String dbName = query.getDatabase();
         String tableFileName = dbName + File.separator + tableName;
         Table table = deserializeTableFromFile(tableFileName);
-        String result = table.getAllRows();
-        System.out.println("test : " + result);
+        String columns = table.getAllColumns();
+        String rows = table.getAllRows();
+        String result = columns + rows;
         query.setOutput(result);
     }
 }

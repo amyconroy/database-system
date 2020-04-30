@@ -26,6 +26,12 @@ public class Table implements Serializable {
         columns.remove(columnName);
     }
 
+    public String getAllColumns(){
+        String columnsReturn = columns.toString();
+        String newReturn = columnsReturn.concat("\n");
+        return newReturn;
+    }
+
     public void addRow(ArrayList<String> rowValues){
         Row newRow = new Row();
         int iterator = 0;
