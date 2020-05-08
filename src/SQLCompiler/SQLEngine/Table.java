@@ -49,12 +49,15 @@ public class Table implements Serializable {
         tableRows.add(newRow);
     }
 
-    //
     public String checkCondition(SQLCondition condition){
         StringBuilder specificRows = new StringBuilder();
+        String columnName = condition.getAttributeName();
 
         for(Row row : tableRows){
-            if(condition.compareCondition()){
+            // get the value for that specified column, check the condition
+            String rowValue = row.selectValue(columnName);
+            System.out.println("test row value :" + rowValue);
+            if(condition.compareCondition(rowValue)){
                 specificRows.append(row.getRow());
                 specificRows.append("\n");
             }

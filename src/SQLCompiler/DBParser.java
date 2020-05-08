@@ -77,17 +77,17 @@ public class DBParser {
         }
     }
 
-    public SQLCondition createCondition(List<String> tokens){
-        int index = tokens.indexOf("WHERE");
-        index++;
-        String valueOne = tokens.get(index);
-        index++;
-        String operator = tokens.get(index);
+    public SQLCondition createCondition(List<String> tokens) throws InvalidQueryException {
+        valueIterator = tokens.indexOf("WHERE");
+        valueIterator++;
+        String valueOne = tokens.get(valueIterator);
+        valueIterator++;
+        String operator = tokens.get(valueIterator);
         SQLCondition sqlCondition = operators.get(operator);
-        index++;
-        String valueTwo = tokens.get(index);
-        sqlCondition.setValueOne(valueOne);
-        sqlCondition.setValueTwo(valueTwo);
+        valueIterator++;
+        String valueTwo = checkValues(tokens);
+        sqlCondition.setAttributeName(valueOne);
+        sqlCondition.setCompareValue(valueTwo);
         return sqlCondition;
     }
 

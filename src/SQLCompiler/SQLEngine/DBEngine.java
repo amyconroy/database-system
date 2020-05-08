@@ -106,16 +106,18 @@ public class DBEngine {
         return table;
     }
 
-    public void selectAllFromTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
-        System.out.println("help from select all");
+    public void selectAllFromTable(String tableName, DBQuery query, SQLCondition condition) throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
-        System.out.println("help from select all 2");
         String columns = table.getAllColumns();
-        System.out.println("help from select all 3");
-        String rows = table.getAllRows();
-        System.out.println("help from select all 4");
+        String rows;
+        if(condition == null){
+            rows = table.getAllRows();
+        }
+        else{
+            System.out.println("going to check single condition");
+            rows = table.checkCondition(condition);
+        }
         String result = columns + rows;
-        System.out.println("help from select all 5");
         query.setOutput(result);
     }
 

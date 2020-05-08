@@ -20,7 +20,7 @@ public class SelectCommand implements CommandExpression {
     public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
         if(selectAll){
-            engine.selectAllFromTable(tableName, Query);
+            engine.selectAllFromTable(tableName, Query, condition);
         }
         else{
             engine.preformRowsCondition(tableName, Query, condition);
