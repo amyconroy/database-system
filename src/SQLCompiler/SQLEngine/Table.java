@@ -73,14 +73,14 @@ public class Table implements Serializable {
 
     public void updateRowCondition(SQLCondition condition, String columnName, String newValue){
         for(Row row : tableRows){
-            System.out.println("what the fuck 2");
-            String rowData = row.selectValue(columnName);
-            System.out.println("test rowData : " + rowData);
-            System.out.println("test columnName : " + columnName);
-            if(condition.compareCondition(rowData)){
+            String column = condition.getAttributeName();
+            String tempRow = row.selectValue(column);
+            if(condition.compareCondition(tempRow)){
                 row.changeRowValue(columnName, newValue);
-                System.out.println("test newValue : " + newValue);
+                String test = row.getRow();
+                System.out.println("updated the row : " + test);
             }
+            System.out.println("testing the row \n : " + row.getRow());
         }
     }
 

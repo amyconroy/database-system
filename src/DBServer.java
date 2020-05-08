@@ -48,6 +48,7 @@ public class DBServer {
         catch (InvalidQueryException | IncorrectSQLException e){
            out.write("ERROR:" + e + "\n" + EOT + "\n");
            out.flush();
+           e.printStackTrace();
            System.err.println(e);
         }
        catch(Exception e){

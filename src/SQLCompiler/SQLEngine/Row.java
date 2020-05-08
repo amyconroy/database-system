@@ -9,15 +9,16 @@ import java.util.LinkedHashMap;
 public class Row implements Serializable {
     // key is column name, value is row
     private LinkedHashMap<String, String> rowData;
-    private StringBuilder row; // for ease of printing, row stored here
+    private String row; // for ease of printing, row stored here
 
     public Row(){
         rowData = new LinkedHashMap<>();
-        row = new StringBuilder();
     }
 
     public void changeRowValue(String column, String newValue){
         rowData.replace(column, newValue);
+        System.out.println("new valllll " + newValue);
+        System.out.println("testing : " + rowData.get(column));
         updateRowToPrint();
     }
 
@@ -31,16 +32,19 @@ public class Row implements Serializable {
     }
 
     public String getRow(){
-        return row.toString();
+        return row;
     }
 
     private void updateRowToPrint(){
-        row = new StringBuilder();
+        row = "";
+        StringBuilder newRow = new StringBuilder();
         for(String key : rowData.keySet()){
             String value = rowData.get(key);
-            row.append(value);
-            row.append("  ");
+            newRow.append(value);
+            newRow.append("  ");
         }
+        row = newRow.toString();
+        System.out.println(" newwww row : " + row);
     }
 
     public void setRow(String columnName, String newRowData){

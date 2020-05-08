@@ -27,12 +27,10 @@ public class DBEngine {
     }
 
     public void createTable(String TBLName, DBQuery query, ArrayList<String> columnValues) throws IOException, InvalidQueryException {
-        String DBName = query.getDatabase();
         Table newTable = new Table();
         newTable.addSingleColumn("id");
         if(columnValues != null) newTable.addColumns(columnValues);
-        String newFileName = DBName + File.separator + TBLName;
-        serializeTableToFile(newFileName, newTable);
+        serializeTableToFile(TBLName, newTable, query);
         query.setOutput("OK");
     }
 
@@ -47,11 +45,13 @@ public class DBEngine {
     }
 
     // to serialize a table to the appropriate file
-    private void serializeTableToFile(String TBLFileName, Table newTable) throws IOException, InvalidQueryException {
+    private void serializeTableToFile(String TBLFileName, Table newTable, DBQuery query) throws IOException, InvalidQueryException {
         FileOutputStream fileOut = null;
         ObjectOutputStream objOut = null;
+        String DBName = query.getDatabase();
+        String TableFile = DBName + File.separator + TBLFileName;
         try {
-            fileOut = new FileOutputStream(TBLFileName);
+            fileOut = new FileOutputStream(TableFile);
             objOut = new ObjectOutputStream(fileOut);
             objOut.writeObject(newTable);
             objOut.close();
@@ -70,10 +70,8 @@ public class DBEngine {
         String TBLFileName = DBName + File.separator + TBLName;
         Table table;
         table = deserializeTableFromFile(TBLFileName);
-        System.out.println("add row");
         table.addRow(tableValues);
-        System.out.println("got row");
-        serializeTableToFile(TBLFileName, table);
+        serializeTableToFile(TBLName, table, query);
         query.setOutput("OK");
     }
 
@@ -113,11 +111,11 @@ public class DBEngine {
         Table table = getTable(tableName, query);
         String columns = table.getAllColumns();
         String rows;
-
         if(condition == null) rows = table.getAllRows();
         else rows = table.checkCondition(condition);
         String result = columns + rows;
         query.setOutput(result);
+        serializeTableToFile(tableName, table, query);
     }
 
     private Table getTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
@@ -130,22 +128,20 @@ public class DBEngine {
         Table table = getTable(tableName, query);
         String output = table.checkCondition(condition);
         query.setOutput(output);
-        serializeTableToFile(tableName, table);
+        serializeTableToFile(tableName, table, query);
     }
 
     public void updateRow(String tableName, String columnName, String newValue, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
-        System.out.println("what the fuck 2");
         Table table = getTable(tableName, query);
-        System.out.println("what the fuck");
         table.updateRowCondition(condition, columnName, newValue);
         query.setOutput("OK");
-        serializeTableToFile(tableName, table);
+        serializeTableToFile(tableName, table, query);
     }
 
     public void deleteRow(String tableName, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
         table.removeEntireRow(condition);
         query.setOutput("OK");
-        serializeTableToFile(tableName, table);
+        serializeTableToFile(tableName, table, query);
     }
 }
