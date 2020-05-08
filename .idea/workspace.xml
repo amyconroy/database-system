@@ -341,10 +341,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="675" y="320" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900@0.0.1440.900" timestamp="1588035835406" />
-    <state x="344" y="42" key="CommitChangelistDialog2" timestamp="1588977242780">
+    <state x="344" y="42" key="CommitChangelistDialog2" timestamp="1588980417758">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588973560325" />
+    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588980417758" />
     <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1588977242780" />
     <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1588036243858" />
     <state x="102" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588029099026" />
@@ -440,13 +440,13 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587136588804" />
-    <state x="1440" y="23" width="1366" height="745" key="dock-window-1" timestamp="1588980402803">
-      <screen x="1440" y="0" width="1366" height="768" />
+    <state x="1440" y="23" width="1366" height="745" maximized="true" key="dock-window-1" timestamp="1588980421584">
+      <screen x="1440" y="23" width="1366" height="745" />
     </state>
     <state x="1440" y="23" width="1366" height="745" key="dock-window-1/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588980402803" />
     <state x="1440" y="23" width="1366" height="745" maximized="true" key="dock-window-1/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1588979306633" />
     <state x="16" y="219" width="866" height="678" key="dock-window-1/0.0.1440.900@0.0.1440.900" timestamp="1587992923308" />
-    <state x="1440" y="23" width="1366" height="745" maximized="true" key="dock-window-1/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1588980324028" />
+    <state x="1440" y="23" width="1366" height="745" maximized="true" key="dock-window-1/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1588980421584" />
     <state x="16" y="219" width="866" height="678" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1587929846507" />
     <state x="1456" y="23" width="866" height="678" key="dock-window-1/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587924681621" />
     <state x="1456" y="23" width="866" height="678" key="dock-window-1/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587929266854" />
