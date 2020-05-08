@@ -127,7 +127,6 @@ public class DBParser {
                 values.add(value);
             }
         }
-        System.out.println("test the values : " + values);
         return values;
     }
 

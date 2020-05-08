@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.lang.StringBuilder;
 
 public class Row implements Serializable {
-    // key is column name
+    // key is column name, value is row
     private HashMap<String, String> rowData;
     private StringBuilder row;
 
@@ -14,6 +14,8 @@ public class Row implements Serializable {
         rowData = new HashMap<>();
         row = new StringBuilder();
     }
+
+    public void changeRowValue(String column, String newValue){ rowData.replace(column, newValue); }
 
     public Boolean checkValueExists(String value, String column){
         return rowData.get(column).equals(value);

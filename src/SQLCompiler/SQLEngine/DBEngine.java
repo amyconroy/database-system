@@ -31,7 +31,6 @@ public class DBEngine {
         Table newTable = new Table();
         newTable.addSingleColumn("id");
         if(columnValues != null) newTable.addColumns(columnValues);
-        System.out.println("creating table");
         String newFileName = DBName + File.separator + TBLName;
         serializeTableToFile(newFileName, newTable);
         query.setOutput("OK");
@@ -114,13 +113,8 @@ public class DBEngine {
         Table table = getTable(tableName, query);
         String columns = table.getAllColumns();
         String rows;
-        if(condition == null){
-            rows = table.getAllRows();
-        }
-        else{
-            System.out.println("going to check single condition");
-            rows = table.checkCondition(condition);
-        }
+        if(condition == null) rows = table.getAllRows();
+        else rows = table.checkCondition(condition);
         String result = columns + rows;
         query.setOutput(result);
     }
@@ -135,6 +129,13 @@ public class DBEngine {
         Table table = getTable(tableName, query);
         String output = table.checkCondition(condition);
         query.setOutput(output);
+        serializeTableToFile(tableName, table);
+    }
+
+    public void updateRow(String tableName, String columnName, String newValue, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
+        Table table = getTable(tableName, query);
+        table.updateRowCondition(condition, columnName, newValue);
+        query.setOutput("OK");
         serializeTableToFile(tableName, table);
     }
 }

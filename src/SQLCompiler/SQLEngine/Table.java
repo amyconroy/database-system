@@ -71,9 +71,18 @@ public class Table implements Serializable {
         return specificRows.toString();
     }
 
+    public void updateRowCondition(SQLCondition condition, String columnName, String newValue){
+        for(Row row : tableRows){
+            String rowData = row.selectValue(columnName);
+            if(condition.compareCondition(rowData)){
+                row.changeRowValue(columnName, newValue);
+            }
+        }
+    }
 
-    // remove the entire row if it contains the value - WHERE column name == this
+    // remove the entire row if it contains the value
     public void removeEntireRow(String rowValue, String columnName){
+
         tableRows.removeIf(row -> row.checkValueExists(rowValue, columnName));
     }
 

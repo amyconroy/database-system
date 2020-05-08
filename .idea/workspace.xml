@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amy/test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/markbook/marks" beforeDir="false" afterPath="$PROJECT_DIR$/markbook/marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/Table.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_database/markbook/marks" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/markbook/marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CreateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/DBParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/DBParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UpdateCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Row.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Table.java" afterDir="false" />
@@ -205,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588960186454</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added row id number to rows">
+      <created>1588962210180</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1588962210180</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,7 +240,8 @@
     <MESSAGE value="update equal condition to accept string" />
     <MESSAGE value="refactor conditions" />
     <MESSAGE value="working with single select WHERE condition" />
-    <option name="LAST_COMMIT_MESSAGE" value="working with single select WHERE condition" />
+    <MESSAGE value="added row id number to rows" />
+    <option name="LAST_COMMIT_MESSAGE" value="added row id number to rows" />
   </component>
   <component name="WindowStateProjectService">
     <state x="256" y="26" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587133748725">
@@ -285,10 +290,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="675" y="320" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900@0.0.1440.900" timestamp="1588035835406" />
-    <state x="344" y="42" key="CommitChangelistDialog2" timestamp="1588960186296">
+    <state x="344" y="42" key="CommitChangelistDialog2" timestamp="1588962210017">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588954725256" />
+    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588962210017" />
     <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1588960186296" />
     <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1588036243858" />
     <state x="102" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588029099026" />
@@ -384,13 +389,13 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587136588804" />
-    <state x="1440" y="23" width="1366" height="745" key="dock-window-1" timestamp="1588961570911">
+    <state x="1440" y="23" width="1366" height="745" key="dock-window-1" timestamp="1588971733380">
       <screen x="1440" y="0" width="1366" height="768" />
     </state>
-    <state x="1440" y="23" width="1366" height="745" key="dock-window-1/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588961570911" />
-    <state x="1440" y="23" width="1366" height="745" maximized="true" key="dock-window-1/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1588960214648" />
+    <state x="1440" y="23" width="1366" height="745" key="dock-window-1/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588971733380" />
+    <state x="1440" y="23" width="1366" height="745" maximized="true" key="dock-window-1/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1588969259421" />
     <state x="16" y="219" width="866" height="678" key="dock-window-1/0.0.1440.900@0.0.1440.900" timestamp="1587992923308" />
-    <state x="1440" y="23" width="1366" height="745" key="dock-window-1/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1588960470379" />
+    <state x="1440" y="23" width="1366" height="745" maximized="true" key="dock-window-1/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1588962292664" />
     <state x="16" y="219" width="866" height="678" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1587929846507" />
     <state x="1456" y="23" width="866" height="678" key="dock-window-1/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587924681621" />
     <state x="1456" y="23" width="866" height="678" key="dock-window-1/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587929266854" />
