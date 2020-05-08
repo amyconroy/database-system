@@ -1,9 +1,12 @@
 package SQLCompiler.SQLEngine;
 import SQLCompiler.SQLCondition.SQLCondition;
+import SQLCompiler.SQLExceptions.InvalidQueryException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.lang.StringBuilder;
+import java.util.List;
 
 public class Table implements Serializable {
     private LinkedList<Row> tableRows;
@@ -115,5 +118,30 @@ public class Table implements Serializable {
             allRows.append("\n");
         }
         return allRows.toString();
+    }
+
+    public String getSpecificRows(SQLCondition condition, List<String> AttributeList) throws InvalidQueryException {
+        String printColumn = AttributeList.get(0);
+        if(!checkColumnExists(printColumn)) {
+            throw new InvalidQueryException("ERROR : Attribute not found.");
+        }
+        String columnName = condition.getAttributeName();
+        StringBuilder specificRows = new StringBuilder();
+        if(columnName == null){
+            throw new InvalidQueryException("ERROR : Attribute not found.");
+        }
+        for(Row row : tableRows){
+            // get the value for that specified column, check the condition
+            String rowValue = row.selectValue(columnName);
+            if(rowValue == null){
+                throw new InvalidQueryException("ERROR : Attribute not found.");
+            }
+            if(condition.compareCondition(rowValue)){
+                String printRow = row.selectValue(printColumn);
+                specificRows.append(printRow);
+                specificRows.append("\n");
+            }
+        }
+        return specificRows.toString();
     }
 }

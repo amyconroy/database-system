@@ -179,20 +179,18 @@ public class DBParser {
     public List<String> createAttributeList(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
         List<String> attributes = new ArrayList<>();
         boolean wordFlag = false;
-        int checkIndex = startIndex + 1;
+        int checkIndex = startIndex + 1; //move forward by one to see if multiple attributes
 
-        if(checkIndex != endIndex){
-            checkInput(tokens.get(checkIndex), ",");
-            for(int iterator = startIndex; iterator < endIndex; iterator++){
+        if(tokens.get(checkIndex).equals(",")){
+            for(int iterator = startIndex; iterator < endIndex; iterator++) {
                 String currToken = tokens.get(iterator);
-                System.out.println("tokens : " + currToken);
-                if(currToken.equals(",")){
+                if (currToken.equals(",")) {
                     wordFlag = false;
                 }
-                if(wordFlag){
+                if (wordFlag) {
                     throw new InvalidQueryException("ERROR: Missing comma between attributes.");
                 }
-                if(!tokens.get(iterator).equals(",")){
+                if (!tokens.get(iterator).equals(",")) {
                     checkName(currToken);
                     attributes.add(currToken);
                     wordFlag = true;

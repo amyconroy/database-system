@@ -4,6 +4,7 @@ import SQLCompiler.SQLCondition.SQLCondition;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 // class to do the main engine work of the database
 public class DBEngine {
@@ -124,11 +125,16 @@ public class DBEngine {
         return deserializeTableFromFile(tableFileName);
     }
 
-    public void preformRowsCondition(String tableName, DBQuery query, SQLCondition condition) throws IOException, InvalidQueryException {
-        Table table = getTable(tableName, query);
-        String output = table.checkCondition(condition);
-        query.setOutput(output);
-        serializeTableToFile(tableName, table, query);
+    public void selectRowsCondition(String tableName, DBQuery query, SQLCondition condition, List<String> attributeList) throws IOException, InvalidQueryException {
+        if(attributeList == null){
+            selectAllFromTable(tableName, query, condition);
+        }
+        else{
+            Table table = getTable(tableName, query);
+            String output = table.getSpecificRows(condition, attributeList);
+            query.setOutput(output);
+            serializeTableToFile(tableName, table, query);
+        }
     }
 
     public void updateRow(String tableName, String columnName, String newValue, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
@@ -141,6 +147,18 @@ public class DBEngine {
     public void deleteRow(String tableName, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
         table.removeEntireRow(condition);
+        query.setOutput("OK");
+        serializeTableToFile(tableName, table, query);
+    }
+
+    public void alterTable(DBQuery query, String column, String tableName, String alterationType) throws IOException, InvalidQueryException {
+        Table table = getTable(tableName, query);
+        if(alterationType.equals("ADD")){
+            table.addSingleColumn(column);
+        }
+        else{
+            table.removeSingleColumn(column);
+        }
         query.setOutput("OK");
         serializeTableToFile(tableName, table, query);
     }

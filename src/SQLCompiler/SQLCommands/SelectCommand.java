@@ -16,6 +16,7 @@ public class SelectCommand implements CommandExpression {
     private String tableName;
     private Boolean selectAll;
     private SQLCondition condition;
+    private List<String> attributeList;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
@@ -23,7 +24,7 @@ public class SelectCommand implements CommandExpression {
             engine.selectAllFromTable(tableName, Query, condition);
         }
         else{
-            engine.preformRowsCondition(tableName, Query, condition);
+            engine.selectRowsCondition(tableName, Query, condition, attributeList);
         }
     }
 
@@ -31,13 +32,13 @@ public class SelectCommand implements CommandExpression {
         List<String> tokens = Query.getTokens();
         int listSize = tokens.size()-1;
         parser.checkEndQuery(tokens.get(listSize));
-        List<String> attributeList = new ArrayList<>();
+        attributeList = new ArrayList<>();
         int selectIndex = 1; // start index is where WILDATTRIBLIST is specified
         int currIndex = tokens.indexOf("FROM");
         if(currIndex == -1) throw new InvalidQueryException("ERROR: Missing FROM"); // -1 is default if no from
-        if(!tokens.get(selectIndex).equals("*")){
-            // not a select all, need the list of what to select
-            attributeList = parser.createAttributeList(tokens, currIndex, listSize);
+        //todo consider converting this to single variable
+        if(!tokens.get(selectIndex).equals("*")){ // list of what to select
+            attributeList = parser.createAttributeList(tokens, selectIndex, listSize);
             selectAll = false;
         }
         else selectAll = true;
