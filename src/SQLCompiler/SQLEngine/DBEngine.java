@@ -1,5 +1,6 @@
 package SQLCompiler.SQLEngine;
 import SQLCompiler.DBQuery;
+import SQLCompiler.SQLCondition.SQLCondition;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.io.*;
 import java.util.ArrayList;
@@ -84,7 +85,6 @@ public class DBEngine {
             table = (Table) objIn.readObject();
             objIn.close();
         } catch (FileNotFoundException | ClassNotFoundException e) {
-            // todo why is it hitting this error
             throw new InvalidQueryException("ERROR : Table not found.");
         }
         return table;
@@ -107,10 +107,15 @@ public class DBEngine {
     }
 
     public void selectAllFromTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
+        System.out.println("help from select all");
         Table table = getTable(tableName, query);
+        System.out.println("help from select all 2");
         String columns = table.getAllColumns();
+        System.out.println("help from select all 3");
         String rows = table.getAllRows();
+        System.out.println("help from select all 4");
         String result = columns + rows;
+        System.out.println("help from select all 5");
         query.setOutput(result);
     }
 
@@ -120,7 +125,10 @@ public class DBEngine {
         return deserializeTableFromFile(tableFileName);
     }
 
-    public void getRowsCondition(String tableName, DBQuery query /*, String columnName, String condition */) throws IOException, InvalidQueryException {
+    public void preformRowsCondition(String tableName, DBQuery query, SQLCondition condition) throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
+        String output = table.checkCondition(condition);
+        query.setOutput(output);
+        serializeTableToFile(tableName, table);
     }
 }

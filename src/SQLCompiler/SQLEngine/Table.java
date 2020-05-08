@@ -1,4 +1,5 @@
 package SQLCompiler.SQLEngine;
+import SQLCompiler.SQLCondition.SQLCondition;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -48,17 +49,19 @@ public class Table implements Serializable {
         tableRows.add(newRow);
     }
 
-    public StringBuilder getSpecificRows(String rowValue, String columnName){
+    //
+    public String checkCondition(SQLCondition condition){
         StringBuilder specificRows = new StringBuilder();
 
         for(Row row : tableRows){
-            if(row.checkValueExists(rowValue, columnName)){
-                specificRows.append(row.selectValue(columnName));
+            if(condition.compareCondition()){
+                specificRows.append(row.getRow());
                 specificRows.append("\n");
             }
         }
-        return specificRows;
+        return specificRows.toString();
     }
+
 
     // remove the entire row if it contains the value - WHERE column name == this
     public void removeEntireRow(String rowValue, String columnName){

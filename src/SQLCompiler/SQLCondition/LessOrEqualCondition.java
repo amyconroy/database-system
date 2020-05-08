@@ -1,9 +1,22 @@
 package SQLCompiler.SQLCondition;
 
 public class LessOrEqualCondition implements SQLCondition {
-    public boolean compareCondition(String valueOne, String valueTwo) {
-        int one = Integer.parseInt(valueOne);
-        int two = Integer.parseInt(valueTwo);
-        return one < two || one == two;
+    private String attributeName;
+    private int valueTwo;
+
+    public boolean compareCondition(String currValue) {
+        int one = Integer.parseInt(currValue);
+        return one < valueTwo || one == valueTwo;
     }
+
+    public void setAttributeName(String attributeName){
+        this.attributeName = attributeName;
+    }
+
+    public void setCompareValue(String valueTwo){
+        int two = Integer.parseInt(valueTwo);
+        this.valueTwo = two;
+    }
+
+    public String getAttributeName() { return attributeName; }
 }

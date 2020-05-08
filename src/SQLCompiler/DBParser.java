@@ -1,23 +1,30 @@
 package SQLCompiler;
 
+import SQLCompiler.SQLCondition.*;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
 
 public class DBParser {
-    private List<String> operators;
+    private HashMap<String, SQLCondition> operators;
     private int valueIterator;
 
     public DBParser(){
-        operators = new ArrayList<>();
-        operators.add("==");
-        operators.add(">");
-        operators.add("<");
-        operators.add(">=");
-        operators.add("<=");
-        operators.add("!=");
-        operators.add("LIKE");
+        operators = new HashMap<>();
+        createOperatorsList();
+    }
+
+    private void createOperatorsList(){
+        operators.put("==", new EqualCondition());
+        operators.put(">", new GreaterCondition());
+        operators.put("<", new LessCondition());
+        operators.put(">=", new GreatOrEqualCondition());
+        operators.put("<=", new LessOrEqualCondition());
+        operators.put("!=", new NotEqualCondition());
+        operators.put("LIKE", new LikeCondition());
     }
 
     public void checkInput(String input, String input2) throws InvalidQueryException {
@@ -51,15 +58,6 @@ public class DBParser {
         }
     }
 
-    private Boolean checkOperator(String input) throws InvalidQueryException{
-        for(String operator : operators){
-            if(input.equals(operator)){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void checkConditionBNF(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
         String firstToken = tokens.get(startIndex);
         valueIterator = startIndex;
@@ -79,11 +77,24 @@ public class DBParser {
         }
     }
 
+    public SQLCondition createCondition(List<String> tokens){
+        int index = tokens.indexOf("WHERE");
+        index++;
+        String valueOne = tokens.get(index);
+        index++;
+        String operator = tokens.get(index);
+        SQLCondition sqlCondition = operators.get(operator);
+        index++;
+        String valueTwo = tokens.get(index);
+        sqlCondition.setValueOne(valueOne);
+        sqlCondition.setValueTwo(valueTwo);
+        return sqlCondition;
+    }
+
     public void checkIndividualCondition(List<String> tokens, String firstToken) throws InvalidQueryException {
         checkName(firstToken);
         valueIterator++;
         String token = tokens.get(valueIterator);
-        checkOperator(token);
         valueIterator++;
         String value = checkValues(tokens);
     }
