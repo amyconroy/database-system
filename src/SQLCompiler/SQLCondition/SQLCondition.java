@@ -2,5 +2,5 @@ package SQLCompiler.SQLCondition;
 import java.util.List;
 
 public interface SQLCondition {
-    void compareCondition();
+    boolean compareCondition(String valueOne, String valueTwo);
 }
