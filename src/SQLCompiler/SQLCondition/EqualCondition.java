@@ -5,6 +5,8 @@ public class EqualCondition implements SQLCondition {
     private String valueTwo;
 
     public boolean compareCondition(String currValue) {
+        System.out.println("test equal condition : " + currValue);
+        System.out.println("test equal condition : " + valueTwo);
         return valueTwo.equals(currValue);
     }
 

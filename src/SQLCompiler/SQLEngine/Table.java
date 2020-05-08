@@ -73,17 +73,26 @@ public class Table implements Serializable {
 
     public void updateRowCondition(SQLCondition condition, String columnName, String newValue){
         for(Row row : tableRows){
+            System.out.println("what the fuck 2");
             String rowData = row.selectValue(columnName);
+            System.out.println("test rowData : " + rowData);
+            System.out.println("test columnName : " + columnName);
             if(condition.compareCondition(rowData)){
                 row.changeRowValue(columnName, newValue);
+                System.out.println("test newValue : " + newValue);
             }
         }
     }
 
-    // remove the entire row if it contains the value
-    public void removeEntireRow(String rowValue, String columnName){
-
-        tableRows.removeIf(row -> row.checkValueExists(rowValue, columnName));
+    public void removeEntireRow(SQLCondition condition){
+        String columnName = condition.getAttributeName();
+        for(Row row : tableRows){
+            String rowData = row.selectValue(columnName);
+            // if it satisfies the condition with value under column - remove
+            if(condition.compareCondition(rowData)){
+                tableRows.remove(row);
+            }
+        }
     }
 
     public void removeColumnValue(String columnName){

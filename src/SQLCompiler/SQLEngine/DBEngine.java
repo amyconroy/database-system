@@ -113,6 +113,7 @@ public class DBEngine {
         Table table = getTable(tableName, query);
         String columns = table.getAllColumns();
         String rows;
+
         if(condition == null) rows = table.getAllRows();
         else rows = table.checkCondition(condition);
         String result = columns + rows;
@@ -133,8 +134,17 @@ public class DBEngine {
     }
 
     public void updateRow(String tableName, String columnName, String newValue, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
+        System.out.println("what the fuck 2");
         Table table = getTable(tableName, query);
+        System.out.println("what the fuck");
         table.updateRowCondition(condition, columnName, newValue);
+        query.setOutput("OK");
+        serializeTableToFile(tableName, table);
+    }
+
+    public void deleteRow(String tableName, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
+        Table table = getTable(tableName, query);
+        table.removeEntireRow(condition);
         query.setOutput("OK");
         serializeTableToFile(tableName, table);
     }

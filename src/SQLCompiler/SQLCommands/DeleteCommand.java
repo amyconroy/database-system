@@ -1,27 +1,30 @@
 package SQLCompiler.SQLCommands;
 import SQLCompiler.DBParser;
 import SQLCompiler.DBQuery;
+import SQLCompiler.SQLCondition.SQLCondition;
 import SQLCompiler.SQLEngine.DBEngine;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
+
+import java.io.IOException;
 import java.util.List;
 
 // <Delete>   ::=  DELETE FROM <TableName> WHERE <Condition>
 public class DeleteCommand implements CommandExpression {
-    private DBQuery Query;
-    private List<String> tokens;
+    private SQLCondition condition;
+    private String tableName;
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException {
-        this.Query = Query;
+    public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
+        DBEngine engine = new DBEngine();
+        engine.deleteRow(tableName, condition, Query);
     }
 
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
-        tokens = Query.getTokens();
+        List<String> tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         parser.checkInput(tokens.get(1), "FROM");
-        String tableName = tokens.get(2);
+        tableName = tokens.get(2);
         parser.checkName(tableName);
         parser.checkInput(tokens.get(3), "WHERE");
-        //todo add in support for parsing conditions
-
+        condition = parser.createCondition(tokens);
     }
 }

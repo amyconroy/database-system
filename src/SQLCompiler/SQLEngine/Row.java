@@ -4,18 +4,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.lang.StringBuilder;
+import java.util.LinkedHashMap;
 
 public class Row implements Serializable {
     // key is column name, value is row
-    private HashMap<String, String> rowData;
-    private StringBuilder row;
+    private LinkedHashMap<String, String> rowData;
+    private StringBuilder row; // for ease of printing, row stored here
 
     public Row(){
-        rowData = new HashMap<>();
+        rowData = new LinkedHashMap<>();
         row = new StringBuilder();
     }
 
-    public void changeRowValue(String column, String newValue){ rowData.replace(column, newValue); }
+    public void changeRowValue(String column, String newValue){
+        rowData.replace(column, newValue);
+        updateRowToPrint();
+    }
 
     public Boolean checkValueExists(String value, String column){
         return rowData.get(column).equals(value);
@@ -30,11 +34,18 @@ public class Row implements Serializable {
         return row.toString();
     }
 
+    private void updateRowToPrint(){
+        row = new StringBuilder();
+        for(String key : rowData.keySet()){
+            String value = rowData.get(key);
+            row.append(value);
+            row.append("  ");
+        }
+    }
+
     public void setRow(String columnName, String newRowData){
         rowData.put(columnName, newRowData);
-        row.append(newRowData);
-        row.append("  ");
-        System.out.println("adding column  " + columnName + "row " + newRowData);
+        updateRowToPrint();
     }
 
     public void removeColumnValue(String columnName){
