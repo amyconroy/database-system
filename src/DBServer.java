@@ -52,6 +52,7 @@ public class DBServer {
            System.err.println(e);
         }
        catch(Exception e){
+           e.printStackTrace();
            System.err.println(e);
        }
     }

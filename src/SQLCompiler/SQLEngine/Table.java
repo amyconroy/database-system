@@ -78,20 +78,26 @@ public class Table implements Serializable {
             if(condition.compareCondition(tempRow)){
                 row.changeRowValue(columnName, newValue);
                 String test = row.getRow();
-                System.out.println("updated the row : " + test);
             }
-            System.out.println("testing the row \n : " + row.getRow());
         }
     }
 
     public void removeEntireRow(SQLCondition condition){
         String columnName = condition.getAttributeName();
+        ArrayList<Row> rowsToRemove = new ArrayList<>();
+
         for(Row row : tableRows){
             String rowData = row.selectValue(columnName);
-            // if it satisfies the condition with value under column - remove
-            if(condition.compareCondition(rowData)){
-                tableRows.remove(row);
+            if(condition.compareCondition(rowData)){ // if it satisfies the condition with value under column - remove
+                rowsToRemove.add(row);
             }
+        }
+        deleteRows(rowsToRemove);
+    }
+
+    private void deleteRows(ArrayList<Row> rowsToRemove){
+        for(Row row : rowsToRemove){
+            tableRows.remove(row);
         }
     }
 
