@@ -27,7 +27,6 @@ public class CreateCommand implements CommandExpression {
             currIndex++;
             // subtract one to account for final end bracket 
             tableValues = (ArrayList<String>) parser.createAttributeList(tokens, currIndex, endIndex-1);
-            System.out.println("testsdfds " + tableValues);
         }
     }
 

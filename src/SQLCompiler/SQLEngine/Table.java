@@ -8,10 +8,12 @@ import java.lang.StringBuilder;
 public class Table implements Serializable {
     private LinkedList<Row> tableRows;
     private LinkedList<String> columns;
+    private int rowId;
 
     public Table(){
         tableRows = new LinkedList<>();
         columns = new LinkedList<>();
+        rowId = 0;
     }
 
     public Boolean checkColumnExists(String columnName) { return columns.contains(columnName); }
@@ -40,11 +42,16 @@ public class Table implements Serializable {
     public void addRow(ArrayList<String> rowValues){
         Row newRow = new Row();
         int iterator = 0;
-
+        rowId++;
         for(String columnName : columns){
-            System.out.println("inserting row value" + rowValues.get(iterator) + "for attribute" + columnName);
-            newRow.setRow(columnName, rowValues.get(iterator));
-            iterator++;
+            System.out.println("adding row id " + rowId);
+            System.out.println("adding row  " + columnName);
+            if(columnName.equals("id")) newRow.setRow(columnName, Integer.toString(rowId));
+            else {
+                newRow.setRow(columnName, rowValues.get(iterator));
+                iterator++;
+            }
+
         }
         tableRows.add(newRow);
     }
@@ -56,7 +63,6 @@ public class Table implements Serializable {
         for(Row row : tableRows){
             // get the value for that specified column, check the condition
             String rowValue = row.selectValue(columnName);
-            System.out.println("test row value :" + rowValue);
             if(condition.compareCondition(rowValue)){
                 specificRows.append(row.getRow());
                 specificRows.append("\n");

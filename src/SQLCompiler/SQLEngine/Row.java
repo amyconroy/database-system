@@ -32,6 +32,7 @@ public class Row implements Serializable {
         rowData.put(columnName, newRowData);
         row.append(newRowData);
         row.append("  ");
+        System.out.println("adding column  " + columnName + "row " + newRowData);
     }
 
     public void removeColumnValue(String columnName){

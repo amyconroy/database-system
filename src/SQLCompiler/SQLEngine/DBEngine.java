@@ -29,7 +29,9 @@ public class DBEngine {
     public void createTable(String TBLName, DBQuery query, ArrayList<String> columnValues) throws IOException, InvalidQueryException {
         String DBName = query.getDatabase();
         Table newTable = new Table();
+        newTable.addSingleColumn("id");
         if(columnValues != null) newTable.addColumns(columnValues);
+        System.out.println("creating table");
         String newFileName = DBName + File.separator + TBLName;
         serializeTableToFile(newFileName, newTable);
         query.setOutput("OK");
@@ -69,7 +71,9 @@ public class DBEngine {
         String TBLFileName = DBName + File.separator + TBLName;
         Table table;
         table = deserializeTableFromFile(TBLFileName);
+        System.out.println("add row");
         table.addRow(tableValues);
+        System.out.println("got row");
         serializeTableToFile(TBLFileName, table);
         query.setOutput("OK");
     }
