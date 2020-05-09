@@ -31,7 +31,7 @@ public class SelectCommand implements CommandExpression {
             engine.selectRowsCondition(tableName, Query, condition, attributeList);
         }
         else{
-            System.out.println(" test  yeet... ");
+            engine.selectMultipleCondition(tableName, Query, tokenStack, conditionStack);
         }
     }
 
@@ -72,9 +72,9 @@ public class SelectCommand implements CommandExpression {
             for(int i = currIndex; i < listSize; i++){
                 System.out.println("test curr value in loop " + tokens.get(i));
                 String currToken = tokens.get(i);
-                if ("AND".equals(currToken) || "OR".equals(currToken) || ")".equals(currToken) || "(".equals(currToken)) {
+                if ("AND".equals(currToken) || "OR".equals(currToken)) {
                     tokenStack.push(currToken);
-                } else if(!("'").equals(currToken)){
+                } else if(!("'").equals(currToken) && !(")").equals(currToken) && !("(").equals(currToken)){
                     SQLCondition condition = parser.createCondition(tokens, i);
                     i = i+3;
                     if(tokens.get(i).equals(")")) i--; // to account for the string literals

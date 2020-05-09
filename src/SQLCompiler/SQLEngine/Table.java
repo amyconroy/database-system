@@ -19,6 +19,13 @@ public class Table implements Serializable {
         rowId = 0;
     }
 
+    public void setAllRows(LinkedList<Row> newTableRows){
+        for(Row row : newTableRows){
+            tableRows.add(row);
+            row.updateRowToPrint();
+        }
+    }
+
     public String getSpecificValue(String columnName, Row row){ return row.selectValue(columnName); }
 
     public Boolean checkColumnExists(String columnName) { return columns.contains(columnName); }

@@ -3,9 +3,7 @@ import SQLCompiler.DBQuery;
 import SQLCompiler.SQLCondition.SQLCondition;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 // class to do the main engine work of the database
 //todo dont need to researlize when select / not changing anything
@@ -237,5 +235,95 @@ public class DBEngine {
         joinValues.addAll(row1Values);
         joinValues.addAll(row2Values);
         joinTable.addRow(joinValues);
+    }
+
+    public void selectMultipleCondition(String tableName, DBQuery Query, Stack<String> tokenStack,
+                                        Stack<SQLCondition> conditionStack) throws IOException, InvalidQueryException {
+        System.out.println("selecting multiple");
+        String type = tokenStack.pop();
+        LinkedList<Row> firstResults = chooseCondition(type, conditionStack, tableName, Query);
+        LinkedList<Row> finalResults = new LinkedList<>();
+        Table table = getTable(tableName, Query);
+        if(!tokenStack.empty()){
+            type = tokenStack.pop();
+            SQLCondition thirdCondition = conditionStack.pop();
+            LinkedList<Row> tableRows = table.getRowsList();
+            LinkedList<Row> conditionRows = getConditionRows(thirdCondition, tableRows);
+            if(type.equals("AND")){
+                finalResults = compareAndConditionRows(firstResults, conditionRows);
+            }
+            else{
+                finalResults.addAll(firstResults);
+                finalResults.addAll(conditionRows);
+            }
+        }
+        else{
+            finalResults = firstResults;
+        }
+        printConditions(finalResults, Query, table);
+    }
+
+    private void printConditions(LinkedList<Row> finalRows, DBQuery Query, Table table){
+        Table conditionTable = new Table();
+        LinkedList<String> columns = table.getColumnsList();
+        ArrayList<String> newColumns = new ArrayList<>(columns);
+        System.out.println("final row test : " + finalRows.toString());
+        conditionTable.addColumns(newColumns);
+        conditionTable.setAllRows(finalRows);
+        String columnsPrint = conditionTable.getAllColumns();
+        String rows = conditionTable.getAllRows();
+        String result = columnsPrint + rows;
+        Query.setOutput(result);
+    }
+
+    private LinkedList<Row> chooseCondition(String type, Stack<SQLCondition> conditionStack, String tableName,
+                                            DBQuery Query) throws IOException, InvalidQueryException {
+        LinkedList<Row> newRows = new LinkedList<>();
+        SQLCondition firstCondition = conditionStack.pop();
+        SQLCondition secondCondition = conditionStack.pop();
+        Table table = getTable(tableName, Query);
+        LinkedList<Row> tableRows = table.getRowsList();
+        LinkedList<Row> firstConditionMatch = getConditionRows(firstCondition, tableRows);
+        LinkedList<Row> secondConditionMatch = getConditionRows(secondCondition, tableRows);
+
+        if(type.equals("AND")){
+            newRows = andCondition(firstConditionMatch, secondConditionMatch);
+        }
+        else{
+            newRows.addAll(firstConditionMatch);
+            newRows.addAll(secondConditionMatch);
+        }
+        return newRows;
+    }
+
+    private LinkedList<Row> andCondition(LinkedList<Row> firstConditionMatch,  LinkedList<Row> secondConditionMatch){
+        return compareAndConditionRows(firstConditionMatch, secondConditionMatch);
+    }
+
+    private LinkedList<Row> getConditionRows(SQLCondition condition, LinkedList<Row> tableRows)
+            throws InvalidQueryException {
+        LinkedList<Row> matchingRows = new LinkedList<>();
+        String columnName = condition.getAttributeName();
+
+        for(Row row : tableRows){
+            String value = row.selectValue(columnName);
+            if(condition.compareCondition(value)){
+                matchingRows.add(row);
+            }
+        }
+        return matchingRows;
+    }
+
+    //todo consider making && || enum types instead
+    private LinkedList<Row> compareAndConditionRows(LinkedList<Row> firstMatches, LinkedList<Row> secondMatches){
+        LinkedList<Row> andMatches = new LinkedList<>();
+        for(Row row1 : firstMatches) {
+            for (Row row2 : secondMatches) {
+                if (row1.equals(row2)) {
+                    andMatches.add(row1);
+                }
+            }
+        }
+        return andMatches;
     }
 }

@@ -38,7 +38,7 @@ public class Row implements Serializable {
         return row;
     }
 
-    private void updateRowToPrint(){
+    public void updateRowToPrint(){
         row = "";
         StringBuilder newRow = new StringBuilder();
         for(String key : rowData.keySet()){
