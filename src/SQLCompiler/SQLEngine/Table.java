@@ -59,7 +59,7 @@ public class Table implements Serializable {
         tableRows.add(newRow);
     }
 
-    public String checkCondition(SQLCondition condition){
+    public String checkCondition(SQLCondition condition) throws InvalidQueryException {
         StringBuilder specificRows = new StringBuilder();
         String columnName = condition.getAttributeName();
 
@@ -74,7 +74,7 @@ public class Table implements Serializable {
         return specificRows.toString();
     }
 
-    public void updateRowCondition(SQLCondition condition, String columnName, String newValue){
+    public void updateRowCondition(SQLCondition condition, String columnName, String newValue) throws InvalidQueryException {
         for(Row row : tableRows){
             String column = condition.getAttributeName();
             String tempRow = row.selectValue(column);
@@ -85,7 +85,7 @@ public class Table implements Serializable {
         }
     }
 
-    public void removeEntireRow(SQLCondition condition){
+    public void removeEntireRow(SQLCondition condition) throws InvalidQueryException {
         String columnName = condition.getAttributeName();
         ArrayList<Row> rowsToRemove = new ArrayList<>();
 
