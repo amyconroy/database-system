@@ -198,6 +198,10 @@ public class DBParser {
             }
         }
         else{
+            System.out.println("test : " + tokens.get(checkIndex));
+            if(!tokens.get(checkIndex).equals("FROM")){
+                throw new InvalidQueryException("ERROR: Missing comma between attributes.");
+            }
             attributes.add(tokens.get(startIndex));
         }
         return attributes;
