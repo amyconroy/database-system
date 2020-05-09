@@ -58,5 +58,6 @@ public class Row implements Serializable {
 
     public void removeColumnValue(String columnName){
         rowData.remove(columnName);
+        updateRowToPrint();
     }
 }
