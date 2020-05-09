@@ -25,7 +25,16 @@ public class Table implements Serializable {
         columns.addAll(columnNames);
     }
 
-    public void addSingleColumn(String columnName){ columns.add(columnName); }
+    public void addSingleColumn(String columnName){
+        columns.add(columnName);
+        addColumnToRows(columnName);
+    }
+
+    private void addColumnToRows(String columnName){
+        for(Row row : tableRows){
+            row.addNewColumn(columnName);
+        }
+    }
 
     public void removeSingleColumn(String columnName){
         removeColumnValue(columnName);

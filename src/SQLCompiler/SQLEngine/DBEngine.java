@@ -131,8 +131,14 @@ public class DBEngine {
         }
         else{
             Table table = getTable(tableName, query);
-            String output = table.getSpecificRows(condition, attributeList);
-            query.setOutput(output);
+            StringBuilder output = new StringBuilder();
+            for(String column : attributeList){
+                output.append(column);
+                output.append(" ");
+            }
+            output.append("\n");
+            output.append(table.getSpecificRows(condition, attributeList));
+            query.setOutput(output.toString());
             serializeTableToFile(tableName, table, query);
         }
     }

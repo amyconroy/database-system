@@ -15,6 +15,10 @@ public class Row implements Serializable {
         rowData = new LinkedHashMap<>();
     }
 
+    public void addNewColumn(String columnName){
+        rowData.put(columnName, "");
+    }
+
     public void changeRowValue(String column, String newValue){
         rowData.replace(column, newValue);
         System.out.println("new valllll " + newValue);
