@@ -19,11 +19,11 @@ public class Table implements Serializable {
         rowId = 0;
     }
 
+    public String getSpecificValue(String columnName, Row row){ return row.selectValue(columnName); }
+
     public Boolean checkColumnExists(String columnName) { return columns.contains(columnName); }
 
-    public void addColumns(ArrayList<String> columnNames){
-        columns.addAll(columnNames);
-    }
+    public void addColumns(ArrayList<String> columnNames){ columns.addAll(columnNames); }
 
     public void addSingleColumn(String columnName){
         columns.add(columnName);
@@ -51,20 +51,22 @@ public class Table implements Serializable {
         return columnReturn.toString();
     }
 
+    public LinkedList<String> getColumnsList(){ return columns; }
+
     public void addRow(ArrayList<String> rowValues){
         Row newRow = new Row();
         int iterator = 0;
         rowId++;
         for(String columnName : columns){
-            System.out.println("adding row id " + rowId);
-            System.out.println("adding row  " + columnName);
+            System.out.println("currently on column : " + columnName);
             if(columnName.equals("id")) newRow.setRow(columnName, Integer.toString(rowId));
             else {
+                System.out.println("test iterator : " + iterator);
                 newRow.setRow(columnName, rowValues.get(iterator));
                 iterator++;
             }
-
         }
+        System.out.println("leaving addRow");
         tableRows.add(newRow);
     }
 
@@ -153,4 +155,6 @@ public class Table implements Serializable {
         }
         return specificRows.toString();
     }
+
+    public LinkedList<Row> getRowsList(){ return tableRows; }
 }

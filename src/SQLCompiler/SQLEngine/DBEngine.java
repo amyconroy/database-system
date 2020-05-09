@@ -4,9 +4,11 @@ import SQLCompiler.SQLCondition.SQLCondition;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 // class to do the main engine work of the database
+//todo dont need to researlize when select / not changing anything
 public class DBEngine {
 
     public void createDatabase(String DBName, DBQuery query) throws InvalidQueryException {
@@ -167,5 +169,63 @@ public class DBEngine {
         }
         query.setOutput("OK");
         serializeTableToFile(tableName, table, query);
+    }
+
+    public void joinTables(DBQuery query, String table1, String table2, String attribute1, String attribute2) throws IOException, InvalidQueryException {
+        Table firstTable = getTable(table1, query);
+        Table secondTable = getTable(table2, query);
+        Table joinTable = new Table();
+        createJoinColumns(joinTable, firstTable, secondTable, table1, table2);
+        LinkedList<Row> tableOneRows = firstTable.getRowsList();
+        LinkedList<Row> tableTwoRows = secondTable.getRowsList();
+
+        for(Row row1 : tableOneRows){
+            String value = row1.selectValue(attribute1);
+            for(Row row2 : tableTwoRows){
+                String value2 = row2.selectValue(attribute2);
+                System.out.println("testing loop" + value2);
+                if(value.equals(value2)){
+                    System.out.println("testing loop" + value);
+                    createNewRow(row1, row2, joinTable);
+                }
+            }
+        }
+        String columns = joinTable.getAllColumns();
+        String rows = joinTable.getAllRows();
+        String result = columns + rows;
+        query.setOutput(result);
+    }
+
+    private void createJoinColumns(Table joinTable, Table tableOne, Table tableTwo, String table1, String table2){
+        joinTable.addSingleColumn("id");
+        LinkedList<String> tableOneCol = tableOne.getColumnsList();
+        LinkedList<String> tableTwoCol = tableTwo.getColumnsList();
+        ArrayList<String> newColumns = new ArrayList<>();
+        getColList(table1, tableOneCol, newColumns);
+        getColList(table2, tableTwoCol, newColumns);
+        joinTable.addColumns(newColumns);
+    }
+
+    private void getColList(String tableName, LinkedList<String> tableColumns, ArrayList<String> newColumns){
+        for(String colName : tableColumns){
+            if(!colName.equals("id")){
+                String name = tableName + "." + colName;
+                newColumns.add(name);
+            }
+        }
+    }
+
+    private void createNewRow(Row row1, Row row2, Table joinTable){
+        ArrayList<String> joinValues = new ArrayList<>();
+        ArrayList<String> row1Values = row1.getValues();
+        row1Values.remove(0);
+        ArrayList<String> row2Values = row2.getValues();
+        row2Values.remove(0);
+        joinValues.addAll(row1Values);
+        joinValues.addAll(row2Values);
+        System.out.println("testttt row values one" + row1Values.toString());
+        System.out.println("testttt row values two" + row1Values.toString());
+        joinTable.addRow(joinValues);
+        System.out.println("testttt 2");
     }
 }
