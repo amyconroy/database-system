@@ -3,17 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/brief/testing.txt" beforeDir="false" afterPath="$PROJECT_DIR$/brief/testing.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imdb/actors" beforeDir="false" afterPath="$PROJECT_DIR$/imdb/actors" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imdb/movies" beforeDir="false" afterPath="$PROJECT_DIR$/imdb/movies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imdb/roles" beforeDir="false" afterPath="$PROJECT_DIR$/imdb/roles" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markbook/marks" beforeDir="false" afterPath="$PROJECT_DIR$/markbook/marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLCondition/LikeCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLCondition/LikeCondition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_database/brief/testing.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/brief/testing.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/JoinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/JoinCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Row.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLCommands/JoinCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLCommands/JoinCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/DBEngine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/DBEngine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/Row.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/Row.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/Table.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/SQLCompiler/SQLEngine/Table.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/imdb/actors" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/imdb/actors" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/imdb/movies" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/imdb/movies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/imdb/roles" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/imdb/roles" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_database/markbook/marks" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/markbook/marks" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588987983190</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="JOIN query preformed successfully">
+      <created>1589041150959</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1589041150959</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -309,7 +314,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
     <MESSAGE value="working regex" />
     <MESSAGE value="added .trim() and check for semicolon" />
     <MESSAGE value="fixed regex" />
@@ -334,7 +338,8 @@
     <MESSAGE value="added column name when selecting specific column &#10;&#10;also added ability for new row data" />
     <MESSAGE value="ability to drop column" />
     <MESSAGE value="updated LIKE test" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated LIKE test" />
+    <MESSAGE value="JOIN query preformed successfully" />
+    <option name="LAST_COMMIT_MESSAGE" value="JOIN query preformed successfully" />
   </component>
   <component name="WindowStateProjectService">
     <state x="256" y="26" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588973179160">
@@ -388,10 +393,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="675" y="320" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1440.900@0.0.1440.900" timestamp="1588035835406" />
-    <state x="468" y="9" key="CommitChangelistDialog2" timestamp="1588987983055">
+    <state x="344" y="42" key="CommitChangelistDialog2" timestamp="1589041150750">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1588980417758" />
+    <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589041150750" />
     <state x="468" y="9" key="CommitChangelistDialog2/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1588987983055" />
     <state x="344" y="42" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1588036243858" />
     <state x="102" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588029099026" />
