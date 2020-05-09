@@ -24,14 +24,14 @@ public class SelectCommand implements CommandExpression {
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
-        if(selectAll){
+        if(selectAll && !multipleCondition){
             engine.selectAllFromTable(tableName, Query, condition);
         }
         else if(!multipleCondition){
             engine.selectRowsCondition(tableName, Query, condition, attributeList);
         }
         else{
-            // whatever to do here
+            System.out.println(" test  yeet... ");
         }
     }
 
@@ -60,8 +60,9 @@ public class SelectCommand implements CommandExpression {
     }
 
     private void whereCondition(DBParser parser, List<String> tokens, int currIndex) throws InvalidQueryException {
+        currIndex++;
+        System.out.println("check curr token: " + tokens.get(currIndex));
         if(!tokens.get(currIndex).equals("(")){
-            currIndex++;
             condition = parser.createCondition(tokens, currIndex);
         }
         else{
@@ -69,11 +70,14 @@ public class SelectCommand implements CommandExpression {
             conditionStack = new Stack<>();;
             multipleCondition = true;
             for(int i = currIndex; i < listSize; i++){
+                System.out.println("test curr value in loop " + tokens.get(i));
                 String currToken = tokens.get(i);
                 if ("AND".equals(currToken) || "OR".equals(currToken) || ")".equals(currToken) || "(".equals(currToken)) {
                     tokenStack.push(currToken);
-                } else {
+                } else if(!("'").equals(currToken)){
                     SQLCondition condition = parser.createCondition(tokens, i);
+                    i = i+3;
+                    if(tokens.get(i).equals(")")) i--; // to account for the string literals
                     conditionStack.push(condition);
                 }
             }
