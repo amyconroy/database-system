@@ -242,6 +242,7 @@ public class DBEngine {
         System.out.println("selecting multiple");
         String type = tokenStack.pop();
         LinkedList<Row> firstResults = chooseCondition(type, conditionStack, tableName, Query);
+        System.out.println("selecting multiple first" + firstResults.toString());
         LinkedList<Row> finalResults = new LinkedList<>();
         Table table = getTable(tableName, Query);
         if(!tokenStack.empty()){
@@ -268,6 +269,9 @@ public class DBEngine {
         LinkedList<String> columns = table.getColumnsList();
         ArrayList<String> newColumns = new ArrayList<>(columns);
         System.out.println("final row test : " + finalRows.toString());
+        for (Row conditionMatch : finalRows) {
+            System.out.println(conditionMatch.getRow());
+        }
         conditionTable.addColumns(newColumns);
         conditionTable.setAllRows(finalRows);
         String columnsPrint = conditionTable.getAllColumns();
@@ -284,8 +288,11 @@ public class DBEngine {
         Table table = getTable(tableName, Query);
         LinkedList<Row> tableRows = table.getRowsList();
         LinkedList<Row> firstConditionMatch = getConditionRows(firstCondition, tableRows);
+        System.out.println("selecting multiple first fuck" + firstConditionMatch.toString());
+        for (Row conditionMatch : firstConditionMatch) System.out.println(conditionMatch.getRow());
         LinkedList<Row> secondConditionMatch = getConditionRows(secondCondition, tableRows);
-
+        System.out.println("selecting multiple second fuck" + secondConditionMatch.toString());
+        for (Row conditionMatch : secondConditionMatch) System.out.println(conditionMatch.getRow());
         if(type.equals("AND")){
             newRows = andCondition(firstConditionMatch, secondConditionMatch);
         }
