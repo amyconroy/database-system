@@ -11,7 +11,7 @@ public class LikeCondition implements SQLCondition {
 
 
     public boolean compareCondition(String currValue) throws InvalidQueryException {
-        return true;
+        return currValue.contains(valueTwo);
     }
 
     private boolean checkInteger(String currValue) {
@@ -26,6 +26,7 @@ public class LikeCondition implements SQLCondition {
         if(checkInteger(valueTwo)){
             throw new InvalidQueryException("ERROR : String Expected.");
         }
+        valueTwo = valueTwo.trim();
         this.valueTwo = valueTwo;
     }
 

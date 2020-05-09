@@ -33,8 +33,9 @@ public class DBController {
     }
 
     private void trimSpaces(){
-        for (String token : tokens) {
-            queryTokens.add(token.trim());
+        for(String token : tokens) {
+            String test = token.trim();
+            queryTokens.add(test);
         }
     }
 
@@ -62,7 +63,6 @@ public class DBController {
         if(command == null) throw new IncorrectSQLException("ERROR: Invalid query");
         DBQuery.setCommand(command);
         command.parseInput(DBQuery, DBParser);
-        System.out.println("testies");
         command.preformCommand(DBQuery);
     }
 }

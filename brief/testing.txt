@@ -167,8 +167,6 @@ id	name		nationality	awards
 1	Hugh Grant	British		3
 3	James Caan	American	8
 
-
-
 SELECT * FROM actors WHERE awards >= 10;
 id	name			nationality	awards
 2	Toni Collette		Australian	12
