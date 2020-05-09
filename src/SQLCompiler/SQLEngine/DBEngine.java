@@ -97,9 +97,22 @@ public class DBEngine {
     public void dropStructure(String dropType, String dropName, DBQuery query) throws InvalidQueryException {
         File structureFile;
         if(dropType.equals("TABLE")) structureFile = getTableFile(dropName, query);
-        else structureFile = new File(dropName);
+        else structureFile = dropDatabase(dropName);
         if(structureFile.delete()) query.setOutput("OK");
         else throw new InvalidQueryException("ERROR: Unable to DROP database.");
+    }
+
+    private File dropDatabase(String dropName){
+        File database = new File(dropName);
+        String[] tables = database.list();
+        if(tables != null){
+            for(String table : tables){
+                String tableName = dropName + File.separator + table;
+                File toDrop = new File(tableName);
+                toDrop.delete();
+            }
+        }
+        return database;
     }
 
     private File getTableFile(String tableName, DBQuery query) throws InvalidQueryException {
