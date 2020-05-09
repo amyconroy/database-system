@@ -4,10 +4,10 @@ import SQLCompiler.DBQuery;
 import SQLCompiler.SQLCondition.SQLCondition;
 import SQLCompiler.SQLEngine.DBEngine;
 import SQLCompiler.SQLExceptions.InvalidQueryException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.concurrent.locks.Condition;
 
 // <Select>  ::=  SELECT <WildAttribList> FROM <TableName> |
@@ -17,20 +17,27 @@ public class SelectCommand implements CommandExpression {
     private Boolean selectAll;
     private SQLCondition condition;
     private List<String> attributeList;
+    private Boolean multipleCondition = false;
+    private Stack<String> tokenStack;
+    private Stack<SQLCondition> conditionStack;
+    private int listSize;
 
     public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
         if(selectAll){
             engine.selectAllFromTable(tableName, Query, condition);
         }
-        else{
+        else if(!multipleCondition){
             engine.selectRowsCondition(tableName, Query, condition, attributeList);
+        }
+        else{
+            // whatever to do here
         }
     }
 
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
         List<String> tokens = Query.getTokens();
-        int listSize = tokens.size()-1;
+        listSize = tokens.size()-1;
         parser.checkEndQuery(tokens.get(listSize));
         attributeList = new ArrayList<>();
         int selectIndex = 1; // start index is where WILDATTRIBLIST is specified
@@ -48,11 +55,28 @@ public class SelectCommand implements CommandExpression {
         currIndex++;
         if(!(tokens.get(currIndex).equals(";"))){ // if it is not the end of the query
             parser.checkInput(tokens.get(currIndex), "WHERE");
-            whereCondition(parser, tokens);
+            whereCondition(parser, tokens, currIndex);
         }
     }
 
-    private void whereCondition(DBParser parser, List<String> tokens) throws InvalidQueryException {
-        condition = parser.createCondition(tokens);
+    private void whereCondition(DBParser parser, List<String> tokens, int currIndex) throws InvalidQueryException {
+        if(!tokens.get(currIndex).equals("(")){
+            currIndex++;
+            condition = parser.createCondition(tokens, currIndex);
+        }
+        else{
+            tokenStack = new Stack<>();
+            conditionStack = new Stack<>();;
+            multipleCondition = true;
+            for(int i = currIndex; i < listSize; i++){
+                String currToken = tokens.get(i);
+                if ("AND".equals(currToken) || "OR".equals(currToken) || ")".equals(currToken) || "(".equals(currToken)) {
+                    tokenStack.push(currToken);
+                } else {
+                    SQLCondition condition = parser.createCondition(tokens, i);
+                    conditionStack.push(condition);
+                }
+            }
+        }
     }
 }

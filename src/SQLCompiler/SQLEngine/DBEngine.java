@@ -236,9 +236,6 @@ public class DBEngine {
         row2Values.remove(0);
         joinValues.addAll(row1Values);
         joinValues.addAll(row2Values);
-        System.out.println("testttt row values one" + row1Values.toString());
-        System.out.println("testttt row values two" + row1Values.toString());
         joinTable.addRow(joinValues);
-        System.out.println("testttt 2");
     }
 }

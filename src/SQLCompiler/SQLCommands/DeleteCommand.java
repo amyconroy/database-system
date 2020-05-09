@@ -25,6 +25,6 @@ public class DeleteCommand implements CommandExpression {
         tableName = tokens.get(2);
         parser.checkName(tableName);
         parser.checkInput(tokens.get(3), "WHERE");
-        condition = parser.createCondition(tokens);
+        condition = parser.createCondition(tokens, 4);
     }
 }

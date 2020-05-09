@@ -33,6 +33,7 @@ public class UpdateCommand implements CommandExpression {
         newValue = tokens.get(5); // 5th value is new value
         int currIndex = tokens.indexOf("WHERE");
         if(currIndex == -1) throw new InvalidQueryException("ERROR: Missing WHERE");
-        condition = parser.createCondition(tokens);
+        currIndex++;
+        condition = parser.createCondition(tokens, currIndex);
     }
 }

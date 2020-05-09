@@ -9,23 +9,7 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 
 public class DBParser {
-    private HashMap<String, SQLCondition> operators;
     private int valueIterator;
-
-    public DBParser(){
-        operators = new HashMap<>();
-        createOperatorsList();
-    }
-
-    private void createOperatorsList(){
-        operators.put("==", new EqualCondition());
-        operators.put(">", new GreaterCondition());
-        operators.put("<", new LessCondition());
-        operators.put(">=", new GreatOrEqualCondition());
-        operators.put("<=", new LessOrEqualCondition());
-        operators.put("!=", new NotEqualCondition());
-        operators.put("LIKE", new LikeCondition());
-    }
 
     public void checkInput(String input, String input2) throws InvalidQueryException {
         if(!input.equals(input2)){
@@ -77,18 +61,38 @@ public class DBParser {
         }
     }
 
-    public SQLCondition createCondition(List<String> tokens) throws InvalidQueryException {
-        valueIterator = tokens.indexOf("WHERE");
-        valueIterator++;
+    public SQLCondition createCondition(List<String> tokens, int index) throws InvalidQueryException {
+        valueIterator = index;
         String valueOne = tokens.get(valueIterator);
         valueIterator++;
         String operator = tokens.get(valueIterator);
-        SQLCondition sqlCondition = operators.get(operator);
+        SQLCondition sqlCondition = getOperator(operator);
         valueIterator++;
         String valueTwo = checkValues(tokens);
         sqlCondition.setAttributeName(valueOne);
         sqlCondition.setCompareValue(valueTwo);
         return sqlCondition;
+    }
+
+    private SQLCondition getOperator(String operator){
+        switch (operator) {
+            case "==":
+                return new EqualCondition();
+            case "LIKE":
+                return new LikeCondition();
+            case ">":
+                return new GreaterCondition();
+            case "<":
+                return new LessCondition();
+            case ">=":
+                return new GreatOrEqualCondition();
+            case "<=":
+                return new LessOrEqualCondition();
+            case "!=":
+                return new NotEqualCondition();
+            default:
+                return null;
+        }
     }
 
     public void checkIndividualCondition(List<String> tokens, String firstToken) throws InvalidQueryException {
