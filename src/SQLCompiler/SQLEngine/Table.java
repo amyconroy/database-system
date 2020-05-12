@@ -65,15 +65,12 @@ public class Table implements Serializable {
         int iterator = 0;
         rowId++;
         for(String columnName : columns){
-            System.out.println("currently on column : " + columnName);
             if(columnName.equals("id")) newRow.setRow(columnName, Integer.toString(rowId));
             else {
-                System.out.println("test iterator : " + iterator);
                 newRow.setRow(columnName, rowValues.get(iterator));
                 iterator++;
             }
         }
-        System.out.println("leaving addRow");
         tableRows.add(newRow);
     }
 

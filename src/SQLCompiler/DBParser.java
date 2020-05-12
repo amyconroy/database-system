@@ -125,7 +125,6 @@ public class DBParser {
 
         for(valueIterator = startIndex; valueIterator < endIndex; valueIterator++){
             String token = tokens.get(valueIterator);
-            System.out.println("test : " + token);
             if(!token.equals(",")){
                 value = checkValues(tokens);
                 values.add(value);
@@ -139,7 +138,6 @@ public class DBParser {
         String token = tokens.get(valueIterator);
         boolean validValue = false;
 
-        System.out.println("Initial token test: " + token);
         // string literal
         if(token.equals("'")){
             boolean bracketFlag = false;
@@ -147,11 +145,9 @@ public class DBParser {
             valueIterator++;
             token = "";
             while(!bracketFlag || !endFlag){
-                System.out.println("token : " + token);
                 if(tokens.get(valueIterator).equals("'")){
                     bracketFlag = true;
                     validValue = true;
-                    System.out.println("we here : " + token);
                     break;
                 }
                 else if(tokens.get(valueIterator).equals(";")){
@@ -202,7 +198,6 @@ public class DBParser {
             }
         }
         else{
-            System.out.println("test : " + tokens.get(checkIndex));
             if(!tokens.get(checkIndex).equals("FROM")){
                 throw new InvalidQueryException("ERROR: Missing comma between attributes.");
             }

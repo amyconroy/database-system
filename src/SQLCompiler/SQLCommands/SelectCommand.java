@@ -61,7 +61,6 @@ public class SelectCommand implements CommandExpression {
 
     private void whereCondition(DBParser parser, List<String> tokens, int currIndex) throws InvalidQueryException {
         currIndex++;
-        System.out.println("check curr token: " + tokens.get(currIndex));
         if(!tokens.get(currIndex).equals("(")){
             condition = parser.createCondition(tokens, currIndex);
         }
@@ -70,7 +69,6 @@ public class SelectCommand implements CommandExpression {
             conditionStack = new Stack<>();;
             multipleCondition = true;
             for(int i = currIndex; i < listSize; i++){
-                System.out.println("test curr value in loop " + tokens.get(i));
                 String currToken = tokens.get(i);
                 if ("AND".equals(currToken) || "OR".equals(currToken)) {
                     tokenStack.push(currToken);

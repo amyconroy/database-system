@@ -5,8 +5,6 @@ public class NotEqualCondition implements SQLCondition {
     private String valueTwo;
 
     public boolean compareCondition(String currValue) {
-        System.out.println("testing : " + currValue);
-        System.out.println("testing value two : " + valueTwo);
         return !currValue.equals(valueTwo);
     }
 

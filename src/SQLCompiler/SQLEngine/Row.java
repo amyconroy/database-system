@@ -20,8 +20,6 @@ public class Row implements Serializable {
 
     public void changeRowValue(String column, String newValue){
         rowData.replace(column, newValue);
-        System.out.println("new valllll " + newValue);
-        System.out.println("testing : " + rowData.get(column));
         updateRowToPrint();
     }
 
@@ -47,7 +45,6 @@ public class Row implements Serializable {
             newRow.append("  ");
         }
         row = newRow.toString();
-        System.out.println(" newwww row : " + row);
     }
 
     public void setRow(String columnName, String newRowData){

@@ -7,6 +7,7 @@ import java.net.Socket;
 
 public class DBServer {
     final static char EOT = 4;
+    long totalTime = 0;
 
     public static void main(String[] args) throws IOException {
         new DBServer(8888);
@@ -39,8 +40,8 @@ public class DBServer {
     }
 
     private void processQuery(String input, BufferedWriter out, BufferedReader in, DBController dbController) throws Exception {
-       try{
-           System.out.println("SQL : " + input);
+        long startTime = System.nanoTime();
+        try{
            String output = dbController.preformQuery(input);
            out.write(output + "\n" + EOT + "\n");
            out.flush();
@@ -55,6 +56,10 @@ public class DBServer {
            e.printStackTrace();
            System.err.println(e);
        }
+        long endTime = System.nanoTime() - startTime;
+        System.out.println("each time : " + endTime/1000000);
+        totalTime += endTime;
+        System.out.println("total time : " + totalTime/1000000);
     }
 }
 

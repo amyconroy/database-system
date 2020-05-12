@@ -194,9 +194,7 @@ public class DBEngine {
             String value = row1.selectValue(attribute1);
             for(Row row2 : tableTwoRows){
                 String value2 = row2.selectValue(attribute2);
-                System.out.println("testing loop" + value2);
                 if(value.equals(value2)){
-                    System.out.println("testing loop" + value);
                     createNewRow(row1, row2, joinTable);
                 }
             }
@@ -239,14 +237,8 @@ public class DBEngine {
 
     public void selectMultipleCondition(String tableName, DBQuery Query, Stack<String> tokenStack,
                                         Stack<SQLCondition> conditionStack) throws IOException, InvalidQueryException {
-        System.out.println("selecting multiple");
         String type = tokenStack.pop();
         LinkedList<Row> firstResults = chooseCondition(type, conditionStack, tableName, Query);
-        System.out.println("selecting multiple first" + firstResults.toString());
-        for (Row conditionMatch : firstResults) {
-            System.out.println("test addingggg");
-            System.out.println(conditionMatch.getRow());
-        }
         LinkedList<Row> finalResults = new LinkedList<>();
         Table table = getTable(tableName, Query);
         if(!tokenStack.empty()){
@@ -254,11 +246,6 @@ public class DBEngine {
             SQLCondition thirdCondition = conditionStack.pop();
             LinkedList<Row> tableRows = table.getRowsList();
             LinkedList<Row> conditionRows = getConditionRows(thirdCondition, tableRows);
-            for (Row conditionMatch : conditionRows) {
-                System.out.println("test add");
-                System.out.println(conditionMatch.getRow());
-            }
-            System.out.println("test and : " + type);
             if(type.equals("AND")){
                 finalResults = compareAndConditionRows(firstResults, conditionRows);
             }
@@ -277,10 +264,6 @@ public class DBEngine {
         Table conditionTable = new Table();
         LinkedList<String> columns = table.getColumnsList();
         ArrayList<String> newColumns = new ArrayList<>(columns);
-        System.out.println("final row test : " + finalRows.toString());
-        for (Row conditionMatch : finalRows) {
-            System.out.println(conditionMatch.getRow());
-        }
         conditionTable.addColumns(newColumns);
         conditionTable.setAllRows(finalRows);
         String columnsPrint = conditionTable.getAllColumns();
@@ -297,27 +280,13 @@ public class DBEngine {
         Table table = getTable(tableName, Query);
         LinkedList<Row> tableRows = table.getRowsList();
         LinkedList<Row> firstConditionMatch = getConditionRows(firstCondition, tableRows);
-        System.out.println("comparing : " + firstConditionMatch.toString());
-        for (Row conditionMatch : firstConditionMatch) {
-            System.out.println(conditionMatch.getRow());
-        }
-        for (Row conditionMatch : firstConditionMatch) System.out.println(conditionMatch.getRow());
         LinkedList<Row> secondConditionMatch = getConditionRows(secondCondition, tableRows);
-        System.out.println("comparing second fukc: " + secondConditionMatch.toString());
-        for (Row conditionMatch : secondConditionMatch) {
-            System.out.println(conditionMatch.getRow());
-        }
-        for (Row conditionMatch : secondConditionMatch) System.out.println(conditionMatch.getRow());
         if(type.equals("AND")){
             newRows = andCondition(firstConditionMatch, secondConditionMatch);
         }
         else{
             newRows.addAll(firstConditionMatch);
             newRows.addAll(secondConditionMatch);
-        }
-        for (Row row : newRows) {
-            System.out.println("in the test");
-            System.out.println(row.getRow());
         }
         return newRows;
     }
@@ -348,7 +317,6 @@ public class DBEngine {
             for (Row row2 : secondMatches) {
                 String secondRow = row2.getRow();
                 if (firstRow.equals(secondRow)) {
-                    System.out.println("do we have any matches?");
                     andMatches.add(row1);
                 }
             }
