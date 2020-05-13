@@ -100,14 +100,16 @@ public class DBEngine {
     }
 
 
-    private File dropDatabase(String dropName){
+    private File dropDatabase(String dropName) throws InvalidQueryException {
         File database = new File(dropName);
         String[] tables = database.list();
         // if there are table in the database delete each table
         if(tables != null) for (String table : tables) {
             String tableName = dropName + File.separator + table;
             File toDrop = new File(tableName);
-            toDrop.delete();
+            if(!toDrop.delete()){
+                throw new InvalidQueryException("ERROR: Table does not exist.");
+            }
         }
         return database;
     }
@@ -124,7 +126,7 @@ public class DBEngine {
     public void selectAllFromTable(String tableName, DBQuery query, SQLCondition condition)
             throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
-        String rows = "";
+        String rows;
         if(condition == null) printEntireTable(table, query); // they have not specified a condition
         else {
             rows = table.checkCondition(condition); // get the rows from the condition
@@ -266,7 +268,7 @@ public class DBEngine {
         String type = tokenStack.pop(); // get the type of operator
         // initial comparison results from chooseCondition in linkedList, first two conditions on the stack
         LinkedList<Row> firstResults = chooseCondition(type, conditionStack, tableName, Query);
-        LinkedList<Row> finalResults = new LinkedList<>();
+        LinkedList<Row> finalResults;
         Table table = getTable(tableName, Query);
         if(!tokenStack.empty()){
             type = tokenStack.pop(); // get the next token type

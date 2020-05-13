@@ -17,8 +17,7 @@ public class Row implements Serializable {
 
     protected void changeRowValue(String column, String newValue){
         rowData.replace(column, newValue);
-        updateRowToPrint();
-    }
+        updateRowToPrint(); }
 
     // select a specific column value
     protected String selectValue(String column){
@@ -29,6 +28,7 @@ public class Row implements Serializable {
         return row;
     }
 
+    // to write over a row when updated, or column added
     protected void updateRowToPrint(){
         row = "";
         StringBuilder newRow = new StringBuilder();
@@ -50,6 +50,7 @@ public class Row implements Serializable {
         updateRowToPrint();
     }
 
+    // get a list of all row values
     protected ArrayList<String> getValues(){
         Set<String> values = rowData.keySet();
         ArrayList<String> rowValue = new ArrayList<>();
