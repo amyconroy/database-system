@@ -4,11 +4,6 @@
     <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java_database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CommandExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/CommandExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/SelectCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/SelectCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLCommands/UpdateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SQLCompiler/SQLEngine/DBEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,15 +31,12 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
     <property name="last.edited.regexp" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -100,7 +92,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586782646775</updated>
-      <workItem from="1589386548317" duration="371000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1586783179892</created>
@@ -350,20 +341,18 @@
     <option name="localTasksCounter" value="36" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="name" />
@@ -454,42 +443,46 @@
     <state x="102" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588029099026" />
     <state x="344" y="42" key="CommitChangelistDialog2/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738830072" />
     <state x="344" y="42" key="CommitChangelistDialog2/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587913252566" />
-    <state width="1398" height="198" key="GridCell.Tab.0.bottom" timestamp="1589381883717">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="198" key="GridCell.Tab.0.bottom" timestamp="1589386942280">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589381646768" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589381883717" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589325535099" />
+    <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942280" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1589329694076" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587927932251" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587938245354" />
     <state width="1398" height="196" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343991" />
-    <state width="1398" height="198" key="GridCell.Tab.0.center" timestamp="1589381883715">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="198" key="GridCell.Tab.0.center" timestamp="1589386942279">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589381646766" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589381883715" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589325535097" />
+    <state width="1398" height="198" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942279" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1589329694075" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587927932250" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587938245353" />
     <state width="1398" height="196" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343990" />
-    <state width="1398" height="198" key="GridCell.Tab.0.left" timestamp="1589381883714">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="198" key="GridCell.Tab.0.left" timestamp="1589386942279">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589381646765" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589381883714" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589325535096" />
+    <state width="1398" height="198" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942279" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1589329694075" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587927932250" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587938245352" />
     <state width="1398" height="196" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343989" />
-    <state width="1398" height="198" key="GridCell.Tab.0.right" timestamp="1589381883717">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="198" key="GridCell.Tab.0.right" timestamp="1589386942280">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589381646767" />
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589381883717" />
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589325535098" />
+    <state width="1398" height="198" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942280" />
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1589329694076" />
     <state width="1398" height="198" key="GridCell.Tab.0.right/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587927932251" />
     <state width="1398" height="198" key="GridCell.Tab.0.right/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587938245354" />
@@ -572,7 +565,7 @@
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587838892347" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/java_database$DBAutoClient.ic" NAME="DBAutoClient Coverage Results" MODIFIED="1589380843616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/java_database$DBClient.ic" NAME="DBClient Coverage Results" MODIFIED="1588200498761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/java_database$DBAutoClient.ic" NAME="DBAutoClient Coverage Results" MODIFIED="1589380843616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
