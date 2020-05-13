@@ -1,7 +1,6 @@
 package sqlCompiler.sqlEngine;
 import sqlCompiler.sqlCondition.SQLCondition;
 import sqlCompiler.sqlExceptions.InvalidQueryException;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,8 +8,8 @@ import java.lang.StringBuilder;
 import java.util.List;
 
 public class Table implements Serializable {
-    private LinkedList<Row> tableRows;
-    private LinkedList<String> columns;
+    private final LinkedList<Row> tableRows;
+    private final LinkedList<String> columns;
     private int rowId;
 
     public Table(){

@@ -56,7 +56,7 @@ public class DBParser {
         return sqlCondition;
     }
 
-
+    // return the new condition object based on operator type
     private SQLCondition getOperator(String operator){
         switch (operator) {
             case "==":
@@ -104,7 +104,7 @@ public class DBParser {
             boolean endFlag = false;
             valueIterator++;
             token = "";
-
+            // either the end of the query (;) or end of the string literal ' '
             while(!bracketFlag && !endFlag){
                 switch (tokens.get(valueIterator)) {
                     case "'":

@@ -1,4 +1,3 @@
-import sqlCompiler.sqlExceptions.IncorrectSQLException;
 import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.io.*;
@@ -46,7 +45,7 @@ public class DBServer {
            out.write(output + "\n" + EOT + "\n");
            out.flush();
        }
-        catch (InvalidQueryException | IncorrectSQLException e){
+        catch (InvalidQueryException e){
            out.write("ERROR:" + e + "\n" + EOT + "\n");
            out.flush();
            e.printStackTrace();

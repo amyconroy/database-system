@@ -1,5 +1,6 @@
 package sqlCompiler.sqlCondition;
 
+// checks that the two inputs do not equal the other
 public class NotEqualCondition implements SQLCondition {
     private String attributeName;
     private String valueTwo;

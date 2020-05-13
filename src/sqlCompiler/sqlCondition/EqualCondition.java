@@ -1,5 +1,6 @@
 package sqlCompiler.sqlCondition;
 
+// check that strings are matching
 public class EqualCondition implements SQLCondition {
     private String attributeName;
     private String valueTwo;

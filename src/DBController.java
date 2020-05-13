@@ -1,7 +1,7 @@
 import sqlCompiler.DBParser;
 import sqlCompiler.DBQuery;
 import sqlCompiler.sqlCommands.*;
-import sqlCompiler.sqlExceptions.IncorrectSQLException;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.util.*;
 import java.lang.*;
@@ -60,7 +60,7 @@ public class DBController {
         String stringCommand = queryTokens.get(0);
         CommandExpression command = commandTypes.get(stringCommand);
         // null if user did not enter valid query as first token
-        if(command == null) throw new IncorrectSQLException("ERROR: Invalid query");
+        if(command == null) throw new InvalidQueryException("ERROR: Invalid query");
         command.parseInput(DBQuery, DBParser);
         command.preformCommand(DBQuery);
     }

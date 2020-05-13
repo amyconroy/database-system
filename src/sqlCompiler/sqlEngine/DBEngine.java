@@ -6,7 +6,6 @@ import java.io.*;
 import java.util.*;
 
 // class to do the main engine work of the database
-//todo dont need to researlize when select / not changing anything
 public class DBEngine {
 
     public void createDatabase(String DBName, DBQuery query) throws InvalidQueryException {
@@ -65,7 +64,7 @@ public class DBEngine {
         String DBName = query.getDatabase();
         File database = new File(DBName);
         File[] tableList = database.listFiles();
-        if(!checkTableExists(tableList, TBLName)){
+        if (tableList != null && !checkTableExists(tableList, TBLName)) {
             throw new InvalidQueryException("ERROR : Table does not exist.");
         }
         String TBLFileName = DBName + File.separator + TBLName;
@@ -129,7 +128,6 @@ public class DBEngine {
         else rows = table.checkCondition(condition);
         String result = columns + rows;
         query.setOutput(result);
-        serializeTableToFile(tableName, table, query);
     }
 
     private Table getTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
@@ -152,7 +150,6 @@ public class DBEngine {
             output.append("\n");
             output.append(table.getSpecificRows(condition, attributeList));
             query.setOutput(output.toString());
-            serializeTableToFile(tableName, table, query);
         }
     }
 
