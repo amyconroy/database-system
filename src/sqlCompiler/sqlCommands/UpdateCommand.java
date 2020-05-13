@@ -15,7 +15,7 @@ public class UpdateCommand implements CommandExpression {
     private String newValue;
     private SQLCondition condition;
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
+    public void executeCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
         engine.updateRow(tableName, columnName, newValue, condition, Query);
     }

@@ -19,25 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="refactored parsing">
+    <list default="true" id="678747b1-d474-4f56-b2a5-5a25a97583ac" name="Default Changelist" comment="add condition comments">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/amyconroy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markbook/marks" beforeDir="false" afterPath="$PROJECT_DIR$/markbook/marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_database/DBController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/DBController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_database/DBServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/DBServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_database/markbook/marks" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_database/markbook/marks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/DBParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/DBParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/EqualCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/EqualCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/GreatOrEqualCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/GreatOrEqualCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/GreaterCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/GreaterCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/LessCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/LessCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/LessOrEqualCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/LessOrEqualCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/LikeCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/LikeCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/NotEqualCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCondition/NotEqualCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlEngine/DBEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlEngine/DBEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlEngine/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlEngine/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlExceptions/IncorrectSQLException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/AlterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/AlterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/CommandExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/CommandExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/CreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/CreateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/DeleteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/DropCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/DropCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/InsertCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/InsertCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/JoinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/JoinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/SelectCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/SelectCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/UpdateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/UseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sqlCompiler/sqlCommands/UseCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +77,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last.edited.regexp" value="" />
@@ -147,7 +143,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586782646775</updated>
-      <workItem from="1589386955611" duration="7663000" />
+      <workItem from="1589386955611" duration="8703000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1586783179892</created>
@@ -401,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589395312335</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add condition comments">
+      <created>1589397586466</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1589397586466</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +423,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added interprets (use and create db)" />
     <MESSAGE value="add all conditions" />
     <MESSAGE value="update equal condition to accept string" />
     <MESSAGE value="refactor conditions" />
@@ -445,7 +447,8 @@
     <MESSAGE value="all tests passed" />
     <MESSAGE value="removed prints" />
     <MESSAGE value="refactored parsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored parsing" />
+    <MESSAGE value="add condition comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="add condition comments" />
   </component>
   <component name="WindowStateProjectService">
     <state x="441" y="0" key="#Code_Folding" timestamp="1589393180755">
@@ -519,10 +522,10 @@
     <state x="102" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1588029099026" />
     <state x="344" y="42" key="CommitChangelistDialog2/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587738830072" />
     <state x="344" y="42" key="CommitChangelistDialog2/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587913252566" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1589397257519">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1589398091410">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589397257519" />
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589398091410" />
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589388697640" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589325535099" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942280" />
@@ -530,10 +533,10 @@
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587927932251" />
     <state width="1398" height="198" key="GridCell.Tab.0.bottom/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587938245354" />
     <state width="1398" height="196" key="GridCell.Tab.0.bottom/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343991" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1589397257517">
+    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1589398091409">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589397257517" />
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589398091409" />
     <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589388697639" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589325535097" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942279" />
@@ -541,10 +544,10 @@
     <state width="1398" height="198" key="GridCell.Tab.0.center/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587927932250" />
     <state width="1398" height="198" key="GridCell.Tab.0.center/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587938245353" />
     <state width="1398" height="196" key="GridCell.Tab.0.center/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343990" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1589397257516">
+    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1589398091408">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589397257516" />
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589398091408" />
     <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589388697638" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589325535096" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942279" />
@@ -552,10 +555,10 @@
     <state width="1398" height="198" key="GridCell.Tab.0.left/1440.0.960.704/0.0.1440.900@0.0.1440.900" timestamp="1587927932250" />
     <state width="1398" height="198" key="GridCell.Tab.0.left/1440.23.960.681/0.0.1440.900@0.0.1440.900" timestamp="1587938245352" />
     <state width="1398" height="196" key="GridCell.Tab.0.left/1440.23.960.681/0.23.1440.877@0.23.1440.877" timestamp="1587136343989" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1589397257518">
+    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1589398091409">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589397257518" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1366.768@0.0.1440.900" timestamp="1589398091409" />
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900/1440.23.1366.745@0.0.1440.900" timestamp="1589388697639" />
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589325535098" />
     <state width="1398" height="198" key="GridCell.Tab.0.right/0.23.1440.877/1440.23.1366.745@0.23.1440.877" timestamp="1589386942280" />

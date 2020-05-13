@@ -13,7 +13,7 @@ public class DeleteCommand implements CommandExpression {
     private SQLCondition condition;
     private String tableName;
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
+    public void executeCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
         engine.deleteRow(tableName, condition, Query);
     }
@@ -25,6 +25,6 @@ public class DeleteCommand implements CommandExpression {
         tableName = tokens.get(2);
         parser.checkName(tableName);
         parser.checkMatchingInput(tokens.get(3), "WHERE");
-        condition = parser.createCondition(tokens, 4);
+        condition = parser.createCondition(tokens, 4); // create the new condition object
     }
 }

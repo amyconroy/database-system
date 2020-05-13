@@ -13,11 +13,12 @@ public class AlterCommand implements CommandExpression {
     private String alterationType;
     private String attributeName;
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
+    public void executeCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
         engine.alterTable(Query, attributeName, tableName, alterationType);
     }
 
+    // parsing for above BNF
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
         List<String> tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));

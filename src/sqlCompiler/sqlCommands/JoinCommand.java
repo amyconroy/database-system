@@ -15,11 +15,12 @@ public class JoinCommand implements CommandExpression {
     private String attribute1;
     private String attribute2;
 
-    public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
+    public void executeCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
         engine.joinTables(Query, table1, table2, attribute1, attribute2);
     }
 
+    // parsing according to each token as above BNF
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
         List<String> tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));

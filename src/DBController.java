@@ -62,6 +62,6 @@ public class DBController {
         // null if user did not enter valid query as first token
         if(command == null) throw new InvalidQueryException("ERROR: Invalid query");
         command.parseInput(DBQuery, DBParser);
-        command.preformCommand(DBQuery);
+        command.executeCommand(DBQuery);
     }
 }
