@@ -77,13 +77,11 @@ public class DBEngine {
 
     // to de-serialize a table from the appropriate file
     private Table deserializeTableFromFile(String TBLName, String DBName) throws IOException, InvalidQueryException {
-        FileInputStream fileIn;
-        ObjectInputStream objIn;
         Table table;
         String tableFileName = DBName + File.separator + TBLName;
         try{
-            fileIn = new FileInputStream(tableFileName);
-            objIn = new ObjectInputStream(fileIn);
+            FileInputStream fileIn = new FileInputStream(tableFileName);
+            ObjectInputStream objIn = new ObjectInputStream(fileIn);
             table = (Table) objIn.readObject();
             objIn.close();
         } catch (FileNotFoundException | ClassNotFoundException e) {
@@ -127,17 +125,19 @@ public class DBEngine {
             throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
         String columns = table.getAllColumns();
-        String rows;
-        if(condition == null) rows = table.getAllRows();
-        else rows = table.checkCondition(condition);
+        String rows = "";
+        if(condition == null) printEntireTable(table, query); // they have not specified a condition
+        else rows = table.checkCondition(condition); // get the rows from the condition
         String result = columns + rows;
         query.setOutput(result);
     }
+
 
     private Table getTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
         String dbName = query.getDatabase();
         return deserializeTableFromFile(tableName, dbName);
     }
+
 
     public void selectRowsCondition(String tableName, DBQuery query, SQLCondition condition,
                                     List<String> attributeList) throws IOException, InvalidQueryException {
@@ -157,6 +157,7 @@ public class DBEngine {
         }
     }
 
+
     public void updateRow(String tableName, String columnName, String newValue,
                           SQLCondition condition, DBQuery query)
             throws IOException, InvalidQueryException {
@@ -166,6 +167,7 @@ public class DBEngine {
         serializeTableToFile(tableName, table, query);
     }
 
+
     public void deleteRow(String tableName, SQLCondition condition, DBQuery query)
             throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
@@ -173,6 +175,7 @@ public class DBEngine {
         query.setOutput("OK");
         serializeTableToFile(tableName, table, query);
     }
+
 
     public void alterTable(DBQuery query, String column, String tableName, String alterationType)
             throws IOException, InvalidQueryException {
@@ -187,147 +190,167 @@ public class DBEngine {
         serializeTableToFile(tableName, table, query);
     }
 
+
     public void joinTables(DBQuery query, String table1, String table2, String attribute1,
                            String attribute2) throws IOException, InvalidQueryException {
         Table firstTable = getTable(table1, query);
         Table secondTable = getTable(table2, query);
         Table joinTable = new Table();
+        // get all columns from two tables
         createJoinColumns(joinTable, firstTable, secondTable, table1, table2);
         LinkedList<Row> tableOneRows = firstTable.getRowsList();
         LinkedList<Row> tableTwoRows = secondTable.getRowsList();
 
+        // for the each row from first table, get corresponding column
         for(Row row1 : tableOneRows){
             String value = row1.selectValue(attribute1);
+            // for the each row from second table, get corresponding column
             for(Row row2 : tableTwoRows){
                 String value2 = row2.selectValue(attribute2);
-                if(value.equals(value2)){
-                    createNewRow(row1, row2, joinTable);
-                }
+                //if matching on JOIN value, create a new row
+                if(value.equals(value2)) createNewRow(row1, row2, joinTable);
             }
         }
-        String columns = joinTable.getAllColumns();
-        String rows = joinTable.getAllRows();
+        printEntireTable(joinTable, query);
+    }
+
+    // print all columns and rows from a table
+    private void printEntireTable(Table table, DBQuery query){
+        String columns = table.getAllColumns();
+        String rows = table.getAllRows();
         String result = columns + rows;
         query.setOutput(result);
     }
 
+    //creates temporary table to store JOIN results in
     private void createJoinColumns(Table joinTable, Table tableOne, Table tableTwo,
                                    String table1, String table2){
         joinTable.addSingleColumn("id");
         LinkedList<String> tableOneCol = tableOne.getColumnsList();
         LinkedList<String> tableTwoCol = tableTwo.getColumnsList();
         ArrayList<String> newColumns = new ArrayList<>();
+        // get the columns for temp table using the two tables
         getColList(table1, tableOneCol, newColumns);
         getColList(table2, tableTwoCol, newColumns);
         joinTable.addColumns(newColumns);
     }
 
+
     private void getColList(String tableName, LinkedList<String> tableColumns,
                             ArrayList<String> newColumns){
-        for(String colName : tableColumns){
-            if(!colName.equals("id")){
+        // for each column - set it to be the tablename.column name, unless id column
+        for(String colName : tableColumns)
+            if (!colName.equals("id")) {
                 String name = tableName + "." + colName;
                 newColumns.add(name);
             }
-        }
     }
+
 
     private void createNewRow(Row row1, Row row2, Table joinTable){
         ArrayList<String> joinValues = new ArrayList<>();
         ArrayList<String> row1Values = row1.getValues();
-        row1Values.remove(0);
+        row1Values.remove(0); // remove the id column
         ArrayList<String> row2Values = row2.getValues();
-        row2Values.remove(0);
-        joinValues.addAll(row1Values);
-        joinValues.addAll(row2Values);
-        joinTable.addRow(joinValues);
+        row2Values.remove(0); // remove the id column
+        joinValues.addAll(row1Values); // add all values from first row
+        joinValues.addAll(row2Values); // add all values from second row
+        joinTable.addRow(joinValues); // add row to temp join table
     }
 
+    // method to handle the stack of conditions
     public void selectMultipleCondition(String tableName, DBQuery Query, Stack<String> tokenStack,
                                         Stack<SQLCondition> conditionStack) throws IOException, InvalidQueryException {
-        String type = tokenStack.pop();
+        String type = tokenStack.pop(); // get the type of operator
+        // initial comparison results from chooseCondition in linkedList, first two conditions on the stack
         LinkedList<Row> firstResults = chooseCondition(type, conditionStack, tableName, Query);
         LinkedList<Row> finalResults = new LinkedList<>();
         Table table = getTable(tableName, Query);
         if(!tokenStack.empty()){
-            type = tokenStack.pop();
-            SQLCondition thirdCondition = conditionStack.pop();
+            type = tokenStack.pop(); // get the next token type
+            SQLCondition thirdCondition = conditionStack.pop(); // get the third condition
             LinkedList<Row> tableRows = table.getRowsList();
+            // get the rows that satisfy that condition
             LinkedList<Row> conditionRows = getConditionRows(thirdCondition, tableRows);
-            if(type.equals("AND")){
-                finalResults = compareAndConditionRows(firstResults, conditionRows);
-            }
-            else{
-                finalResults.addAll(firstResults);
-                finalResults.addAll(conditionRows);
-            }
+            finalResults = addConditionRows(firstResults, conditionRows, type);
         }
         else{
+            // only had to satisfy two conditions
             finalResults = firstResults;
         }
         printConditions(finalResults, Query, table);
     }
 
+    // sets results of the conditions as the query output
     private void printConditions(LinkedList<Row> finalRows, DBQuery Query, Table table){
         Table conditionTable = new Table();
         LinkedList<String> columns = table.getColumnsList();
         ArrayList<String> newColumns = new ArrayList<>(columns);
         conditionTable.addColumns(newColumns);
         conditionTable.setAllRows(finalRows);
-        String columnsPrint = conditionTable.getAllColumns();
-        String rows = conditionTable.getAllRows();
-        String result = columnsPrint + rows;
-        Query.setOutput(result);
+        printEntireTable(conditionTable, Query);
     }
 
+    // choose the condition type - either AND or OR
     private LinkedList<Row> chooseCondition(String type, Stack<SQLCondition> conditionStack, String tableName,
                                             DBQuery Query) throws IOException, InvalidQueryException {
-        LinkedList<Row> newRows = new LinkedList<>();
+        LinkedList<Row> newRows;
         SQLCondition firstCondition = conditionStack.pop();
         SQLCondition secondCondition = conditionStack.pop();
         Table table = getTable(tableName, Query);
-        LinkedList<Row> tableRows = table.getRowsList();
+        LinkedList<Row> tableRows = table.getRowsList(); // get all rows
+        // execute the conditions and get list of rows matching conditions
         LinkedList<Row> firstConditionMatch = getConditionRows(firstCondition, tableRows);
         LinkedList<Row> secondConditionMatch = getConditionRows(secondCondition, tableRows);
+        // then add to temp table based on type
+        newRows = addConditionRows(firstConditionMatch, secondConditionMatch, type);
+        return newRows;
+    }
+
+
+    private LinkedList<Row> addConditionRows(LinkedList<Row> firstCondition, LinkedList<Row> secondCondition,
+                                             String type){
+        LinkedList<Row> newRows = new LinkedList<>();
+        // if the type is AND, compare the and condition between results
         if(type.equals("AND")){
-            newRows = andCondition(firstConditionMatch, secondConditionMatch);
+            newRows = compareAndCondition(firstCondition, secondCondition);
         }
         else{
-            newRows.addAll(firstConditionMatch);
-            newRows.addAll(secondConditionMatch);
+            // add all, as with or - any rows that satisfy either condition are added
+            newRows.addAll(firstCondition);
+            newRows.addAll(secondCondition);
         }
         return newRows;
     }
 
-    private LinkedList<Row> andCondition(LinkedList<Row> firstConditionMatch,
-                                         LinkedList<Row> secondConditionMatch){
-        return compareAndConditionRows(firstConditionMatch, secondConditionMatch);
-    }
-
+    // get the rows that satisfy the condition
     private LinkedList<Row> getConditionRows(SQLCondition condition, LinkedList<Row> tableRows)
             throws InvalidQueryException {
         LinkedList<Row> matchingRows = new LinkedList<>();
         String columnName = condition.getAttributeName();
 
         for(Row row : tableRows){
+            // select the value from the requisite column
             String value = row.selectValue(columnName);
-            if(condition.compareCondition(value)){
+            if(condition.compareCondition(value)){ // see if it satisfies condition, add row to list
                 matchingRows.add(row);
             }
         }
         return matchingRows;
     }
 
-    private LinkedList<Row> compareAndConditionRows(LinkedList<Row> firstMatches,
+    /* method to compare all rows from first condition matches, and second condition matches
+    as only added if rows satisfy both conditions (AND) */
+    private LinkedList<Row> compareAndCondition(LinkedList<Row> firstMatches,
                                                     LinkedList<Row> secondMatches){
         LinkedList<Row> andMatches = new LinkedList<>();
+
         for(Row row1 : firstMatches) {
             String firstRow = row1.getRow();
             for (Row row2 : secondMatches) {
                 String secondRow = row2.getRow();
-                if (firstRow.equals(secondRow)) {
-                    andMatches.add(row1);
-                }
+                // if there are matched rows, add them to the list of rows
+                if (firstRow.equals(secondRow)) andMatches.add(row1);
             }
         }
         return andMatches;
