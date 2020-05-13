@@ -43,7 +43,6 @@ public class SelectCommand implements CommandExpression {
         int selectIndex = 1; // start index is where WILDATTRIBLIST is specified
         int currIndex = tokens.indexOf("FROM");
         if(currIndex == -1) throw new InvalidQueryException("ERROR: Missing FROM"); // -1 is default if no from
-        //todo consider converting this to single variable
         if(!tokens.get(selectIndex).equals("*")){ // list of what to select
             attributeList = parser.createAttributeList(tokens, selectIndex, listSize);
             selectAll = false;

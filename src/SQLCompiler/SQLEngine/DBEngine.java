@@ -309,7 +309,6 @@ public class DBEngine {
         return matchingRows;
     }
 
-    //todo consider making && || enum types instead
     private LinkedList<Row> compareAndConditionRows(LinkedList<Row> firstMatches, LinkedList<Row> secondMatches){
         LinkedList<Row> andMatches = new LinkedList<>();
         for(Row row1 : firstMatches) {

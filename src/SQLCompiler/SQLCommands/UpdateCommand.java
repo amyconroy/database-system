@@ -9,14 +9,12 @@ import java.io.IOException;
 import java.util.List;
 
 //<Update> ::=  UPDATE <TableName> SET <NameValueList> WHERE <Condition>
-//todo allow for nameValue lists
 public class UpdateCommand implements CommandExpression {
     private String tableName;
     private String columnName;
     private String newValue;
     private SQLCondition condition;
 
-    //todo pass in tokens to each command as well
     public void preformCommand(DBQuery Query) throws InvalidQueryException, IOException {
         DBEngine engine = new DBEngine();
         engine.updateRow(tableName, columnName, newValue, condition, Query);

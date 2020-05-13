@@ -41,7 +41,6 @@ public class DBController {
 
     private void makeCommandMap(){
         commandTypes = new HashMap<>();
-        // todo account for different cases
         commandTypes.put("USE", new UseCommand());
         commandTypes.put("CREATE", new CreateCommand());
         commandTypes.put("DROP", new DropCommand());
@@ -53,8 +52,6 @@ public class DBController {
         commandTypes.put("DELETE", new DeleteCommand());
     }
 
-
-    // todo pass in parser and tokens, saves the preform command function? then only one in interface
     private void executeQuery() throws Exception {
         DBParser DBParser = new DBParser();
         System.out.println("TEST + "  + queryTokens);
