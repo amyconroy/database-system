@@ -124,12 +124,14 @@ public class DBEngine {
     public void selectAllFromTable(String tableName, DBQuery query, SQLCondition condition)
             throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
-        String columns = table.getAllColumns();
         String rows = "";
         if(condition == null) printEntireTable(table, query); // they have not specified a condition
-        else rows = table.checkCondition(condition); // get the rows from the condition
-        String result = columns + rows;
-        query.setOutput(result);
+        else {
+            rows = table.checkCondition(condition); // get the rows from the condition
+            String columns = table.getAllColumns();
+            String result = columns + rows;
+            query.setOutput(result);
+        }
     }
 
 
