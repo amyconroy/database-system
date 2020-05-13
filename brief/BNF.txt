@@ -1,4 +1,4 @@
-<SQLCompiler.SQLCommands>        ::=  <CommandType>;
+<sqlCompiler.sqlCommands>        ::=  <CommandType>;
 
 <CommandType>    ::=  <Use> | <Create> | <Drop> | <Alter> | <Insert> |
                       <Select> | <Update> | <Delete> | <Join>

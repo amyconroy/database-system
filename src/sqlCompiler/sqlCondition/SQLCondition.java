@@ -1,8 +1,7 @@
-package SQLCompiler.SQLCondition;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+package sqlCompiler.sqlCondition;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
-import java.util.List;
-
+// condition interface to deal with comparisons
 public interface SQLCondition {
     boolean compareCondition(String currValue) throws InvalidQueryException;
     void setAttributeName(String attributeName);

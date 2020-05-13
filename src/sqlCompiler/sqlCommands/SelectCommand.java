@@ -1,14 +1,13 @@
-package SQLCompiler.SQLCommands;
-import SQLCompiler.DBParser;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLCondition.SQLCondition;
-import SQLCompiler.SQLEngine.DBEngine;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+package sqlCompiler.sqlCommands;
+import sqlCompiler.DBParser;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlCondition.SQLCondition;
+import sqlCompiler.sqlEngine.DBEngine;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.concurrent.locks.Condition;
 
 // <Select>  ::=  SELECT <WildAttribList> FROM <TableName> |
 //                SELECT <WildAttribList> FROM <TableName> WHERE <Condition>
@@ -53,7 +52,7 @@ public class SelectCommand implements CommandExpression {
         parser.checkName(tableName);
         currIndex++;
         if(!(tokens.get(currIndex).equals(";"))){ // if it is not the end of the query
-            parser.checkInput(tokens.get(currIndex), "WHERE");
+            parser.checkMatchingInput(tokens.get(currIndex), "WHERE");
             whereCondition(parser, tokens, currIndex);
         }
     }
@@ -65,7 +64,7 @@ public class SelectCommand implements CommandExpression {
         }
         else{
             tokenStack = new Stack<>();
-            conditionStack = new Stack<>();;
+            conditionStack = new Stack<>();
             multipleCondition = true;
             for(int i = currIndex; i < listSize; i++){
                 String currToken = tokens.get(i);

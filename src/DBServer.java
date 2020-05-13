@@ -1,5 +1,5 @@
-import SQLCompiler.SQLExceptions.IncorrectSQLException;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+import sqlCompiler.sqlExceptions.IncorrectSQLException;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -7,13 +7,13 @@ import java.net.Socket;
 
 public class DBServer {
     final static char EOT = 4;
-    long totalTime = 0;
+    long totalTime;
 
     public static void main(String[] args) throws IOException {
         new DBServer(8888);
     }
 
-    public DBServer(int portNumber) throws IOException {
+    public DBServer(int portNumber) {
         while(true) {
             try {
                 System.out.println("Server Listening");
@@ -24,7 +24,7 @@ public class DBServer {
                 String line;
                 DBController dbController = new DBController();
                 while ((line = in.readLine()) != null) {
-                    processQuery(line, out, in, dbController);
+                    processQuery(line, out, dbController);
                 }
                 out.close();
                 in.close();
@@ -39,7 +39,7 @@ public class DBServer {
         }
     }
 
-    private void processQuery(String input, BufferedWriter out, BufferedReader in, DBController dbController) throws Exception {
+    private void processQuery(String input, BufferedWriter out, DBController dbController) throws Exception {
         long startTime = System.nanoTime();
         try{
            String output = dbController.preformQuery(input);

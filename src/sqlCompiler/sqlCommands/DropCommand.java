@@ -1,9 +1,9 @@
-package SQLCompiler.SQLCommands;
+package sqlCompiler.sqlCommands;
 
-import SQLCompiler.DBParser;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLEngine.DBEngine;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+import sqlCompiler.DBParser;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlEngine.DBEngine;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 import java.util.List;
 
 // <Drop> ::=  DROP <Structure> <StructureName>

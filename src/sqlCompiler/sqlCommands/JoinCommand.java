@@ -1,9 +1,9 @@
-package SQLCompiler.SQLCommands;
+package sqlCompiler.sqlCommands;
 
-import SQLCompiler.DBParser;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLEngine.DBEngine;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+import sqlCompiler.DBParser;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlEngine.DBEngine;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,13 +25,13 @@ public class JoinCommand implements CommandExpression {
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         table1 = tokens.get(1);
         parser.checkName(table1);
-        parser.checkInput(tokens.get(2), "AND");
+        parser.checkMatchingInput(tokens.get(2), "AND");
         table2 = tokens.get(3);
         parser.checkName(table2);
-        parser.checkInput(tokens.get(4), "ON");
+        parser.checkMatchingInput(tokens.get(4), "ON");
         attribute1 = tokens.get(5);
         parser.checkName(attribute1);
-        parser.checkInput(tokens.get(6), "AND");
+        parser.checkMatchingInput(tokens.get(6), "AND");
         attribute2 = tokens.get(7);
         parser.checkName(attribute2);
     }

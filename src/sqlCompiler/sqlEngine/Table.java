@@ -1,6 +1,6 @@
-package SQLCompiler.SQLEngine;
-import SQLCompiler.SQLCondition.SQLCondition;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+package sqlCompiler.sqlEngine;
+import sqlCompiler.sqlCondition.SQLCondition;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,8 +25,6 @@ public class Table implements Serializable {
             row.updateRowToPrint();
         }
     }
-
-    public String getSpecificValue(String columnName, Row row){ return row.selectValue(columnName); }
 
     public Boolean checkColumnExists(String columnName) { return columns.contains(columnName); }
 
@@ -95,7 +93,6 @@ public class Table implements Serializable {
             String tempRow = row.selectValue(column);
             if(condition.compareCondition(tempRow)){
                 row.changeRowValue(columnName, newValue);
-                String test = row.getRow();
             }
         }
     }

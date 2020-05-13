@@ -1,9 +1,9 @@
-package SQLCompiler.SQLCommands;
-import SQLCompiler.DBParser;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLCondition.SQLCondition;
-import SQLCompiler.SQLEngine.DBEngine;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+package sqlCompiler.sqlCommands;
+import sqlCompiler.DBParser;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlCondition.SQLCondition;
+import sqlCompiler.sqlEngine.DBEngine;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +25,7 @@ public class UpdateCommand implements CommandExpression {
         parser.checkEndQuery(tokens.get(tokens.size()-1));
         tableName = tokens.get(1);
         parser.checkName(tableName);
-        parser.checkInput(tokens.get(2), "SET");
+        parser.checkMatchingInput(tokens.get(2), "SET");
         columnName = tokens.get(3); // 3d value is the column name
         parser.checkName(columnName);
         newValue = tokens.get(5); // 5th value is new value

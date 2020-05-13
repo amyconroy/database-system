@@ -1,13 +1,13 @@
-package SQLCompiler.SQLCondition;
+package sqlCompiler.sqlCondition;
 
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.util.regex.Pattern;
 
 public class LessOrEqualCondition implements SQLCondition {
     private String attributeName;
     private int valueTwo;
-    private Pattern numberPattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+    private final Pattern numberPattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
     public boolean compareCondition(String currValue) throws InvalidQueryException {
         if(!checkInteger(currValue)){
@@ -27,8 +27,7 @@ public class LessOrEqualCondition implements SQLCondition {
     }
 
     public void setCompareValue(String valueTwo){
-        int two = Integer.parseInt(valueTwo);
-        this.valueTwo = two;
+        this.valueTwo = Integer.parseInt(valueTwo);
     }
 
     public String getAttributeName() { return attributeName; }

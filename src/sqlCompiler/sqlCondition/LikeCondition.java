@@ -1,16 +1,16 @@
-package SQLCompiler.SQLCondition;
+package sqlCompiler.sqlCondition;
 
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 
 import java.util.regex.Pattern;
 
 public class LikeCondition implements SQLCondition {
     private String attributeName;
     private String valueTwo;
-    private Pattern numberPattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+    private final Pattern numberPattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
 
-    public boolean compareCondition(String currValue) throws InvalidQueryException {
+    public boolean compareCondition(String currValue) {
         return currValue.contains(valueTwo);
     }
 

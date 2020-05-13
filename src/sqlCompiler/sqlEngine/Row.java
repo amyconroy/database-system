@@ -1,15 +1,14 @@
-package SQLCompiler.SQLEngine;
+package sqlCompiler.sqlEngine;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.lang.StringBuilder;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
 public class Row implements Serializable {
     // key is column name, value is row
-    private LinkedHashMap<String, String> rowData;
+    private final LinkedHashMap<String, String> rowData;
     private String row; // for ease of printing, row stored here
 
     public Row(){ rowData = new LinkedHashMap<>(); }
@@ -21,10 +20,6 @@ public class Row implements Serializable {
     public void changeRowValue(String column, String newValue){
         rowData.replace(column, newValue);
         updateRowToPrint();
-    }
-
-    public Boolean checkValueExists(String value, String column){
-        return rowData.get(column).equals(value);
     }
 
     // select a specific column value

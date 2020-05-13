@@ -1,8 +1,8 @@
-import SQLCompiler.DBParser;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLCommands.*;
-import SQLCompiler.SQLExceptions.IncorrectSQLException;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+import sqlCompiler.DBParser;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlCommands.*;
+import sqlCompiler.sqlExceptions.IncorrectSQLException;
+
 import java.util.*;
 import java.lang.*;
 
@@ -11,7 +11,7 @@ public class DBController {
     private String[] tokens;
     private String input;
     private Map<String, CommandExpression> commandTypes;
-    private DBQuery DBQuery;
+    private final DBQuery DBQuery;
 
     public DBController(){ DBQuery = new DBQuery(); }
 
@@ -26,19 +26,7 @@ public class DBController {
         return DBQuery.getOutput();
     }
 
-    private void tokenize(){
-        tokens = input.split("(?=[ ,;()'])|(?<=[ ,;()'])");
-        trimSpaces();
-        queryTokens.removeAll(Collections.singleton(""));
-    }
-
-    private void trimSpaces(){
-        for(String token : tokens) {
-            String test = token.trim();
-            queryTokens.add(test);
-        }
-    }
-
+    // filled with SQL command types
     private void makeCommandMap(){
         commandTypes = new HashMap<>();
         commandTypes.put("USE", new UseCommand());
@@ -52,13 +40,27 @@ public class DBController {
         commandTypes.put("DELETE", new DeleteCommand());
     }
 
+    private void tokenize(){
+        // tokens split by spaces, quotes, semi-colon, and commas
+        tokens = input.split("(?=[ ,;()'])|(?<=[ ,;()'])");
+        trimSpaces();
+        queryTokens.removeAll(Collections.singleton(""));
+    }
+
+    // removes remaining spaces on each token
+    private void trimSpaces(){
+        for(String token : tokens) {
+            String newToken = token.trim();
+            queryTokens.add(newToken);
+        }
+    }
+
     private void executeQuery() throws Exception {
         DBParser DBParser = new DBParser();
-        System.out.println("TEST + "  + queryTokens);
         String stringCommand = queryTokens.get(0);
         CommandExpression command = commandTypes.get(stringCommand);
+        // null if user did not enter valid query as first token
         if(command == null) throw new IncorrectSQLException("ERROR: Invalid query");
-        DBQuery.setCommand(command);
         command.parseInput(DBQuery, DBParser);
         command.preformCommand(DBQuery);
     }

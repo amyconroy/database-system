@@ -82,7 +82,7 @@ public class DBAutoClient
             "USE imdb;\n" + //Unknown database
             "USE ebay;\n"; //Unknown database
 
-    public static void main(String args[])
+    public static void main(String[] args)
     {
         try {
             //BufferedReader commandLine = new BufferedReader(new InputStreamReader(System.in));

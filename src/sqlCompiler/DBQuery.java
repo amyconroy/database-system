@@ -1,10 +1,10 @@
-package SQLCompiler;
-import SQLCompiler.SQLCommands.CommandExpression;
-import java.util.*;
-import java.lang.StringBuilder;
+package sqlCompiler;
+import java.util.ArrayList;
+import java.util.List;
 
+/* query class to retain database currently in use between queries + current
+query tokens */
 public class DBQuery {
-    private CommandExpression command;
     private List<String> queryTokens;
     private StringBuilder output;
     private String currentDB;
@@ -12,6 +12,7 @@ public class DBQuery {
     public DBQuery(){ queryTokens = new ArrayList<>(); }
 
     public void setTokens(List<String> queryTokens){
+        // not in constructor to reset tokens each query
         this.queryTokens = new ArrayList<>();
         this.queryTokens = queryTokens;
     }
@@ -22,18 +23,12 @@ public class DBQuery {
         return output.toString();
     }
 
+    // reset output each new query
     public void setNewOutput(){ output = new StringBuilder(); }
 
     public void setOutput(String newOutput){ output.append(newOutput); }
 
-    public void setCommand(CommandExpression command){
-        this.command = command;
-    }
-
-    public CommandExpression getCommand(){
-        return command;
-    }
-
+    // only changed when user inputs 'use' database
     public void setDatabase(String currentDB){ this.currentDB = currentDB; }
 
     public String getDatabase(){ return currentDB; }

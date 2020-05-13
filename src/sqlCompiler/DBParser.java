@@ -1,22 +1,20 @@
-package SQLCompiler;
-
-import SQLCompiler.SQLCondition.*;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
-
+package sqlCompiler;
+import sqlCompiler.sqlCondition.*;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
 public class DBParser {
+    // to iterate from tokens
     private int valueIterator;
 
-    public void checkInput(String input, String input2) throws InvalidQueryException {
+    public void checkMatchingInput(String input, String input2) throws InvalidQueryException {
         if(!input.equals(input2)){
             throw new InvalidQueryException("ERROR: Invalid query.");
         }
     }
 
+    // ensure end of the query includes ;
     public void checkEndQuery(String input) throws InvalidQueryException {
         if(!input.equals(";")){
             throw new InvalidQueryException("ERROR: Missing semicolon.");
@@ -24,6 +22,7 @@ public class DBParser {
     }
 
     public void checkName(String input) throws InvalidQueryException {
+        // regex checks for letter name
         String attributeName = ("^[a-zA-Z_]*$");
         if(!input.matches(attributeName)){
             throw new InvalidQueryException("ERROR: Invalid Attribute Name.");
@@ -36,43 +35,27 @@ public class DBParser {
         }
     }
 
+
     public void checkAlterationType(String input) throws InvalidQueryException {
         if(!(input.equals("ADD")) && !(input.equals("DROP"))){
             throw new InvalidQueryException("ERROR: Invalid Alteration Type.");
         }
     }
 
-    public void checkConditionBNF(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
-        String firstToken = tokens.get(startIndex);
-        valueIterator = startIndex;
-
-        if(!firstToken.equals("(")){
-            checkIndividualCondition(tokens, firstToken);
-        }
-        else {
-            valueIterator++;
-            checkIndividualCondition(tokens, firstToken);
-            valueIterator++;
-            if(!tokens.get(valueIterator).equals("AND") && !tokens.get(valueIterator).equals("OR")){
-                throw new InvalidQueryException("ERROR: Missing action type");
-            }
-            valueIterator++;
-            checkIndividualCondition(tokens, tokens.get(valueIterator));
-        }
-    }
-
+    // create sqlCondition object with appropriate tokens
     public SQLCondition createCondition(List<String> tokens, int index) throws InvalidQueryException {
-        valueIterator = index;
+        valueIterator = index; // current parsing index
         String valueOne = tokens.get(valueIterator);
         valueIterator++;
         String operator = tokens.get(valueIterator);
         SQLCondition sqlCondition = getOperator(operator);
         valueIterator++;
         String valueTwo = checkValues(tokens);
-        sqlCondition.setAttributeName(valueOne);
-        sqlCondition.setCompareValue(valueTwo);
+        if (sqlCondition != null) sqlCondition.setAttributeName(valueOne);
+        if (sqlCondition != null) sqlCondition.setCompareValue(valueTwo);
         return sqlCondition;
     }
+
 
     private SQLCondition getOperator(String operator){
         switch (operator) {
@@ -95,33 +78,10 @@ public class DBParser {
         }
     }
 
-    public void checkIndividualCondition(List<String> tokens, String firstToken) throws InvalidQueryException {
-        checkName(firstToken);
-        valueIterator++;
-        String token = tokens.get(valueIterator);
-        valueIterator++;
-        String value = checkValues(tokens);
-    }
-
-    private void iterateConditions(List<String> tokens){
-        boolean endFlag = false;
-
-        while(!endFlag){
-            String token = tokens.get(valueIterator);
-            if(token.equals(";")){
-                endFlag = true;
-            }
-            if(token.equals("(")){
-                valueIterator++;
-
-            }
-        }
-    }
-
-    //todo refactor to create one list function
+    // for BNF - <ValueList>  ::=  <Value>  |  <Value> , <ValueList>
     public List<String> createValuesList(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
         List<String> values = new ArrayList<>();
-        String value = "";
+        String value;
 
         for(valueIterator = startIndex; valueIterator < endIndex; valueIterator++){
             String token = tokens.get(valueIterator);
@@ -133,10 +93,10 @@ public class DBParser {
         return values;
     }
 
-    // check for appropriate stringliteral, boolean literal, float, int
+    // <Value> ::=  '<StringLiteral>'  |  <BooleanLiteral>  |  <FloatLiteral>  |  <IntegerLiteral>
     public String checkValues(List<String> tokens) throws InvalidQueryException {
         String token = tokens.get(valueIterator);
-        boolean validValue = false;
+        boolean validValue = false; // valid value flag for appropriate string/bool/float/int
 
         // string literal
         if(token.equals("'")){
@@ -144,52 +104,53 @@ public class DBParser {
             boolean endFlag = false;
             valueIterator++;
             token = "";
-            while(!bracketFlag || !endFlag){
-                if(tokens.get(valueIterator).equals("'")){
-                    bracketFlag = true;
-                    validValue = true;
-                    break;
+
+            while(!bracketFlag && !endFlag){
+                switch (tokens.get(valueIterator)) {
+                    case "'":
+                        bracketFlag = true;
+                        validValue = true;
+                        break;
+                    case ";": // in case they have not included the final quote
+                        endFlag = true;
+                        break;
+                    default:
+                        token = token.concat(" ");
+                        token = token.concat(tokens.get(valueIterator));
+                        valueIterator++;
+                        break;
                 }
-                else if(tokens.get(valueIterator).equals(";")){
-                    endFlag = true;
-                    break;
-                }
-                token = token.concat(" ");
-                token = token.concat(tokens.get(valueIterator));
-                valueIterator++;
             }
+            // ensure that you have hit the final close quote for string literal
             if(!bracketFlag){
                 throw new InvalidQueryException("ERROR: Missing end quote");
             }
         }
-        // number
+        // float or integer literal, regex checks for number input
         else if(token.matches("\\d+")){
             validValue = true;
         }
-        // boolean
+        // boolean literal
         else if(token.equalsIgnoreCase("true") || token.equalsIgnoreCase("false")){
             validValue = true;
         }
-        if(!validValue){
-            throw new InvalidQueryException("ERROR: Incorrect Value");
-        }
+        if(!validValue) throw new InvalidQueryException("ERROR: Incorrect Value");
         return token;
     }
 
+    //<AttributeList>  ::=  <AttributeName> | <AttributeName> , <AttributeList>
     public List<String> createAttributeList(List<String> tokens, int startIndex, int endIndex) throws InvalidQueryException {
         List<String> attributes = new ArrayList<>();
         boolean wordFlag = false;
         int checkIndex = startIndex + 1; //move forward by one to see if multiple attributes
 
+        // if the next token is not a comma, check for multiple attribute
         if(tokens.get(checkIndex).equals(",")){
             for(int iterator = startIndex; iterator < endIndex; iterator++) {
                 String currToken = tokens.get(iterator);
-                if (currToken.equals(",")) {
-                    wordFlag = false;
-                }
-                if (wordFlag) {
-                    throw new InvalidQueryException("ERROR: Missing comma between attributes.");
-                }
+                // wordFlag triggered where word hit, false when comma - catches missing commas
+                if (currToken.equals(",")) wordFlag = false;
+                if (wordFlag) throw new InvalidQueryException("ERROR: Missing comma between attributes.");
                 if (!tokens.get(iterator).equals(",")) {
                     checkName(currToken);
                     attributes.add(currToken);
@@ -197,7 +158,7 @@ public class DBParser {
                 }
             }
         }
-        else{
+        else{ // if next token is not from, missing a comma
             if(!tokens.get(checkIndex).equals("FROM")){
                 throw new InvalidQueryException("ERROR: Missing comma between attributes.");
             }
@@ -206,17 +167,14 @@ public class DBParser {
         return attributes;
     }
 
+    // iterate through tokens to ensure matching brackets
     public void checkBrackets(List<String> tokens) throws InvalidQueryException {
         boolean openFlag = false;
         boolean closeFlag = false;
 
         for(String token : tokens){
-            if(token.equals("(")){
-                openFlag = true;
-            }
-            if(token.equals(")")){
-                closeFlag = true;
-            }
+            if(token.equals("(")) openFlag = true;
+            if(token.equals(")")) closeFlag = true;
         }
         if(!openFlag && closeFlag){
             throw new InvalidQueryException("ERROR: Surround values with ( ).");

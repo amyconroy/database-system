@@ -1,9 +1,9 @@
-package SQLCompiler.SQLCommands;
-import SQLCompiler.DBParser;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLEngine.DBEngine;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
-import java.io.IOException;
+package sqlCompiler.sqlCommands;
+import sqlCompiler.DBParser;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlEngine.DBEngine;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
+
 import java.util.ArrayList;
 import java.util.List;
 

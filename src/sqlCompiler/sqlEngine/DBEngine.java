@@ -1,7 +1,7 @@
-package SQLCompiler.SQLEngine;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLCondition.SQLCondition;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+package sqlCompiler.sqlEngine;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlCondition.SQLCondition;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 import java.io.*;
 import java.util.*;
 
@@ -47,8 +47,8 @@ public class DBEngine {
 
     // to serialize a table to the appropriate file
     private void serializeTableToFile(String TBLFileName, Table newTable, DBQuery query) throws IOException, InvalidQueryException {
-        FileOutputStream fileOut = null;
-        ObjectOutputStream objOut = null;
+        FileOutputStream fileOut;
+        ObjectOutputStream objOut;
         String DBName = query.getDatabase();
         String TableFile = DBName + File.separator + TBLFileName;
         try {

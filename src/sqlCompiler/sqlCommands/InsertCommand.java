@@ -1,8 +1,8 @@
-package SQLCompiler.SQLCommands;
-import SQLCompiler.DBParser;
-import SQLCompiler.DBQuery;
-import SQLCompiler.SQLEngine.DBEngine;
-import SQLCompiler.SQLExceptions.InvalidQueryException;
+package sqlCompiler.sqlCommands;
+import sqlCompiler.DBParser;
+import sqlCompiler.DBQuery;
+import sqlCompiler.sqlEngine.DBEngine;
+import sqlCompiler.sqlExceptions.InvalidQueryException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,10 @@ public class InsertCommand implements CommandExpression {
     public void parseInput(DBQuery Query, DBParser parser) throws InvalidQueryException {
         List<String> tokens = Query.getTokens();
         parser.checkEndQuery(tokens.get(tokens.size()-1));
-        parser.checkInput(tokens.get(1), "INTO");
+        parser.checkMatchingInput(tokens.get(1), "INTO");
         tableName = tokens.get(2);
         parser.checkName(tableName);
-        parser.checkInput(tokens.get(3), "VALUES");
+        parser.checkMatchingInput(tokens.get(3), "VALUES");
         parser.checkBrackets(tokens);
         int endIndex = tokens.indexOf(")");
         int startIndex = tokens.indexOf("(") + 1;
