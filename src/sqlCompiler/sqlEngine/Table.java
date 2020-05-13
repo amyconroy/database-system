@@ -12,24 +12,24 @@ public class Table implements Serializable {
     private final LinkedList<String> columns;
     private int rowId;
 
-    public Table(){
+    protected Table(){
         tableRows = new LinkedList<>();
         columns = new LinkedList<>();
         rowId = 0;
     }
 
-    public void setAllRows(LinkedList<Row> newTableRows){
+    protected void setAllRows(LinkedList<Row> newTableRows){
         for(Row row : newTableRows){
             tableRows.add(row);
             row.updateRowToPrint();
         }
     }
 
-    public Boolean checkColumnExists(String columnName) { return columns.contains(columnName); }
+    protected Boolean checkColumnExists(String columnName) { return columns.contains(columnName); }
 
-    public void addColumns(ArrayList<String> columnNames){ columns.addAll(columnNames); }
+    protected void addColumns(ArrayList<String> columnNames){ columns.addAll(columnNames); }
 
-    public void addSingleColumn(String columnName){
+    protected void addSingleColumn(String columnName){
         columns.add(columnName);
         addColumnToRows(columnName);
     }
@@ -40,12 +40,12 @@ public class Table implements Serializable {
         }
     }
 
-    public void removeSingleColumn(String columnName){
+    protected void removeSingleColumn(String columnName){
         removeColumnValue(columnName);
         columns.remove(columnName);
     }
 
-    public String getAllColumns(){
+    protected String getAllColumns(){
         StringBuilder columnReturn = new StringBuilder();
         for(String column : columns){
             columnReturn.append(column);
@@ -55,9 +55,9 @@ public class Table implements Serializable {
         return columnReturn.toString();
     }
 
-    public LinkedList<String> getColumnsList(){ return columns; }
+    protected LinkedList<String> getColumnsList(){ return columns; }
 
-    public void addRow(ArrayList<String> rowValues){
+    protected void addRow(ArrayList<String> rowValues){
         Row newRow = new Row();
         int iterator = 0;
         rowId++;
@@ -71,7 +71,7 @@ public class Table implements Serializable {
         tableRows.add(newRow);
     }
 
-    public String checkCondition(SQLCondition condition) throws InvalidQueryException {
+    protected String checkCondition(SQLCondition condition) throws InvalidQueryException {
         StringBuilder specificRows = new StringBuilder();
         String columnName = condition.getAttributeName();
 
@@ -86,7 +86,8 @@ public class Table implements Serializable {
         return specificRows.toString();
     }
 
-    public void updateRowCondition(SQLCondition condition, String columnName, String newValue) throws InvalidQueryException {
+    protected void updateRowCondition(SQLCondition condition, String columnName, String newValue)
+            throws InvalidQueryException {
         for(Row row : tableRows){
             String column = condition.getAttributeName();
             String tempRow = row.selectValue(column);
@@ -96,13 +97,14 @@ public class Table implements Serializable {
         }
     }
 
-    public void removeEntireRow(SQLCondition condition) throws InvalidQueryException {
+    protected void removeEntireRow(SQLCondition condition) throws InvalidQueryException {
         String columnName = condition.getAttributeName();
         ArrayList<Row> rowsToRemove = new ArrayList<>();
 
         for(Row row : tableRows){
             String rowData = row.selectValue(columnName);
-            if(condition.compareCondition(rowData)){ // if it satisfies the condition with value under column - remove
+            // if it satisfies the condition with value under column - remove
+            if(condition.compareCondition(rowData)){
                 rowsToRemove.add(row);
             }
         }
@@ -115,13 +117,13 @@ public class Table implements Serializable {
         }
     }
 
-    public void removeColumnValue(String columnName){
+    protected void removeColumnValue(String columnName){
         for(Row row : tableRows){
             row.removeColumnValue(columnName);
         }
     }
 
-    public String getAllRows(){
+    protected String getAllRows(){
         StringBuilder allRows = new StringBuilder();
 
         for(Row row : tableRows){
@@ -131,7 +133,7 @@ public class Table implements Serializable {
         return allRows.toString();
     }
 
-    public String getSpecificRows(SQLCondition condition, List<String> AttributeList) throws InvalidQueryException {
+    protected String getSpecificRows(SQLCondition condition, List<String> AttributeList) throws InvalidQueryException {
         String printColumn = AttributeList.get(0);
         if(!checkColumnExists(printColumn)) {
             throw new InvalidQueryException("ERROR : Attribute not found.");
@@ -156,5 +158,5 @@ public class Table implements Serializable {
         return specificRows.toString();
     }
 
-    public LinkedList<Row> getRowsList(){ return tableRows; }
+    protected LinkedList<Row> getRowsList(){ return tableRows; }
 }

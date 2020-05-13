@@ -15,6 +15,7 @@ public class DBEngine {
         query.setOutput("OK");
     }
 
+
     public void useDatabase(String DBName, DBQuery query) throws InvalidQueryException {
         File database = new File(DBName);
         checkStructureExists(database);
@@ -22,43 +23,44 @@ public class DBEngine {
         query.setOutput("OK");
     }
 
+    // either database or table does not exist
     private void checkStructureExists(File checkStructure) throws InvalidQueryException {
         if(!checkStructure.exists()) throw new InvalidQueryException("ERROR: Structure does not exist.");
     }
 
+
     public void createTable(String TBLName, DBQuery query, ArrayList<String> columnValues) throws IOException, InvalidQueryException {
         Table newTable = new Table();
-        newTable.addSingleColumn("id");
-        if(columnValues != null) newTable.addColumns(columnValues);
+        newTable.addSingleColumn("id"); // to add the first column as ID, only done once
+        if(columnValues != null) newTable.addColumns(columnValues); // if the user has provided column names when creating
         serializeTableToFile(TBLName, newTable, query);
         query.setOutput("OK");
     }
 
+
     private Boolean checkTableExists(File[] listOfTables, String TBLName){
-        for(File file : listOfTables){
-            String currTableName = file.getName();
-            if(currTableName.equals(TBLName)){
-                return true;
-            }
-        }
-        return false;
+        // if in list of tables in database, there is a matching table - return true
+        return Arrays
+                .stream(listOfTables)
+                .map(File::getName)
+                .anyMatch(currTableName -> currTableName.equals(TBLName));
     }
 
-    // to serialize a table to the appropriate file
-    private void serializeTableToFile(String TBLFileName, Table newTable, DBQuery query) throws IOException, InvalidQueryException {
-        FileOutputStream fileOut;
-        ObjectOutputStream objOut;
-        String DBName = query.getDatabase();
+    // to serialize a table to the appropriate file path (database name + separator + table file name)
+    private void serializeTableToFile(String TBLFileName, Table newTable, DBQuery query)
+            throws IOException, InvalidQueryException {
+        String DBName = query.getDatabase(); // get the current database
         String TableFile = DBName + File.separator + TBLFileName;
         try {
-            fileOut = new FileOutputStream(TableFile);
-            objOut = new ObjectOutputStream(fileOut);
+            FileOutputStream fileOut = new FileOutputStream(TableFile);
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
             objOut.writeObject(newTable);
             objOut.close();
         } catch (FileNotFoundException e) {
             throw new InvalidQueryException("ERROR : Unable to Create Table.");
         }
     }
+
 
     public void insertTableData(String TBLName, ArrayList<String> tableValues, DBQuery query) throws InvalidQueryException, IOException {
         String DBName = query.getDatabase();
@@ -67,21 +69,20 @@ public class DBEngine {
         if (tableList != null && !checkTableExists(tableList, TBLName)) {
             throw new InvalidQueryException("ERROR : Table does not exist.");
         }
-        String TBLFileName = DBName + File.separator + TBLName;
-        Table table;
-        table = deserializeTableFromFile(TBLFileName);
+        Table table = getTable(TBLName, query);
         table.addRow(tableValues);
         serializeTableToFile(TBLName, table, query);
         query.setOutput("OK");
     }
 
     // to de-serialize a table from the appropriate file
-    private Table deserializeTableFromFile(String TBLFileName) throws IOException, InvalidQueryException {
+    private Table deserializeTableFromFile(String TBLName, String DBName) throws IOException, InvalidQueryException {
         FileInputStream fileIn;
         ObjectInputStream objIn;
         Table table;
+        String tableFileName = DBName + File.separator + TBLName;
         try{
-            fileIn = new FileInputStream(TBLFileName);
+            fileIn = new FileInputStream(tableFileName);
             objIn = new ObjectInputStream(fileIn);
             table = (Table) objIn.readObject();
             objIn.close();
@@ -91,6 +92,7 @@ public class DBEngine {
         return table;
     }
 
+
     public void dropStructure(String dropType, String dropName, DBQuery query) throws InvalidQueryException {
         File structureFile;
         if(dropType.equals("TABLE")) structureFile = getTableFile(dropName, query);
@@ -99,19 +101,20 @@ public class DBEngine {
         else throw new InvalidQueryException("ERROR: Unable to DROP database.");
     }
 
+
     private File dropDatabase(String dropName){
         File database = new File(dropName);
         String[] tables = database.list();
-        if(tables != null){
-            for(String table : tables){
-                String tableName = dropName + File.separator + table;
-                File toDrop = new File(tableName);
-                toDrop.delete();
-            }
+        // if there are table in the database delete each table
+        if(tables != null) for (String table : tables) {
+            String tableName = dropName + File.separator + table;
+            File toDrop = new File(tableName);
+            toDrop.delete();
         }
         return database;
     }
 
+    // get appropriate file pointer for table
     private File getTableFile(String tableName, DBQuery query) throws InvalidQueryException {
         String database = query.getDatabase();
         String tableFileName = database + File.separator + tableName;
@@ -120,7 +123,8 @@ public class DBEngine {
         return table;
     }
 
-    public void selectAllFromTable(String tableName, DBQuery query, SQLCondition condition) throws IOException, InvalidQueryException {
+    public void selectAllFromTable(String tableName, DBQuery query, SQLCondition condition)
+            throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
         String columns = table.getAllColumns();
         String rows;
@@ -132,11 +136,11 @@ public class DBEngine {
 
     private Table getTable(String tableName, DBQuery query) throws IOException, InvalidQueryException {
         String dbName = query.getDatabase();
-        String tableFileName = dbName + File.separator + tableName;
-        return deserializeTableFromFile(tableFileName);
+        return deserializeTableFromFile(tableName, dbName);
     }
 
-    public void selectRowsCondition(String tableName, DBQuery query, SQLCondition condition, List<String> attributeList) throws IOException, InvalidQueryException {
+    public void selectRowsCondition(String tableName, DBQuery query, SQLCondition condition,
+                                    List<String> attributeList) throws IOException, InvalidQueryException {
         if(attributeList == null){
             selectAllFromTable(tableName, query, condition);
         }
@@ -153,21 +157,25 @@ public class DBEngine {
         }
     }
 
-    public void updateRow(String tableName, String columnName, String newValue, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
+    public void updateRow(String tableName, String columnName, String newValue,
+                          SQLCondition condition, DBQuery query)
+            throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
         table.updateRowCondition(condition, columnName, newValue);
         query.setOutput("OK");
         serializeTableToFile(tableName, table, query);
     }
 
-    public void deleteRow(String tableName, SQLCondition condition, DBQuery query) throws IOException, InvalidQueryException {
+    public void deleteRow(String tableName, SQLCondition condition, DBQuery query)
+            throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
         table.removeEntireRow(condition);
         query.setOutput("OK");
         serializeTableToFile(tableName, table, query);
     }
 
-    public void alterTable(DBQuery query, String column, String tableName, String alterationType) throws IOException, InvalidQueryException {
+    public void alterTable(DBQuery query, String column, String tableName, String alterationType)
+            throws IOException, InvalidQueryException {
         Table table = getTable(tableName, query);
         if(alterationType.equals("ADD")){
             table.addSingleColumn(column);
@@ -179,7 +187,8 @@ public class DBEngine {
         serializeTableToFile(tableName, table, query);
     }
 
-    public void joinTables(DBQuery query, String table1, String table2, String attribute1, String attribute2) throws IOException, InvalidQueryException {
+    public void joinTables(DBQuery query, String table1, String table2, String attribute1,
+                           String attribute2) throws IOException, InvalidQueryException {
         Table firstTable = getTable(table1, query);
         Table secondTable = getTable(table2, query);
         Table joinTable = new Table();
@@ -202,7 +211,8 @@ public class DBEngine {
         query.setOutput(result);
     }
 
-    private void createJoinColumns(Table joinTable, Table tableOne, Table tableTwo, String table1, String table2){
+    private void createJoinColumns(Table joinTable, Table tableOne, Table tableTwo,
+                                   String table1, String table2){
         joinTable.addSingleColumn("id");
         LinkedList<String> tableOneCol = tableOne.getColumnsList();
         LinkedList<String> tableTwoCol = tableTwo.getColumnsList();
@@ -212,7 +222,8 @@ public class DBEngine {
         joinTable.addColumns(newColumns);
     }
 
-    private void getColList(String tableName, LinkedList<String> tableColumns, ArrayList<String> newColumns){
+    private void getColList(String tableName, LinkedList<String> tableColumns,
+                            ArrayList<String> newColumns){
         for(String colName : tableColumns){
             if(!colName.equals("id")){
                 String name = tableName + "." + colName;
@@ -288,7 +299,8 @@ public class DBEngine {
         return newRows;
     }
 
-    private LinkedList<Row> andCondition(LinkedList<Row> firstConditionMatch,  LinkedList<Row> secondConditionMatch){
+    private LinkedList<Row> andCondition(LinkedList<Row> firstConditionMatch,
+                                         LinkedList<Row> secondConditionMatch){
         return compareAndConditionRows(firstConditionMatch, secondConditionMatch);
     }
 
@@ -306,7 +318,8 @@ public class DBEngine {
         return matchingRows;
     }
 
-    private LinkedList<Row> compareAndConditionRows(LinkedList<Row> firstMatches, LinkedList<Row> secondMatches){
+    private LinkedList<Row> compareAndConditionRows(LinkedList<Row> firstMatches,
+                                                    LinkedList<Row> secondMatches){
         LinkedList<Row> andMatches = new LinkedList<>();
         for(Row row1 : firstMatches) {
             String firstRow = row1.getRow();
