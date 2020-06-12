@@ -1,3 +1,3 @@
 # database_system
 
-homebrew database system, built from the ground up.
+homebrew SQL database system, built from the ground up. 
