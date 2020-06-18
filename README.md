@@ -54,3 +54,6 @@ Homebrew SQL database system, built from the ground up. Works with the following
                           <AttributeName> <Operator> <Value>
 
     <Operator>       ::=   ==   |   >   |   <   |   >=   |   <=   |   !=   |   LIKE
+    
+## Disclaimer
+This work was submitted for the COMSM0103 Object Oriented Programming with Java module at the University of Bristol. Please note that no student can use this work without my permission or attempt to pass this work off as their own.
