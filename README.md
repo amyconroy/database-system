@@ -1,6 +1,36 @@
 # Database System 
 
-Homebrew SQL database system, built from the ground up. Works with the following SQL [Syntax](#syntax).
+Homebrew SQL database system, built from the ground up. Works with the SQL [Syntax](#syntax) listed below in BNF form. This system uses no external libraries to set up the database or parse the SQL queries. 
+
+## Usage
+    $ java DBServer
+    $ java DBClient 
+    
+Once the client is running you can enter SQL queries on the command line. Example queries include: 
+    
+     CREATE DATABASE coursework;
+     Server response: OK
+     
+     USE coursework;
+     Server response: OK
+     
+     CREATE TABLE marks (name, mark);
+     Server response: OK
+    
+When data is added to table other queries include: 
+    
+    SELECT * FROM marks;
+    Server response:
+    id  name   mark
+    1   Steve  65
+    2   Dave   55
+    3   Bob    35
+    4   Clive  20
+    
+    DELETE FROM marks WHERE name == 'Dave';
+    Server response: OK
+
+Also capable of handling JOIN queries and multiple WHERE conditions. 
 
 ## Syntax 
     <sqlCompiler.sqlCommands>        ::=  <CommandType>;
