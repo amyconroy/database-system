@@ -17,7 +17,7 @@ Once the client is running you can enter SQL queries on the command line. Exampl
      CREATE TABLE marks (name, mark);
      Server response: OK
     
-When data is added to table other queries include: 
+When data is added to a table other queries include: 
     
     SELECT * FROM marks;
     Server response:
@@ -30,7 +30,7 @@ When data is added to table other queries include:
     DELETE FROM marks WHERE name == 'Dave';
     Server response: OK
 
-Also capable of handling JOIN queries and multiple WHERE conditions. 
+Also capable of handling JOIN queries and multiple WHERE conditions. Other example queries can be found [here](/brief/example-queries.txt).
 
 ## Syntax 
     <sqlCompiler.sqlCommands>        ::=  <CommandType>;
