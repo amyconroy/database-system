@@ -30,7 +30,9 @@ When data is added to a table other queries include:
     DELETE FROM marks WHERE name == 'Dave';
     Server response: OK
 
-Also capable of handling JOIN queries and multiple WHERE conditions. Other example queries can be found [here](/brief/example-queries.txt).
+Also capable of handling JOIN queries and multiple WHERE conditions. 
+
+A list of example queries can be found [here](/brief/example-queries.txt).
 
 ## Syntax 
     <sqlCompiler.sqlCommands>        ::=  <CommandType>;
